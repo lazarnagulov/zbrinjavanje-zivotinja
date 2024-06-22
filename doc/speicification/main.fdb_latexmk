@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1719066915 "d:/Projekti/zbrinjavanje-zivotinja/doc/speicification/main.tex" "main.pdf" "main" 1719066917
+["pdflatex"] 1719068218 "d:/Projekti/zbrinjavanje-zivotinja/doc/speicification/main.tex" "main.pdf" "main" 1719068219
   "C:/Users/Lazar/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1717419788 90157 d9e37198ff324b11592ab69ebaea03ab ""
   "C:/Users/Lazar/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1656696013 10326700 0fcd5149c3cf89164ce0856a4cf14bff ""
   "C:/Users/Lazar/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -122,17 +122,17 @@
   "C:/Users/Lazar/AppData/Local/Programs/MiKTeX/tex/latex/tools/verbatim.sty" 1636710260 7392 39729ae6a807e217edf1442cf8fab2c2 ""
   "C:/Users/Lazar/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/Lazar/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "content.aux" 1719066917 621 a6652cfab54ea2e7e7ac6a0a674b2b4a "pdflatex"
+  "content.aux" 1719068219 621 a6652cfab54ea2e7e7ac6a0a674b2b4a "pdflatex"
   "content.tex" 1719061909 192 32a12d4adb16acecdebbe0aaade68394 ""
-  "d:/Projekti/zbrinjavanje-zivotinja/doc/speicification/main.tex" 1719066512 3126 15566380be88be8ef1b5e936734b622d ""
+  "d:/Projekti/zbrinjavanje-zivotinja/doc/speicification/main.tex" 1719068217 3123 98dd780dcca530f802fbdd0d291899b4 ""
   "img/ftn-logo.jpg" 1719061909 20666 2bc56181a665a5c01d245287f0466519 ""
   "img/uns.png" 1719061909 162842 65875b32e2db4d9c84f729c077cac361 ""
   "img/use-case.jpg" 1719066915 355336 5e04ac8057987916baee8afb0866753b ""
-  "main.aux" 1719066917 451 bc8894a1e38121c1eb79911b4928bf54 "pdflatex"
-  "main.lof" 1719066917 124 16ed246033ddefa02ef5cf196affd95c "pdflatex"
-  "main.lot" 1719066917 30 47724d54f5cea963a6c083acb6b37a1a "pdflatex"
-  "main.toc" 1719066917 97 23acb500d10b84a62bfdda6b37b28ed8 "pdflatex"
-  "titlepage.aux" 1719066917 623 305420883c1e7107f8b6a3783db7cf51 "pdflatex"
+  "main.aux" 1719068219 451 bc8894a1e38121c1eb79911b4928bf54 "pdflatex"
+  "main.lof" 1719068219 124 16ed246033ddefa02ef5cf196affd95c "pdflatex"
+  "main.lot" 1719068219 30 47724d54f5cea963a6c083acb6b37a1a "pdflatex"
+  "main.toc" 1719068219 97 23acb500d10b84a62bfdda6b37b28ed8 "pdflatex"
+  "titlepage.aux" 1719068219 623 305420883c1e7107f8b6a3783db7cf51 "pdflatex"
   "titlepage.tex" 1719061909 1096 ae56af7cc1dbb250874eba2794074d60 ""
   (generated)
   "content.aux"
