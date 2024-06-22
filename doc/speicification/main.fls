@@ -619,6 +619,13 @@ INPUT main.lot
 INPUT main.lot
 OUTPUT main.lot
 INPUT C:\Users\Lazar\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT .\img\use-case.jpg
+INPUT .\img\use-case.jpg
+INPUT img\use-case.jpg
+INPUT .\img\use-case.jpg
+INPUT .\img\use-case.jpg
+INPUT .\img\use-case.jpg
+INPUT .\img\use-case.jpg
 INPUT main.aux
 INPUT .\titlepage.aux
 INPUT titlepage.aux

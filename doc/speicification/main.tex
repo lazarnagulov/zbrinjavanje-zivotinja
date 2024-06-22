@@ -18,11 +18,14 @@
     \include{content}
     \pagenumbering{arabic}
 
+    \rhead{Funkcionalni zahtevi}
     \section{Funkcionalni zahtevi}
-    \subsection{Klase korisnika i njihove karakteristike}
-    \par U okviru datog sistema, mogu se izdvojiti sledeće klase korisnika i njihove karakteristike:
+    \par Aplikacija za praćenje zbrinjavanja životinja omogućava olakšano pronalaženje novog vlasnika za životinje. 
+    \par Na osnovu dijagrama slučajeva korišćenja [Slika \ref{fig:use-case}] primećujemo da postoje četiri uloge u aplikaciji: neregistrovani korisnik (osoba), korisnik, volonter i administrator. U nastavku se nalazi 
+    opis funkcionalnosti za svaku od uloga.
     \begin{enumerate}
-        \item \textbf{Neregistrovani korisnik (Osoba)} - mogućnost registracije, prijavljivanja na sistem kao pregled odobrenih objava.
+        \item \textbf{Neregistrovani korisnik (osoba)} - mogućnost registracije unošenjem imena, prezimena, adrese, korisničkog imena i šifre;
+        prijavljivanja na sistem unosom korisničkog imena i šifre, kao pregled odobrenih objava.
         \item \textbf{Korisnik} - poseduje sve mogućnosti kao i \textit{neregistrovani korisnik}. Dodatno može da kreira objavu (koja mora biti prihvaćena od strane
         \textit{volontera}) birajući već postojeći tip životinje, komentariše i lajkuje odobrene objave. Za svaku odobrenu objavu, ima mogućnost da pošalje zahtev za udomljavanje ili 
         privremeni smeštaj. On uvek ima uvid u sve svoje zahteve, gde po mogućnosti može da odustane od njih. Ukoliko se zahtev odobri od strane \textit{volontera}, stanje objave se menja, 
@@ -34,5 +37,11 @@
         strane korisnika i raspoređivanje sredstava po životinjama. Takođe može da dodaje, briše i menja podatke o vrsti životinja. 
         \item \textbf{Administrator} - poseduje sve mogućnosti kao i \textit{korisnik}. Dodatno dodaje, briše i menja informacije o udruženju i dodaje prvog \textit{volontera}.
     \end{enumerate} 
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{img/use-case.jpg}
+        \caption{Dijagram slučajeva korišćenja}
+        \label{fig:use-case}
+    \end{figure}
 
 \end{document}
