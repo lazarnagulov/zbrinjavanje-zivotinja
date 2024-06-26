@@ -2,8 +2,8 @@
 \section{Dijagram prelaza stanja za objave}
 \par Svaka objava može da se nalazi u 6 različitih stanja: \textit{kreirana}, \textit{odbijena},
 \textit{prihvaćena}, \textit{sakrivena}, \textit{udomljen} i \textit{privremen smeštaj}. 
-Stanja \textit{prihvaćena}, \textit{udomljena} i \textit{privremen smešta} su vidljivi za sve korisnike,
-dok \textit{volonter} može da vidi objave u stanju \textit{kreirana}, \textit{sakrivena}.
+Stanja \textit{prihvaćena}, \textit{udomljena} i \textit{privremen smeštaj} su vidljivi za sve korisnike,
+dok \textit{volonter} može da vidi objave u stanju \textit{kreirana} i \textit{sakrivena}, koja su posebno obeležena.
 \par U nastavku je navedeno na koji način objava dolazi do određenog stanja, kao i dijagram prelaza stanja [Slika \ref{fig:state}].
 \begin{figure}[h]
     \centering
@@ -17,9 +17,9 @@ dok \textit{volonter} može da vidi objave u stanju \textit{kreirana}, \textit{s
     \item \textbf{Prihvaćena}: 
         početno stanje ako je objava kreirana od strane \textit{volontera}; 
         \textit{volonter} je prihvatio objavu kreiranu od strane člana;
-        član koji je udomio životinju ili joj pružio privremen smeštaj odlučio da je vrati;
+        član koji je udomio životinju ili joj pružio privremen smeštaj je odlučio da je vrati;
         privremen smeštaj je istekao;
-        \textit{volonter} je otrio prethodno sakrivenu objavu
+        \textit{volonter} je otkrio prethodno sakrivenu objavu
     \item \textbf{Sakrivena}: \textit{volonter} sakriva objavu
     \item \textbf{Udomljen}: prihvaćen je zahtev za udomljavanje
     \item \textbf{Privremen smeštaj}: prihvaćen je zahtev za privremen smeštaj
