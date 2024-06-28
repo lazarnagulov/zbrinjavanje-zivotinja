@@ -1,0 +1,34 @@
+\rhead{Funkcionalni zahtevi}
+\section{Funkcionalni zahtevi}
+\par Na osnovu dijagrama slučajeva korišćenja [Slika \ref{fig:use-case}] primećujemo da postoje četiri uloge u aplikaciji: neregistrovani korisnik (gost), član, volonter i administrator. 
+U nastavku se nalazi opis funkcionalnosti za svaku od uloga.
+\subsection{Korisnici aplikacije}
+\begin{enumerate}
+    \item \textbf{Neregistrovani korisnik (gost)}: 
+    \begin{itemize}
+        \item Mogućnost registracije unošenjem imena, prezimena, adrese (ulica, broj, grad, država), pola, korisničkog imena i šifre.
+        \item Prijavljivanje na sistem unosom korisničkog imena i šifre.
+        \item Pregled odobrenih objava. Gost ne može da interaguje sa objavama dokle god se ne prijavi.
+    \end{itemize}
+    \item \textbf{Član}: poseduje sve mogućnosti kao i \textit{neregistrovani korisnik (gost)}. 
+    \begin{itemize}
+        \item Dodatno može da kreira objavu (koja mora biti prihvaćena od strane \textit{volontera}) birajući već postojeći tip životinje. Može da komentariše i označi da mu se sviđa odobrena 
+        objave kao i da pošalje zahtev za udomljavanje ili privremeni smeštaj. On uvek ima uvid u sve svoje zahteve, gde po mogućnosti može da odustane od njih. Takođe ima uvid u svoje objave 
+        i predloge za njih, gde može da ih prihvati ili odbije. 
+        \item U svakom trenutku nakon udomljavanja ili obezbeđenog privremenog sme\-štaja, \textit{član} može da oceni životinju sa brojem i komentarom, kao i da je vrati nazad, ukoliko nije 
+        zadovoljan. U slučaju isteka privremenog smeštaja, objava se automatski vraća u stanje \textit{prihvaćena}.
+        \item Mogućnost doniranja novca za pomoć udruženju. Sve donacije su javno dostupne.
+    \end{itemize}
+    \item \textbf{Volonter}: poseduje sve mogućnosti kao i \textit{član}, stim da je njegova objava automatski prihvaćena. Da bi \textit{član} postao \textit{volonter}, on mora
+    da bude izglasan od strane drugih \textit{volontera} (prvog volontera dodaje \textit{administrator}). 
+    \begin{itemize}
+        \item Zadužen je za prihvatanje (ili odbijanje) objava od strane članova i sakrivanje već prihvaćenih objava.
+        \item Dodatno je zadužen za unos uplate od strane člana i raspoređivanje sredstava po životinjama.
+        \item Može da dodaje, briše i menja podatke o vrsti životinja.
+    \end{itemize}
+    \item \textbf{Administrator}: poseduje sve mogućnosti kao i \textit{član}. 
+    \begin{itemize}
+        \item Dodatno dodaje, briše i menja informacije o udruženju i dodaje prvog \textit{volontera}.
+    \end{itemize}
+    
+\end{enumerate}
