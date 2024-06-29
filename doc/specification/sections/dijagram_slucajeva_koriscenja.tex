@@ -1,4 +1,4 @@
-\newcommand{\scenario}[8]{
+\newcommand{\usecase}[8]{
 \begin{table}
     \centering
     \begin{tabular}{|l|}
@@ -51,9 +51,9 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
     \caption{Dijagram slučajeva korišćenja}
     \label{fig:use-case}
 \end{figure}
-\subsection{Scenariji slučajeva korišćenja}
-\par U nastavku se nalaze scenariji korišćenja prikazani na dijagramu slučajeva korišćenja [Slika \ref{fig:use-case}].
-\scenario{GI1}
+\subsection{Specifikacija slučajeva korišćenja}
+\par U nastavku se nalaze specifikacija korišćenja prikazani na dijagramu slučajeva korišćenja [Slika \ref{fig:use-case}].
+\usecase{GI1}
         {Registracija}
         {Gost}
         {Gost se registruje na sistem}
@@ -73,7 +73,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
                 \item Kraj scenarija.
             }
         }
-\scenario{GI2}
+\usecase{GI2}
           {Vidi odobrene objave}
           {Gost}
           {Prikaz odobrenih objava gostu}
@@ -85,7 +85,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
           }
           {}
 
-\scenario{GI3}
+\usecase{GI3}
          {Pregled istorije donacija}
          {Gost}
          {Prikaz svih prethodnih donacija}
@@ -98,7 +98,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
          {}
 
 
-\scenario{GI4}
+\usecase{GI4}
         {Prijava}
         {Gost}
         {Prijava člana na sistem unosom korisničkog imena i šifre}
@@ -120,7 +120,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
             }
         }
 
-\scenario{GI5}
+\usecase{GI5}
          {Doniranje}
          {Član}
          {Prikaz informacija za donacije}
@@ -132,7 +132,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
          }
          {}
 
-\scenario{MI1}
+\usecase{MI1}
          {Zahtev za promociju u volontera}
          {Član}
          {Član šalje zahtev za promociju u volontera}
@@ -145,7 +145,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
             \item Kraj scenarija.
          }{}
 
-\scenario{MI2}
+\usecase{MI2}
          {Označava objavu da mu se sviđa}
          {Član}
          {Član označava objavu da mu se sviđa}
@@ -164,7 +164,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
             }
          }
 
-\scenario{MI3}
+\usecase{MI3}
          {Komentarisanje objave}
          {Član}
          {Član komentariše objavu}
@@ -177,7 +177,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
          }
          {}
 
-\scenario{MI4}
+\usecase{MI4}
          {Uvid u ponude}
          {Član}
          {Član ima uvid u sve njehgve ponude. EP1 Član otkazuje ponudu}
@@ -190,7 +190,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
          }
          {}
 
-\scenario{EP1}
+\usecase{EP1}
         {Otkazivanje ponude}
         {Član}
         {Otkazivanje članove ponude}
