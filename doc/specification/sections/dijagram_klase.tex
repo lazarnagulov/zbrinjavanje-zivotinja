@@ -29,7 +29,8 @@ Radi boljeg razumevanja, dijagram je podeljen na nekoliko segmenata:
 \par Svaka \textit{osoba} ima \textit{KorisničkiNalog} i \textit{Adresa}.
 Postoje dve naslednice klase \textit{Osoba} - \textit{Član} i \textit{Volonter}, koje nemaju dodatne atribute, ali zbog njihovih interakcija
 sa drugim klasama, oni moraju da postoje u sistemu. Primetimo da ne postoje klase Gost i Administrator, jer oni nemaju dodatne interakcije
-koje se razlikuju od prethodnih klasa. Sve \textit{osobe} se pamte u klasi \textit{PetCentar}.
+koje se razlikuju od prethodnih klasa. Svi \textit{koirnisčki nalozi} se pamte u klasi \textit{PetCentar}, kao i \textit{korisnički nalog} trenutno
+ulogovane \textit{osobe}.
 \par Korisnici u sistemu su prikazani na slici \ref{fig:users}. 
 \begin{figure}[h]
     \centering
@@ -38,7 +39,7 @@ koje se razlikuju od prethodnih klasa. Sve \textit{osobe} se pamte u klasi \text
     \label{fig:users}
 \end{figure}
 \subsection{Zahtevi}
-\par Zahteve za promociju može samo da podnese \textit{Član}, a da odobri \textit{Volonter}. Ova interakcija je detaljnije prikazana 
+\par Zahteve za promociju može samo da podnese \textit{član}, a da odobri \textit{volonter}. Ova interakcija je detaljnije prikazana 
 na dijagramu sekvence [Slika \ref{fig:promotion-seq}]. Svi zahtevi se čuvaju u klasi \textit{PetCentar}.
 \par Zahtevi su prikazani na slici \ref{fig:reqs}.
 \begin{figure}[h]
@@ -64,7 +65,7 @@ listu svih \textit{osoba} koji su označili objavu da im se sviđa, \textit{ponu
 \par Objave su prikazane na slici \ref{fig:posts}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth, height=0.7\textwidth]{img/posts.jpg}
+    \includegraphics[width=\textwidth, height=0.55\textwidth]{img/posts.jpg}
     \caption{Objave u klasnom dijagramu}
     \label{fig:posts}
 \end{figure}
