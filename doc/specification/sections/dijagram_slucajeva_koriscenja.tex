@@ -42,7 +42,7 @@
     \hline
 }
 
-\rhead{Dijagram slučajeva korišćenja}
+\rhead{4. Dijagram slučajeva korišćenja}
 \section{Dijagram slučajeva korišćenja}
 U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}] na kome su prikazane pravila poslovanja.
 \begin{figure}[h]
@@ -86,10 +86,10 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
           {}
 
 \scenario{GI3}
-         {Pregled istorije uplata}
+         {Pregled istorije donacija}
          {Gost}
          {Prikaz svih prethodnih donacija}
-         {Pritisnuto je dugme za prikaz istoje donacija}
+         {Pritisnuto je dugme za prikaz istorije donacija}
          {član može da vidi sve prethodne donacije}
          {
             \item Sistem učitava istoriju donacija.
@@ -103,9 +103,9 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
         {Gost}
         {Prijava člana na sistem unosom korisničkog imena i šifre}
         {Otvorena je forma za prijavu}
-        {član može da koristi funkcionalnosti sistema}
+        {Član može da koristi funkcionalnosti sistema}
         {
-            \item Član unosi korisničko ime i šifru.
+            \item Gost unosi korisničko ime i šifru.
             \item Sistem proverava da li su korisničko ime i šifra ispravni.
             \item Sistem otvara odgovarajući meni [Alternativni tok A]
             \item Kraj scenarija.
@@ -113,8 +113,8 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
         {
             \altflow{A: Neispravno korisničko ime ili šifra}
             {
-                \item Sistem obaveštava člana da su korisničko ime ili šifra neispravni.
-                \item član potvrđuje da je video obaveštenje.
+                \item Sistem obaveštava gosta da su korisničko ime ili šifra neispravni.
+                \item Gost potvrđuje da je video obaveštenje.
                 \item Prikazuje se forma za prijavu.
                 \item Kraj scenarija.
             }
@@ -124,7 +124,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
          {Doniranje}
          {Član}
          {Prikaz informacija za donacije}
-         {\makecell[l]{član je prijavljen na sistem i dugme za donacije \\je pritisnuto}}
+         {\makecell[l]{Član je prijavljen na sistem i dugme za donacije \\je pritisnuto}}
          {A: Član ima informacije potrebne za slanje donacije}
          {
             \item Sistem prikazuje informacije o bankovnom računu
@@ -152,7 +152,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
          {Član je prijavljen na sistem}
          {Promenjen broj sviđanja na objavi}
          {
-            \item Sistem vizuelno obaveštava da mu se objava sviđa.
+            \item Sistem vizuelno obaveštava člana da mu se objava sviđa.
             \item Sistem dodaje člana u listu sviđanja za objavu.[Alternativni tok A]
             \item Kraj scenarija.
          }
@@ -182,7 +182,7 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
          {Član}
          {Član ima uvid u sve njehgve ponude. EP1 Član otkazuje ponudu}
          {\makecell[l]{Član je prijavljen na sistem. Pritisnuto je dugme\\ za prikaz ponuda}}
-         {Nema posledica.}
+         {Članova odluka se trajno čuva}
          {
             \item Sistem prikazuje sve njegove ponude.
             \item $[$Tačka proširenja: EP1 Otkazivanje ponude$]$
@@ -194,8 +194,8 @@ U nastavku se nalazi dijagram slučajeva korišćenja [Slika \ref{fig:use-case}]
         {Otkazivanje ponude}
         {Član}
         {Otkazivanje članove ponude}
-        {Otvoren je prikaz članovih ponuda.}
-        {Članova odluka se trajno čuva.}
+        {Otvoren je prikaz članovih ponuda}
+        {Članova odluka se trajno čuva}
         {
             \item Član aktivira brisanje ponude.
             \item Sistem obaveštava člana o posledicama otkazivanja.
