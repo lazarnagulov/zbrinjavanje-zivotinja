@@ -16,6 +16,6 @@ namespace PetCenter.Domain.Model
         public IReadOnlyCollection<Person> Voters => _voters;
 
         public void AddVoter(Person person) => _voters.Add(person);
-        public void RemovePerson(Person person) => _voters.Remove(person);
+        public void RemoveVoter(Person person) => _voters.Remove(person);
     }
 }
