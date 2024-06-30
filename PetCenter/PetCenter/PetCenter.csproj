@@ -8,4 +8,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\RepositoryInterfaces\" />
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
 </Project>
