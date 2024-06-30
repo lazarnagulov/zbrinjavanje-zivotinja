@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PetCenter.Domain.State;
 
 namespace PetCenter.Domain.Model
 {
@@ -12,6 +13,7 @@ namespace PetCenter.Domain.Model
         public Person Author { get; set; } = author;
         public string Text { get; set; } = text;
         public Animal Animal { get; set; } = animal;
+        public PostState State { get; set; }
         public IReadOnlyCollection<Offer> Offers => _offers;
         public IReadOnlyCollection<Person> Likes => _likes;
         public IReadOnlyCollection<Comment> Comments => _comments;
