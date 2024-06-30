@@ -16,6 +16,5 @@ namespace PetCenter.Domain.Model
         public Gender Gender { get; set; } = gender;
         public DateOnly BirthDate { get; set; } = birthDate;
         public Address Address { get; set; } = address;
-
     }
 }

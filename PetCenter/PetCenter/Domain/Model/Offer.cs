@@ -14,7 +14,7 @@ namespace PetCenter.Domain.Model
         public Status Status { get; set; } = Status.OnHold;
         public IReadOnlyCollection<Review> Reviews => _reviews;
         private readonly List<Review> _reviews = [];
-        
+     
         public void AddReview(Review review) => _reviews.Add(review);
         public void RemoveReview(Review review) => _reviews.Remove(review);
     }
