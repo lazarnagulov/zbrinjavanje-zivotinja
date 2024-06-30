@@ -1,10 +1,43 @@
+\lstset{language=C++,
+        basicstyle=\ttfamily,
+        frameshape={}{yy}{}{},
+        breaklines=true,
+        postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
+        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List},
+        keywordstyle=\color{blue}\ttfamily,
+        stringstyle=\color{red}\ttfamily,
+        commentstyle=\color{green}\ttfamily,
+        morecomment=[l][\color{magenta}]{\#}
+}
 \rhead{10. Implementacija}
 \section{Implementacija}
 \par Implementacija je javno dostupna na githubu: 
 \begin{center}
     https://github.com/lazarnagulov/zbrinjavanje-zivotinja
 \end{center}
-\par Za razvoj je korišćen \textbf{MVVM} (Model-View-ViewModel) arhitektonski obrazac.
-\subsection{Orgnizacija foldera}
 \subsection{Primena MVVM šablona}
+\par Za razvoj je korišćen \textbf{MVVM} (Model-View-ViewModel) arhitektonski obrazac. 
+\subsubsection*{Model}
+\par \textbf{Model} čine \textbf{entiteti}, \textbf{servisi} i \textbf{repozitorijumi}. 
+\par Entiteti su strukture podataka koje, pored samih podataka, sadrže pomoćne funkcije za upravljanje sa konteinerima. 
+\par Na primeru [Listing \ref{list:animal}], klasa \textit{Animal} sadrži listu fotografija i pomoćne funkcije za dodavanje, brisanje i dobavljanje
+readonly liste.
+\begin{lstlisting}[caption={Primer entiteta}, captionpos=b, label=list:animal]
+public class Animal(AnimalType type, string name, int age, string description)
+{
+    public AnimalType Type { get; set; } = type;
+    public string Name { get; set; } = name;
+    public int Age { get; set; } = age;
+    public string Description { get; set; } = description;
+    private readonly List<Photo> _photos = [];
+    public IReadOnlyCollection<Photo> Photos 
+        => _photos;
+
+    public void AddPhoto(Photo photo) 
+        => _photos.Add(photo);
+    public void RemovePhoto(Photo photo) 
+        => _photos.Remove(photo);
+}
+\end{lstlisting}
+\subsection{Orgnizacija foldera}
 \subsection{Perzistencija podataka}
