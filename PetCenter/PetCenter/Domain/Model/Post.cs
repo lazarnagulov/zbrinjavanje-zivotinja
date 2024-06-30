@@ -40,6 +40,7 @@ namespace PetCenter.Domain.Model
         [Column("state")] 
         [Required] 
         public PostState State { get; set; } 
+        public DateOnly CreationDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public IReadOnlyCollection<Offer> Offers => _offers;
         public IReadOnlyCollection<Person> Likes => _likes;
         public IReadOnlyCollection<Comment> Comments => _comments;

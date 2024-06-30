@@ -32,7 +32,7 @@ namespace PetCenter.Domain.Model
 
         [MaxLength(30)]
         [Required]
-        [Column("race")]
-        public string Race { get; set; }
+        [Column("breed")]
+        public string Breed { get; set; }
     }
 }

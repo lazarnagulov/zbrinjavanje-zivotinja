@@ -44,6 +44,7 @@ namespace PetCenter.Domain.Model
         private readonly List<Photo> _photos = [];
 
         public IReadOnlyCollection<Photo> Photos => _photos;
+
         public void AddPhoto(Photo photo) => _photos.Add(photo);
         public void RemovePhoto(Photo photo) => _photos.Remove(photo);
     }
