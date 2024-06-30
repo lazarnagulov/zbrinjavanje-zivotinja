@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PetCenter.Domain.Model
 {
-    public class AnimalType(string type, string race)
+    public class AnimalType(string type, string breed)
     {
         public string Type { get; set; } = type;
-        public string Race { get; set; } = race;
+        public string Breed { get; set; } = breed;
     }
 }
