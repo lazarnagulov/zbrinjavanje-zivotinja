@@ -15,7 +15,6 @@ namespace PetCenter.Domain.Model
         public Photo()
         {
         }
-
         public Photo(string url, string description)
         {
             Url = url;

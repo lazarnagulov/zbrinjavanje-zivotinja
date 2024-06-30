@@ -44,9 +44,16 @@ namespace PetCenter.Domain.Model
         [Column("creation_date")]
         [Required]
         public DateOnly CreationDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+
+        [Column("offers_list")]
         public IReadOnlyCollection<Offer> Offers => _offers;
+
+        [Column("likes")]
         public IReadOnlyCollection<Person> Likes => _likes;
+
+        [Column("comments")]
         public IReadOnlyCollection<Comment> Comments => _comments;
+        
         [NotMapped]
         public int LikeCount => Likes.Count;
 

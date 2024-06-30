@@ -7,7 +7,7 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.RepositoryInterfaces
 {
-    public interface ICommentRepository : ICrud<Comment>
+    public interface IRequestRepository : ICrud<Request>
     {
     }
 }

@@ -18,10 +18,11 @@ namespace PetCenter.Repository
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Person> Persons { get; set; }
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Offer> Offers { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Request> Requests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -59,7 +60,7 @@ namespace PetCenter.Repository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=PetCenter;Username=postgres;Password=1234;");
             }
         }
     }

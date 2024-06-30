@@ -37,7 +37,10 @@ namespace PetCenter.Domain.Model
         [Required]
         [Column("status_o")]
         public Status Status { get; set; } = Status.OnHold;
+
+        [Column("review_list")]
         public IReadOnlyCollection<Review> Reviews => _reviews;
+
         private readonly List<Review> _reviews = [];
      
         public void AddReview(Review review) => _reviews.Add(review);

@@ -12,7 +12,7 @@ using PetCenter.Repository;
 namespace PetCenter.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240630202506_Initial")]
+    [Migration("20240630221051_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -146,13 +146,13 @@ namespace PetCenter.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id_animalType");
+                        .HasColumnName("id_animal_type");
 
-                    b.Property<string>("Race")
+                    b.Property<string>("Breed")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
-                        .HasColumnName("race");
+                        .HasColumnName("breed");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -162,7 +162,7 @@ namespace PetCenter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("animalType");
+                    b.ToTable("animal_type");
                 });
 
             modelBuilder.Entity("PetCenter.Domain.Model.Comment", b =>
@@ -214,16 +214,11 @@ namespace PetCenter.Migrations
                     b.Property<Guid>("person_author_o")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("review_id_review")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
 
                     b.HasIndex("person_author_o");
-
-                    b.HasIndex("review_id_review");
 
                     b.ToTable("offer");
                 });
@@ -258,6 +253,9 @@ namespace PetCenter.Migrations
                     b.Property<Guid?>("PostId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("RequestId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -270,6 +268,8 @@ namespace PetCenter.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("RequestId");
 
                     b.HasIndex("address_id_adr");
 
@@ -311,6 +311,10 @@ namespace PetCenter.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id_post");
 
+                    b.Property<DateOnly>("CreationDate")
+                        .HasColumnType("date")
+                        .HasColumnName("creation_date");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasMaxLength(300)
@@ -332,6 +336,35 @@ namespace PetCenter.Migrations
                     b.ToTable("post");
                 });
 
+            modelBuilder.Entity("PetCenter.Domain.Model.Request", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id_req");
+
+                    b.Property<DateOnly>("CreationDate")
+                        .HasColumnType("date")
+                        .HasColumnName("creation_date_req");
+
+                    b.Property<int>("VotesAgainst")
+                        .HasColumnType("integer")
+                        .HasColumnName("against_promotion");
+
+                    b.Property<int>("VotesFor")
+                        .HasColumnType("integer")
+                        .HasColumnName("for_promotion");
+
+                    b.Property<Guid>("person_req_author")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("person_req_author");
+
+                    b.ToTable("request");
+                });
+
             modelBuilder.Entity("PetCenter.Domain.Model.Review", b =>
                 {
                     b.Property<Guid>("Id")
@@ -348,7 +381,12 @@ namespace PetCenter.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("grade");
 
+                    b.Property<Guid?>("OfferId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OfferId");
 
                     b.ToTable("review");
                 });
@@ -468,13 +506,7 @@ namespace PetCenter.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PetCenter.Domain.Model.Review", "Review")
-                        .WithMany()
-                        .HasForeignKey("review_id_review");
-
                     b.Navigation("Author");
-
-                    b.Navigation("Review");
                 });
 
             modelBuilder.Entity("PetCenter.Domain.Model.Person", b =>
@@ -482,6 +514,10 @@ namespace PetCenter.Migrations
                     b.HasOne("PetCenter.Domain.Model.Post", null)
                         .WithMany("Likes")
                         .HasForeignKey("PostId");
+
+                    b.HasOne("PetCenter.Domain.Model.Request", null)
+                        .WithMany("Voters")
+                        .HasForeignKey("RequestId");
 
                     b.HasOne("PetCenter.Domain.Model.Address", "Address")
                         .WithMany()
@@ -518,6 +554,24 @@ namespace PetCenter.Migrations
                     b.Navigation("Author");
                 });
 
+            modelBuilder.Entity("PetCenter.Domain.Model.Request", b =>
+                {
+                    b.HasOne("PetCenter.Domain.Model.Person", "Author")
+                        .WithMany()
+                        .HasForeignKey("person_req_author")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("PetCenter.Domain.Model.Review", b =>
+                {
+                    b.HasOne("PetCenter.Domain.Model.Offer", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("OfferId");
+                });
+
             modelBuilder.Entity("PetCenter.Domain.State.PostState", b =>
                 {
                     b.HasOne("PetCenter.Domain.Model.Post", null)
@@ -532,6 +586,11 @@ namespace PetCenter.Migrations
                     b.Navigation("Photos");
                 });
 
+            modelBuilder.Entity("PetCenter.Domain.Model.Offer", b =>
+                {
+                    b.Navigation("Reviews");
+                });
+
             modelBuilder.Entity("PetCenter.Domain.Model.Post", b =>
                 {
                     b.Navigation("Comments");
@@ -542,6 +601,11 @@ namespace PetCenter.Migrations
 
                     b.Navigation("State")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PetCenter.Domain.Model.Request", b =>
+                {
+                    b.Navigation("Voters");
                 });
 #pragma warning restore 612, 618
         }

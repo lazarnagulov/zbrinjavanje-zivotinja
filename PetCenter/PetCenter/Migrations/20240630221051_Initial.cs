@@ -28,29 +28,16 @@ namespace PetCenter.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "animalType",
+                name: "animal_type",
                 columns: table => new
                 {
-                    id_animalType = table.Column<Guid>(type: "uuid", nullable: false),
+                    id_animal_type = table.Column<Guid>(type: "uuid", nullable: false),
                     typename = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
-                    race = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false)
+                    breed = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_animalType", x => x.id_animalType);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "review",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    grade = table.Column<int>(type: "integer", nullable: false),
-                    comment_r = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_review", x => x.Id);
+                    table.PrimaryKey("PK_animal_type", x => x.id_animal_type);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,10 +54,10 @@ namespace PetCenter.Migrations
                 {
                     table.PrimaryKey("PK_animal", x => x.id_animal);
                     table.ForeignKey(
-                        name: "FK_animal_animalType_animalType_id_type",
+                        name: "FK_animal_animal_type_animalType_id_type",
                         column: x => x.animalType_id_type,
-                        principalTable: "animalType",
-                        principalColumn: "id_animalType",
+                        principalTable: "animal_type",
+                        principalColumn: "id_animal_type",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -131,17 +118,30 @@ namespace PetCenter.Migrations
                     person_author_o = table.Column<Guid>(type: "uuid", nullable: false),
                     type_o = table.Column<int>(type: "integer", nullable: false),
                     status_o = table.Column<int>(type: "integer", nullable: false),
-                    review_id_review = table.Column<Guid>(type: "uuid", nullable: true),
                     PostId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_offer", x => x.id_offer);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "review",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    grade = table.Column<int>(type: "integer", nullable: false),
+                    comment_r = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: false),
+                    OfferId = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_review", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_offer_review_review_id_review",
-                        column: x => x.review_id_review,
-                        principalTable: "review",
-                        principalColumn: "Id");
+                        name: "FK_review_offer_OfferId",
+                        column: x => x.OfferId,
+                        principalTable: "offer",
+                        principalColumn: "id_offer");
                 });
 
             migrationBuilder.CreateTable(
@@ -155,7 +155,8 @@ namespace PetCenter.Migrations
                     gender = table.Column<int>(type: "integer", nullable: false),
                     birth = table.Column<DateOnly>(type: "date", nullable: false),
                     address_id_adr = table.Column<Guid>(type: "uuid", nullable: false),
-                    PostId = table.Column<Guid>(type: "uuid", nullable: true)
+                    PostId = table.Column<Guid>(type: "uuid", nullable: true),
+                    RequestId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -175,7 +176,8 @@ namespace PetCenter.Migrations
                     id_post = table.Column<Guid>(type: "uuid", nullable: false),
                     person_author_p = table.Column<Guid>(type: "uuid", nullable: false),
                     text_p = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: false),
-                    animal_animal_id = table.Column<Guid>(type: "uuid", nullable: false)
+                    animal_animal_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    creation_date = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -189,6 +191,27 @@ namespace PetCenter.Migrations
                     table.ForeignKey(
                         name: "FK_post_person_person_author_p",
                         column: x => x.person_author_p,
+                        principalTable: "person",
+                        principalColumn: "id_person",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "request",
+                columns: table => new
+                {
+                    id_req = table.Column<Guid>(type: "uuid", nullable: false),
+                    person_req_author = table.Column<Guid>(type: "uuid", nullable: false),
+                    creation_date_req = table.Column<DateOnly>(type: "date", nullable: false),
+                    for_promotion = table.Column<int>(type: "integer", nullable: false),
+                    against_promotion = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_request", x => x.id_req);
+                    table.ForeignKey(
+                        name: "FK_request_person_person_req_author",
+                        column: x => x.person_req_author,
                         principalTable: "person",
                         principalColumn: "id_person",
                         onDelete: ReferentialAction.Cascade);
@@ -255,11 +278,6 @@ namespace PetCenter.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_offer_review_id_review",
-                table: "offer",
-                column: "review_id_review");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_person_address_id_adr",
                 table: "person",
                 column: "address_id_adr");
@@ -268,6 +286,11 @@ namespace PetCenter.Migrations
                 name: "IX_person_PostId",
                 table: "person",
                 column: "PostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_person_RequestId",
+                table: "person",
+                column: "RequestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_photo_AnimalId",
@@ -283,6 +306,16 @@ namespace PetCenter.Migrations
                 name: "IX_post_person_author_p",
                 table: "post",
                 column: "person_author_p");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_request_person_req_author",
+                table: "request",
+                column: "person_req_author");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_review_OfferId",
+                table: "review",
+                column: "OfferId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_account_person_person_id_person",
@@ -327,6 +360,13 @@ namespace PetCenter.Migrations
                 column: "PostId",
                 principalTable: "post",
                 principalColumn: "id_post");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_person_request_RequestId",
+                table: "person",
+                column: "RequestId",
+                principalTable: "request",
+                principalColumn: "id_req");
         }
 
         /// <inheritdoc />
@@ -336,14 +376,15 @@ namespace PetCenter.Migrations
                 name: "FK_post_person_person_author_p",
                 table: "post");
 
+            migrationBuilder.DropForeignKey(
+                name: "FK_request_person_person_req_author",
+                table: "request");
+
             migrationBuilder.DropTable(
                 name: "account");
 
             migrationBuilder.DropTable(
                 name: "comment");
-
-            migrationBuilder.DropTable(
-                name: "offer");
 
             migrationBuilder.DropTable(
                 name: "photo");
@@ -355,6 +396,9 @@ namespace PetCenter.Migrations
                 name: "review");
 
             migrationBuilder.DropTable(
+                name: "offer");
+
+            migrationBuilder.DropTable(
                 name: "person");
 
             migrationBuilder.DropTable(
@@ -364,10 +408,13 @@ namespace PetCenter.Migrations
                 name: "post");
 
             migrationBuilder.DropTable(
+                name: "request");
+
+            migrationBuilder.DropTable(
                 name: "animal");
 
             migrationBuilder.DropTable(
-                name: "animalType");
+                name: "animal_type");
         }
     }
 }
