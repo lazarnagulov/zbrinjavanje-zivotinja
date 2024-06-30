@@ -9,6 +9,7 @@ namespace PetCenter.Domain.Model
 {
     public class Photo(string url, string description)
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Url { get; set; } = url;
         public string Description { get; set; } = description;
     }

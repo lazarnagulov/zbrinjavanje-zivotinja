@@ -9,7 +9,7 @@ namespace PetCenter.Domain.Model
 {
     public class Post(Person author, string text, Animal animal)
     {
-
+        public Guid Id { get; set;} = Guid.NewGuid();
         public Person Author { get; set; } = author;
         public string Text { get; set; } = text;
         public Animal Animal { get; set; } = animal;

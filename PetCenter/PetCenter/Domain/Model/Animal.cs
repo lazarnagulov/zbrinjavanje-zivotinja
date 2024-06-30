@@ -8,6 +8,7 @@ namespace PetCenter.Domain.Model
 {
     public class Animal(AnimalType type, string name, int age, string description)
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         public AnimalType Type { get; set; } = type;
         public string Name { get; set; } = name;
         public int Age { get; set; } = age;

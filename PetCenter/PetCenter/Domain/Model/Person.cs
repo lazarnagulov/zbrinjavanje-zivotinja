@@ -9,6 +9,7 @@ namespace PetCenter.Domain.Model
 {
     public class Person(Account account, string name, string surname, string phoneNumber, Gender gender, DateOnly birthDate, Address address)
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         public Account Account { get; set; } = account;
         public string Name { get; set; } = name;
         public string Surname { get; set; } = surname;

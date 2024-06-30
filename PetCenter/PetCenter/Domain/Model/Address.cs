@@ -8,6 +8,7 @@ namespace PetCenter.Domain.Model
 {
     public class Address(string street, int number, string city, string country, int zipCode)
     {
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Street { get; set; } = street;
         public int Number { get; set; } = number;
         public string City { get; set; } = city;

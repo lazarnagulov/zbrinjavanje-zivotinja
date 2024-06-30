@@ -9,6 +9,7 @@ namespace PetCenter.Domain.State
 {
     public abstract class PostState(Post context)
     {
+        // TODO: Change to PostService
         protected Post Context = context;
         public abstract void AcceptPost();
         public abstract void DeclinePost();
