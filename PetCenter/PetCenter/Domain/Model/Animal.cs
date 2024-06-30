@@ -33,6 +33,7 @@ namespace PetCenter.Domain.Model
         [Required]
         [Column("name_a")]
         public string Name { get; set; }
+
         [Required]
         [Column("age_a")]
         public int Age { get; set; }
@@ -41,8 +42,8 @@ namespace PetCenter.Domain.Model
         [Required]
         [Column("desc_a")]
         public string Description { get; set; }
+    
         private readonly List<Photo> _photos = [];
-
         public IReadOnlyCollection<Photo> Photos => _photos;
 
         public void AddPhoto(Photo photo) => _photos.Add(photo);

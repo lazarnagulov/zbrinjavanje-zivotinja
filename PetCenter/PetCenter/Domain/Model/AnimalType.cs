@@ -15,10 +15,10 @@ namespace PetCenter.Domain.Model
         {
         }
 
-        public AnimalType(string type, string race)
+        public AnimalType(string type, string breed)
         {
             Type = type;
-            Race = race;
+            Breed = breed;
         }
 
         [Key]
