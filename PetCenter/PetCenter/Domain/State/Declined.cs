@@ -7,8 +7,13 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
 {
-    internal class Declined(Post context) : PostState(context)
+    internal class Declined : PostState
     {
+        public Declined() { }
+        public Declined(Post context) : base(context)
+        {
+        }
+
         public override void AcceptPost()
         {
             throw new NotImplementedException();

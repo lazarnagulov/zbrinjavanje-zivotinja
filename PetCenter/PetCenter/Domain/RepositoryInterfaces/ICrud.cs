@@ -8,9 +8,9 @@ namespace PetCenter.Domain.RepositoryInterfaces
 {
     public interface ICrud<T> where T : class
     {
-        Task<IEnumerable<T>> GetAll();
-        Task<T> GetById(Guid id);
-        Task Insert(T entity);
-        Task Delete(T entity);
+        Task<List<T>> GetAll();
+        Task<T?> GetById(Guid id);
+        Task<bool> Insert(T entity);
+        Task<bool> Delete(T entity);
     }
 }

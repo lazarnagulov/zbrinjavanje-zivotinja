@@ -7,10 +7,22 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
 {
-    public abstract class PostState(Post context)
+    public abstract class PostState
     {
+
+        public Guid Id { get; set; }
         // TODO: Change to PostService
-        protected Post Context = context;
+        protected Post Context;
+
+        protected PostState()
+        {
+            
+        }
+        protected PostState(Post context)
+        {
+            Context = context;
+        }
+
         public abstract void AcceptPost();
         public abstract void DeclinePost();
         public abstract void HidePost();

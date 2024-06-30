@@ -7,8 +7,13 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
 {
-    internal class Hidden(Post context) : PostState(context)
+    public class Hidden : PostState
     {
+        public Hidden() { }
+        public Hidden(Post context) : base(context)
+        {
+        }
+
         public override void AcceptPost()
         {
             throw new NotImplementedException();

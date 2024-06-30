@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetCenter.Domain.Model
 {
-    [Table("animaltype")]
+    [Table("animalType")]
     public class AnimalType
     {
         public AnimalType()
@@ -22,7 +22,7 @@ namespace PetCenter.Domain.Model
         }
 
         [Key]
-        [Column("id_animaltype")]
+        [Column("id_animalType")]
         public Guid Id { get; set; } = Guid.NewGuid();
 
         [MaxLength(30)]

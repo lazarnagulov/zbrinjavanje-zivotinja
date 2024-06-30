@@ -26,7 +26,7 @@ namespace PetCenter.Domain.Model
         [Key]
         [Column("id_animal")]
         public Guid Id { get; set; } = Guid.NewGuid();
-        [ForeignKey("animaltype_id_type")]
+        [ForeignKey("animalType_id_type")]
         public AnimalType Type { get; set; }
         
         [MaxLength(30)]
@@ -44,7 +44,6 @@ namespace PetCenter.Domain.Model
         private readonly List<Photo> _photos = [];
 
         public IReadOnlyCollection<Photo> Photos => _photos;
-        
         public void AddPhoto(Photo photo) => _photos.Add(photo);
         public void RemovePhoto(Photo photo) => _photos.Remove(photo);
     }

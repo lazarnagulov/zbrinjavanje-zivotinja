@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,16 +9,41 @@ using PetCenter.Domain.State;
 
 namespace PetCenter.Domain.Model
 {
-    public class Post(Person author, string text, Animal animal)
+    [Table("post")]
+    public class Post
     {
+        public Post() {}
+        public Post(Person author, string text, Animal animal)
+        {
+            Author = author;
+            Text = text;
+            Animal = animal;
+        }
+        
+        [Key]
+        [Column("id_post")]
         public Guid Id { get; set;} = Guid.NewGuid();
-        public Person Author { get; set; } = author;
-        public string Text { get; set; } = text;
-        public Animal Animal { get; set; } = animal;
-        public PostState State { get; set; }
+
+        [ForeignKey("person_author_p")]
+        [Required]
+        public Person Author { get; set; }
+
+        [MaxLength(300)]
+        [Required]
+        [Column("text_p")]
+        public string Text { get; set; }
+
+        [ForeignKey("animal_animal_id")]
+        [Required]
+        public Animal Animal { get; set; }
+
+        [Column("state")] 
+        [Required] 
+        public PostState State { get; set; } 
         public IReadOnlyCollection<Offer> Offers => _offers;
         public IReadOnlyCollection<Person> Likes => _likes;
         public IReadOnlyCollection<Comment> Comments => _comments;
+        [NotMapped]
         public int LikeCount => Likes.Count;
 
         private readonly HashSet<Person> _likes = [];
