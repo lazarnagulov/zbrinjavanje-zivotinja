@@ -17,13 +17,15 @@ namespace PetCenter.Repository
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<Animal> Animals { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=PetCenter;Username=postgres;Password=1234;");
             }
         }
     }

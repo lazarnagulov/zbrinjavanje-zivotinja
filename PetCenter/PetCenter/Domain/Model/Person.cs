@@ -28,8 +28,8 @@ namespace PetCenter.Domain.Model
         [Column("id_person")]
         public Guid Id { get; set; } = Guid.NewGuid();
         
-        [Column("id_acc")]
         [Required]
+        [ForeignKey("account_id_acc")]
         public Account Account { get; set; }
 
         [MaxLength(30)]
