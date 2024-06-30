@@ -12,7 +12,7 @@ using PetCenter.Repository;
 namespace PetCenter.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240630201518_Initial")]
+    [Migration("20240630202506_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -43,6 +43,10 @@ namespace PetCenter.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)")
                         .HasColumnName("password");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer")
+                        .HasColumnName("acc_type");
 
                     b.Property<string>("Username")
                         .IsRequired()

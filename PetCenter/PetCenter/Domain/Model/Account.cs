@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PetCenter.Domain.Enumerations;
 
 namespace PetCenter.Domain.Model
 {
@@ -41,6 +42,10 @@ namespace PetCenter.Domain.Model
         [Required]
         [MaxLength(30)]
         public string Password { get; set; }
+
+        [Column("acc_type")]
+        [Required]
+        public AccountType Type { get; set; } 
 
         [ForeignKey("person_id_person")]
         public Person? Person { get; set; }

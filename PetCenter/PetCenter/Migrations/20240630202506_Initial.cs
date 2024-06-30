@@ -101,6 +101,7 @@ namespace PetCenter.Migrations
                     username = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
                     email = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
                     password = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    acc_type = table.Column<int>(type: "integer", nullable: false),
                     person_id_person = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>

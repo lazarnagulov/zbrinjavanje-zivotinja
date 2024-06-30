@@ -41,6 +41,10 @@ namespace PetCenter.Migrations
                         .HasColumnType("character varying(30)")
                         .HasColumnName("password");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("integer")
+                        .HasColumnName("acc_type");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(30)
