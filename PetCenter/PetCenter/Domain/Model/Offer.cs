@@ -12,7 +12,10 @@ namespace PetCenter.Domain.Model
         public Person Author { get; set; } = author;
         public OfferType Type { get; set; } = type;
         public Status Status { get; set; } = Status.OnHold;
-        public Review? Review { get; set; }
-
+        public IReadOnlyCollection<Review> Reviews => _reviews;
+        private readonly List<Review> _reviews = [];
+        
+        public void AddReview(Review review) => _reviews.Add(review);
+        public void RemoveReview(Review review) => _reviews.Remove(review);
     }
 }
