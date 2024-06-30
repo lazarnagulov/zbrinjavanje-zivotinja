@@ -14,6 +14,7 @@ namespace PetCenter.Domain.Model
         public string Text { get; set; } = text;
         public Animal Animal { get; set; } = animal;
         public PostState State { get; set; }
+        public DateOnly CreationDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
         public IReadOnlyCollection<Offer> Offers => _offers;
         public IReadOnlyCollection<Person> Likes => _likes;
         public IReadOnlyCollection<Comment> Comments => _comments;

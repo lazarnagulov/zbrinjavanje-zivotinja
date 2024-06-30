@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace PetCenter.Domain.Model
 {
-    public class Review(Offer offer, int grade, string comment)
+    public class Review(int grade, string comment)
     {
-        public Offer Offer { get; set; } = offer;
         public int Grade { get; set; } = grade;
         public string Comment { get; set; } = comment;
     }
