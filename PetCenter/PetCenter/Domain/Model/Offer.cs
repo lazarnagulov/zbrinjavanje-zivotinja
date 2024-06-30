@@ -7,9 +7,9 @@ using PetCenter.Domain.Enumerations;
 
 namespace PetCenter.Domain.Model
 {
-    public class Offer(Person author, OfferType type)
+    public class Offer(Person offerer, OfferType type)
     {
-        public Person Author { get; set; } = author;
+        public Person Offerer { get; set; } = offerer;
         public OfferType Type { get; set; } = type;
         public Status Status { get; set; } = Status.OnHold;
         public IReadOnlyCollection<Review> Reviews => _reviews;
