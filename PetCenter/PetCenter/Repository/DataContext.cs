@@ -56,7 +56,7 @@ namespace PetCenter.Repository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=PetCenter;Username=postgres;Password=1234;");
             }
         }
 
