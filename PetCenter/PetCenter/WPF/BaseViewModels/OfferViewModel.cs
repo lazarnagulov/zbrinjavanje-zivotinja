@@ -50,9 +50,20 @@ namespace PetCenter.WPF.BaseViewModels
             }
         }
 
+        public IReadOnlyCollection<Review> Reviews
+        {
+            get => _reviews;
+            set
+            {
+                _reviews = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Guid _id = offer.Id;
         private Person _offerer = offer.Offerer;
         private OfferType _type = offer.Type;
         private Status _status = offer.Status;
+        private IReadOnlyCollection<Review> _reviews = offer.Reviews;
     }
 }

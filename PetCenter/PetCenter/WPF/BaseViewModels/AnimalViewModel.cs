@@ -59,10 +59,21 @@ namespace PetCenter.WPF.BaseViewModels
             }
         }
 
+        public IReadOnlyCollection<Photo> Photos
+        {
+            get => _photos;
+            set
+            {
+                _photos = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Guid _id = animal.Id;
         private string _name = animal.Name;
         private string _description = animal.Description;
         private AnimalType _type = animal.Type;
+        private IReadOnlyCollection<Photo> _photos = animal.Photos;
         private int _age = animal.Age;
     }
 }

@@ -70,11 +70,44 @@ namespace PetCenter.WPF.BaseViewModels
             }
         }
 
+        public IReadOnlyCollection<Person> Likes
+        {
+            get => _likes;
+            set
+            {
+                _likes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public IReadOnlyCollection<Comment> Comments
+        {
+            get => _comments;
+            set
+            {
+                _comments = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public IReadOnlyCollection<Offer> Offers
+        {
+            get => _offers;
+            set
+            {
+                _offers = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Guid _id = post.Id;
         private Person _author = post.Author;
         private string _text = post.Text;
         private Animal _animal = post.Animal;
         private PostState _state = post.State;
         private DateOnly _creationDate = post.CreationDate;
+        private IReadOnlyCollection<Person> _likes = post.Likes;
+        private IReadOnlyCollection<Comment> _comments = post.Comments;
+        private IReadOnlyCollection<Offer> _offers = post.Offers;
     }
 }
