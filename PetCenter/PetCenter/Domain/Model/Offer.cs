@@ -16,9 +16,9 @@ namespace PetCenter.Domain.Model
         {
         }
 
-        public Offer(Person author, OfferType type)
+        public Offer(Person offerer, OfferType type)
         {
-            Author = author;
+            Offerer = offerer;
             Type = type;
         }
 
@@ -28,7 +28,7 @@ namespace PetCenter.Domain.Model
 
         [ForeignKey("person_author_o")]
         [Required]
-        public Person Author { get; set; }
+        public Person Offerer { get; set; }
 
         [Required]
         [Column("type_o")]
