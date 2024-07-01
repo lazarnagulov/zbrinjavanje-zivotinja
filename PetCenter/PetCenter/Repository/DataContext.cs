@@ -68,18 +68,9 @@ namespace PetCenter.Repository
                         joinEntity.HasKey("person_id_voter", "request_id_voted");
                         joinEntity.Property<bool>("voted_for");
                     });
-
-            BuildPost(modelBuilder);
-            base.OnModelCreating(modelBuilder);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=PetCenter;Username=postgres;Password=1234;");
-            }
-        }
+       
         private static void BuildPost(ModelBuilder modelBuilder)
         {
 

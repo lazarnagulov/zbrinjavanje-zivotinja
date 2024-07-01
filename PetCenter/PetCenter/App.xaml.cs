@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Entity.Infrastructure.Design;
 using System.Windows;
+using PetCenter.Core.Service;
 using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
 using PetCenter.Repository;

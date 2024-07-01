@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PetCenter.Core.Util;
 using PetCenter.Domain.Enumerations;
 
 namespace PetCenter.Domain.Model
@@ -20,7 +21,7 @@ namespace PetCenter.Domain.Model
         {
             Username = username;
             Email = email;
-            Password = password;
+            Password = PasswordEncoder.Encode(password);
         }
 
 
@@ -40,7 +41,7 @@ namespace PetCenter.Domain.Model
         
         [Column("password")]
         [Required]
-        [MaxLength(30)]
+        [MaxLength(64)]
         public string Password { get; set; }
 
         [Column("acc_type")]

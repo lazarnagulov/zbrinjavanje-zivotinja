@@ -17,7 +17,7 @@ namespace PetCenter.Repository
         {
             try
             {
-                container.AddAsync(entity);
+                container.Add(entity);
                 return dataContext.SaveChanges() > 0;
             }
             catch
