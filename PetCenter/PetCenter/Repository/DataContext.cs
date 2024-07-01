@@ -27,6 +27,23 @@ namespace PetCenter.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            BuildAccount(modelBuilder);
+            BuildRequest(modelBuilder);
+            BuildPost(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql("");
+            }
+        }
+
+        private static void BuildAccount(ModelBuilder modelBuilder)
+        {
+
             modelBuilder.Entity<Account>()
                 .HasIndex(account => account.Email)
                 .IsUnique();
@@ -35,6 +52,10 @@ namespace PetCenter.Repository
                 .HasIndex(account => account.Username)
                 .IsUnique();
 
+        }
+
+        private static void BuildRequest(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Request>()
                 .HasMany(r => r.Voters)
                 .WithMany()
@@ -49,17 +70,7 @@ namespace PetCenter.Repository
                     });
 
             BuildPost(modelBuilder);
-            base.OnModelCreating(modelBuilder);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseNpgsql("");
-            }
-        }
-
         private static void BuildPost(ModelBuilder modelBuilder)
         {
 

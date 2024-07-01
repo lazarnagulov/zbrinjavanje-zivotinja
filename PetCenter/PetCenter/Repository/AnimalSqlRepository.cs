@@ -8,7 +8,7 @@ using PetCenter.Domain.RepositoryInterfaces;
 
 namespace PetCenter.Repository
 {
-    public class AnimalRepository(DataContext dataContext) : IAnimalRepository
+    public class AnimalSqlRepository(DataContext dataContext) : IAnimalRepository
     {
         private readonly SqlRepository<Animal> _sqlRepository = new(dataContext, dataContext.Animals);
         public Task<List<Animal>> GetAll() => _sqlRepository.GetAll();
