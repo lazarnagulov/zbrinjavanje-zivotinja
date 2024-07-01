@@ -2,6 +2,7 @@
 using System.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data;
+using System.Data.Entity.Infrastructure.Design;
 using System.Windows;
 using PetCenter.WPF.Views;
 using PetCenter.HostBuilders;
