@@ -22,6 +22,7 @@ namespace PetCenter.Domain.Model
         }
 
         [Key]
+        [Column("id_review")]
         public Guid Id { get; set; } = Guid.NewGuid();
         
         [Column("grade")]

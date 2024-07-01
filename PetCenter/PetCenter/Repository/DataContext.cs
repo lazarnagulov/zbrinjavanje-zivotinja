@@ -22,13 +22,50 @@ namespace PetCenter.Repository
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<Request> Requests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Account>()
+                .HasIndex(account => account.Email)
+                .IsUnique();
+
+            modelBuilder.Entity<Account>()
+                .HasIndex(account => account.Username)
+                .IsUnique();
+
+            modelBuilder.Entity<Request>()
+                .HasMany(r => r.Voters)
+                .WithMany()
+                .UsingEntity<Dictionary<string, object>>(
+                    "vote",
+                    r => r.HasOne<Person>().WithMany().HasForeignKey("person_id_voter"),
+                    p => p.HasOne<Request>().WithMany().HasForeignKey("request_id_voted"),
+                    joinEntity =>
+                    {
+                        joinEntity.HasKey("person_id_voter", "request_id_voted");
+                        joinEntity.Property<bool>("voted_for");
+                    });
+
+            BuildPost(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql("");
+            }
+        }
+
+        private static void BuildPost(ModelBuilder modelBuilder)
+        {
+
             modelBuilder.Entity<PostState>(entity =>
             {
-                entity.ToTable("postStates");
+                entity.ToTable("post_state");
                 entity.HasDiscriminator<string>("StateType")
                     .HasValue<Accepted>("Accepted")
                     .HasValue<Adopted>("Adopted")
@@ -44,24 +81,41 @@ namespace PetCenter.Repository
                 .WithOne()
                 .HasForeignKey<PostState>(s => s.Id);
 
-            modelBuilder.Entity<Account>()
-                .HasIndex(account => account.Email)
-                .IsUnique();
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Offers)
+                .WithMany()
+                .UsingEntity<Dictionary<string, object>>(
+                    "post_offers",
+                    po => po.HasOne<Offer>().WithMany().HasForeignKey("offer_id_offer"),
+                    po => po.HasOne<Post>().WithMany().HasForeignKey("post_id_post"),
+                    joinEntity =>
+                    {
+                        joinEntity.HasKey("offer_id_offer", "post_id_post");
+                    });
 
-            modelBuilder.Entity<Account>()
-                .HasIndex(account => account.Username)
-                .IsUnique();
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Likes)
+                .WithMany()
+                .UsingEntity<Dictionary<string, object>>(
+                    "post_likes",
+                    pl => pl.HasOne<Person>().WithMany().HasForeignKey("person_id_liked"),
+                    pl => pl.HasOne<Post>().WithMany().HasForeignKey("post_id_liked"),
+                    joinEntity =>
+                    {
+                        joinEntity.HasKey("person_id_liked", "post_id_liked");
+                    });
 
-            
-            base.OnModelCreating(modelBuilder);
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=PetCenter;Username=postgres;Password=1234;");
-            }
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Comments)
+                .WithMany()
+                .UsingEntity<Dictionary<string, object>>(
+                    "post_comments",
+                    pc => pc.HasOne<Comment>().WithMany().HasForeignKey("comment_id_comment"),
+                    pc => pc.HasOne<Post>().WithMany().HasForeignKey("post_id_post_cmt"),
+                    joinEntity =>
+                    {
+                        joinEntity.HasKey("comment_id_comment", "post_id_post_cmt");
+                    });
         }
     }
 }

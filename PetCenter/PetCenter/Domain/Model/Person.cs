@@ -28,7 +28,6 @@ namespace PetCenter.Domain.Model
         [Column("id_person")]
         public Guid Id { get; set; } = Guid.NewGuid();
 
-        [NotMapped]
         public Account Account { get; set; }
 
         [MaxLength(30)]

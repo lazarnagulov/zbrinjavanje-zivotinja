@@ -26,7 +26,7 @@ namespace PetCenter.Domain.Model
         [Key]
         [Column("id_animal")]
         public Guid Id { get; set; } = Guid.NewGuid();
-        [ForeignKey("animalType_id_type")]
+        [ForeignKey("animal_type_id_type")]
         public AnimalType Type { get; set; }
         
         [MaxLength(30)]
