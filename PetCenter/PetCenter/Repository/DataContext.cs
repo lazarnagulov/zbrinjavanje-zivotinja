@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using PetCenter.Core.Util;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.State;
 
@@ -11,6 +13,7 @@ namespace PetCenter.Repository
 {
     public class DataContext : DbContext
     {
+        private readonly DatabaseCredentials _credentials;
         public DataContext()
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -37,7 +40,19 @@ namespace PetCenter.Repository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("");
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                    .AddUserSecrets<App>()
+                    .Build();
+                var databaseCredentials =
+                    new DatabaseCredentials(
+                        config["Database:Host"] ?? string.Empty,
+                        int.Parse(config["Database:Port"] ?? string.Empty),
+                        config["Database:Username"] ?? string.Empty,
+                        config["Database:Password"] ?? string.Empty,
+                        config["Database:DatabaseName"] ?? string.Empty
+                    );
+                optionsBuilder.UseNpgsql(databaseCredentials.ConnectionString);
             }
         }
 

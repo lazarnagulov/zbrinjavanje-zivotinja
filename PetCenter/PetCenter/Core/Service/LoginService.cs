@@ -12,7 +12,7 @@ namespace PetCenter.Core.Service
 {
     public class LoginService(IAccountRepository accountRepository)
     {
-        public Account? LoginUser(string username, string password)
+        public Account? Login(string username, string password)
             => accountRepository.Authenticate(username, PasswordEncoder.Encode(password));
 
     }
