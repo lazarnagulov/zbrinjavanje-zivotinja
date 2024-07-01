@@ -17,10 +17,11 @@ namespace PetCenter.Domain.Model
         public Account()
         {
         }
-        public Account(string username, string email, string password)
+        public Account(string username, string email, string password, AccountType type)
         {
             Username = username;
             Email = email;
+            Type = type;
             Password = PasswordEncoder.Encode(password);
         }
 
