@@ -16,5 +16,12 @@ namespace PetCenter.Repository
         public Account? GetById(Guid id) => _sqlRepository.GetById(id);
         public bool Insert(Account entity) => _sqlRepository.Insert(entity);
         public bool Delete(Account entity) => _sqlRepository.Delete(entity);
+
+        public Account? Authenticate(string username, string password)
+            => dataContext.Accounts
+                .Include(account => account.Person)
+                .FirstOrDefault(account 
+                => account.Username == username && account.Password == password);
+
     }
 }
