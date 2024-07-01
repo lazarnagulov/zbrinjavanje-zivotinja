@@ -19,7 +19,7 @@ namespace PetCenter.Repository
         public Post? GetById(Guid id) => _sqlRepository.GetById(id);
         public bool Insert(Post entity) => _sqlRepository.Insert(entity);
         public bool Delete(Post entity) => _sqlRepository.Delete(entity);
-        public List<Post> GetAcceptedPosts()
+        public List<Post> GetAccepted()
             => dataContext.Posts
                 .Include(post => post.Animal)
                     .ThenInclude(animal => animal.Photos)
@@ -29,6 +29,18 @@ namespace PetCenter.Repository
                     .ThenInclude(comment => comment.Author)
                 .Include(post => post.State)
                 //.Where(post => post.State is Accepted)
-                .ToList(); 
+                .ToList();
+
+        public List<Post> GetOnHold()
+            => dataContext.Posts
+                .Include(post => post.Animal)
+                .ThenInclude(animal => animal.Photos)
+                .Include(post => post.Animal)
+                .ThenInclude(animal => animal.Type)
+                .Include(post => post.Comments)
+                .ThenInclude(comment => comment.Author)
+                .Include(post => post.State)
+                //.Where(post => post.State is OnHold)
+                .ToList();
     }
 }

@@ -18,9 +18,9 @@ namespace PetCenter.WPF.Components
     /// <summary>
     /// Interaction logic for Post.xaml
     /// </summary>
-    public partial class Post : UserControl
+    public partial class PostCard : UserControl
     {
-        public Post()
+        public PostCard()
         {
             InitializeComponent();
         }

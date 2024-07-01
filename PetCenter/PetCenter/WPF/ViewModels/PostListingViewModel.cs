@@ -22,7 +22,7 @@ namespace PetCenter.WPF.ViewModels
         {
             _postService = postService;
             Posts = new ObservableCollection<PostViewModel>();
-            foreach (var post in postService.GetAcceptedPosts())
+            foreach (var post in postService.GetAccepted())
             {
                 Posts.Add(new PostViewModel(post));
             }

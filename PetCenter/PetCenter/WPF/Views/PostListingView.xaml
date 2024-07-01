@@ -15,6 +15,9 @@
                     <components:Post/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
+            <ItemsControl ItemsSource="{Binding Posts.Comments}">
+
+            </ItemsControl>
         </ItemsControl>
     </Grid>
 </UserControl>
