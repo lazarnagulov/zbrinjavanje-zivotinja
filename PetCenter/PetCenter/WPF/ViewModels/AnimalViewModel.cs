@@ -7,7 +7,7 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.WPF.ViewModels
 {
-    public class AccountViewModel(Account account) : ViewModelBase
+    public class AnimalViewModel(Animal animal) : ViewModelBase
     {
         public Guid Id
         {
@@ -19,50 +19,50 @@ namespace PetCenter.WPF.ViewModels
             }
         }
 
-        public string Username
+        public string Name
         {
-            get => _username;
+            get => _name;
             set
             {
-                _username = value;
-                OnPropertyChanged();
-            }
-        }
-        
-        public string Email
-        {
-            get => _email;
-            set
-            {
-                _email = value;
+                _name = value;
                 OnPropertyChanged();
             }
         }
 
-        public string Password
+        public string Description
         {
-            get => _password;
+            get => _description;
             set
             {
-                _password = value;
+                _description = value;
                 OnPropertyChanged();
             }
         }
 
-        public Person? Person
+        public AnimalType Type
         {
-            get => _person;
+            get => _type;
             set
             {
-                _person = value;
+                _type = value;
                 OnPropertyChanged();
             }
         }
 
-        private Guid _id = account.Id;
-        private string _username = account.Username;
-        private string _email = account.Email;
-        private string _password = account.Password;
-        private Person? _person = account.Person;
+        public int Age
+        {
+            get => _age;
+            set
+            {
+                _age = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Guid _id = animal.Id;
+        private string _name = animal.Name;
+        private string _description = animal.Description;
+        private AnimalType _type = animal.Type;
+        private int _age = animal.Age;
     }
 }
