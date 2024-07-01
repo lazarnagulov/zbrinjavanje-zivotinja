@@ -7,8 +7,13 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
 {
-    internal class TemporaryAccommodation(Post context) : PostState(context)
+    public class TemporaryAccommodation : PostState
     {
+        public TemporaryAccommodation() { }
+        public TemporaryAccommodation(Post context) : base(context)
+        {
+        }
+
         public override void AcceptPost()
         {
             throw new NotImplementedException();

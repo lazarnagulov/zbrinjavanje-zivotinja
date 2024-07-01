@@ -7,8 +7,13 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
 {
-    internal class OnHold(Post context) : PostState(context)
+    public class OnHold : PostState
     {
+        public OnHold() { }
+        public OnHold(Post context) : base(context)
+        {
+        }
+
         public override void AcceptPost()
         {
             throw new NotImplementedException();

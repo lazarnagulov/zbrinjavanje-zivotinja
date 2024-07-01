@@ -7,8 +7,13 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
 {
-    internal class Created(Post context) : PostState(context)
+    internal class Created : PostState
     {
+        public Created() { }
+        public Created(Post context) : base(context)
+        {
+        }
+
         public override void Initialize()
         { }
 
