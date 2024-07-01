@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Model;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.BaseViewModels
 {
-    public class AnimalTypeViewModel(AnimalType animalType) : ViewModelBase
+    public class CommentViewModel(Comment comment) : ViewModelBase
     {
-        public Guid Id { 
+        public Guid Id
+        {
             get => _id;
             set
             {
@@ -18,28 +19,28 @@ namespace PetCenter.WPF.ViewModels
             }
         }
 
-        public string Type
+        public Person Author
         {
-            get => _type;
+            get => _author;
             set
             {
-                _type = value;
+                _author = value;
                 OnPropertyChanged();
             }
         }
 
-        public string Breed
+        public string Text
         {
-            get => _breed;
+            get => _text;
             set
             {
-                _breed = value;
+                _text = value;
                 OnPropertyChanged();
             }
         }
 
-        private Guid _id = animalType.Id;
-        private string _type = animalType.Type;
-        private string _breed = animalType.Breed;
+        private Guid _id = comment.Id;
+        private Person _author = comment.Author;
+        private string _text = comment.Text;
     }
 }

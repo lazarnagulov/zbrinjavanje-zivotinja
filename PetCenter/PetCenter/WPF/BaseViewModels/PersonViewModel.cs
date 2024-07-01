@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.BaseViewModels
 {
     public class PersonViewModel(Person person) : ViewModelBase
     {

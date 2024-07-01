@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Model;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.BaseViewModels
 {
     public class PhotoViewModel(Photo photo) : ViewModelBase
     {

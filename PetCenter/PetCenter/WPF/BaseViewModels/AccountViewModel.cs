@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Model;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.BaseViewModels
 {
-    public class AnimalViewModel(Animal animal) : ViewModelBase
+    public class AccountViewModel(Account account) : ViewModelBase
     {
         public Guid Id
         {
@@ -19,50 +19,50 @@ namespace PetCenter.WPF.ViewModels
             }
         }
 
-        public string Name
+        public string Username
         {
-            get => _name;
+            get => _username;
             set
             {
-                _name = value;
+                _username = value;
                 OnPropertyChanged();
             }
         }
 
-        public string Description
+        public string Email
         {
-            get => _description;
+            get => _email;
             set
             {
-                _description = value;
+                _email = value;
                 OnPropertyChanged();
             }
         }
 
-        public AnimalType Type
+        public string Password
         {
-            get => _type;
+            get => _password;
             set
             {
-                _type = value;
+                _password = value;
                 OnPropertyChanged();
             }
         }
 
-        public int Age
+        public Person? Person
         {
-            get => _age;
+            get => _person;
             set
             {
-                _age = value;
+                _person = value;
                 OnPropertyChanged();
             }
         }
 
-        private Guid _id = animal.Id;
-        private string _name = animal.Name;
-        private string _description = animal.Description;
-        private AnimalType _type = animal.Type;
-        private int _age = animal.Age;
+        private Guid _id = account.Id;
+        private string _username = account.Username;
+        private string _email = account.Email;
+        private string _password = account.Password;
+        private Person? _person = account.Person;
     }
 }

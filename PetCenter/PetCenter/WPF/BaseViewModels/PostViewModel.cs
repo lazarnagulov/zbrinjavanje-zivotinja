@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.State;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.BaseViewModels
 {
     public class PostViewModel(Post post) : ViewModelBase
     {
