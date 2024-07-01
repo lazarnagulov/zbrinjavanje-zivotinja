@@ -3,7 +3,7 @@
         frameshape={}{yy}{}{},
         breaklines=true,
         postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
-        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List},
+        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, Task, where, interface},
         keywordstyle=\color{blue}\ttfamily,
         stringstyle=\color{red}\ttfamily,
         commentstyle=\color{green}\ttfamily,
@@ -39,5 +39,29 @@ public class Animal(AnimalType type, string name, int age, string description)
         => _photos.Remove(photo);
 }
 \end{lstlisting}
-\subsection{Orgnizacija foldera}
+\par Servisi: todo
+\par Repozitoriju služi za perzistenciju podataka. Najosnovnije operacije nad \textit{entitetima} u bazi podataka su \textbf{CRUD} (create, read, update, delete) 
+operacije, koje se nalaze u \textit{ICrud$<$T$>$} intefejsu, prikazanom na listingu \ref{list:crud}.
+\begin{lstlisting}[caption={ICrud$<$T$>$ interfejs}, captionpos=b, label={list:crud}]
+public interface ICrud<T> where T : class
+{
+    Task<List<T>> GetAll();
+    Task<T?> GetById(Guid id);
+    Task<bool> Insert(T entity);
+    Task<bool> Delete(T entity);
+}
+\end{lstlisting}
+\par Detaljnije o samoj perzistenciji podataka se nalazi u narednoj sekciji.
 \subsection{Perzistencija podataka}
+\par Za perzistenciju podataka je korišćena PostgresSQL relaciona baza podataka. U nastavku je opisan način na koji smo kreirali bazu podataka (migracijom)
+i kreirali validaciju. Na kraju je dat primer funkcionisanja manjeg dela sistema za perzistenciju podataka.
+\subsubsection*{Migracija}
+\par Migracija je urađena pomoću \textbf{Entity} radnog okvira komandama:
+\begin{lstlisting}[caption=b, captionpos=b]
+dotnet ef migrations add Initial
+dotnet ef database update
+\end{lstlisting}
+\subsubsection*{Validacija}
+\par Validacija na nivou baze podataka je pisana u \textbf{SQL}-u. Najčešće korišćen
+vid validacije je \textbf{BEFORE INSERT/UPDATE TRIGGER}, koji nam omogućava da, pre samog upisa podataka, proverimo njihovu validnost.
+\subsection{Orgnizacija foldera}
