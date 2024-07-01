@@ -70,6 +70,15 @@ namespace PetCenter.Repository
                     });
 
             BuildPost(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseNpgsql("Host=localhost;Database=PetCenter;Username=postgres;Password=1234;");
+            }
         }
         private static void BuildPost(ModelBuilder modelBuilder)
         {

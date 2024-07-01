@@ -17,8 +17,8 @@ namespace PetCenter.Repository
         {
             try
             {
-                await container.AddAsync(entity);
-                return await dataContext.SaveChangesAsync() > 0;
+                container.AddAsync(entity);
+                return dataContext.SaveChanges() > 0;
             }
             catch
             {
@@ -26,10 +26,11 @@ namespace PetCenter.Repository
             }
 
         }
-        public async Task<bool> Delete(T entity)
+
+        public bool Delete(T entity)
         {
             container.Remove(entity);
-            return await dataContext.SaveChangesAsync() > 0;
+            return dataContext.SaveChanges() > 0;
         }
     }
 }
