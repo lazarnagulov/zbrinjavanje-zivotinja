@@ -12,7 +12,7 @@
             ItemsSource="{Binding Posts}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <components:Post/>
+                    <components:PostCard/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl ItemsSource="{Binding Posts.Comments}">

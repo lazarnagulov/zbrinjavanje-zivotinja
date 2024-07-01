@@ -9,6 +9,7 @@ namespace PetCenter.Domain.RepositoryInterfaces
 {
     public interface IPostRepository : ICrud<Post>
     {
-        List<Post> GetAcceptedPosts();
+        List<Post> GetAccepted();
+        List<Post> GetOnHold();
     }
 }
