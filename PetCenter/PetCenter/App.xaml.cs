@@ -14,6 +14,12 @@ namespace PetCenter
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var repo = new PostSqlRepository(new DataContext());
+            var result = repo.GetAll();
+            base.OnStartup(e);
+        }
     }
 
 }
