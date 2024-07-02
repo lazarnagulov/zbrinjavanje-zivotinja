@@ -15,7 +15,7 @@ namespace PetCenter.Core.Service
     {
         public Account? Login(string username, string password)
         {
-            var account = accountRepository.Authenticate(username, password);
+            var account = accountRepository.Authenticate(username, PasswordEncoder.Encode(password));
             authenticationStore.CurrentUserProfile = account;
             return account;
         }

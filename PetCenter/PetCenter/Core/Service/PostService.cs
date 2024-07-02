@@ -19,9 +19,29 @@ namespace PetCenter.Core.Service
         public List<Post> GetAccepted() => postRepository.GetAccepted();
         public List<Post> GetOnHold() => postRepository.GetOnHold();
 
-        public void AddLike()
+        public void AddLike(Guid id)
         {
+            if (authenticationStore.LoggedUser is { } user)
+            {
+                var post = GetById(id);
+                if (post is not null)
+                {
+                    if (post.Likes.Contains(user))
+                    {
+                        post.RemoveLike(user);
 
+                    }
+                    else
+                    {
+                        post.AddLike(user);
+                    }
+                    var updated = postRepository.Update(post!);
+                }
+                else
+                {
+                    throw new UnreachableException("Post should exist here");
+                }
+            }
         }
 
         public void AddComment(Guid id, Comment comment)
