@@ -12,31 +12,19 @@ namespace PetCenter.WPF.BaseViewModels
         public Guid Id
         {
             get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _id, value);
         }
 
         public int Grade
         {
             get => _grade;
-            set
-            {
-                _grade = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _grade, value);
         }
 
         public string Comment
         {
             get => _comment;
-            set
-            {
-                _comment = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _comment, value);
         }
 
         private Guid _id = review.Id;

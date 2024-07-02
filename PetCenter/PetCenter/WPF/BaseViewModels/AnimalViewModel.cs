@@ -12,61 +12,37 @@ namespace PetCenter.WPF.BaseViewModels
         public Guid Id
         {
             get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _id, value);
         }
 
         public string Name
         {
             get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _name, value);
         }
 
         public string Description
         {
             get => _description;
-            set
-            {
-                _description = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _description, value);
         }
 
         public AnimalType Type
         {
             get => _type;
-            set
-            {
-                _type = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _type, value);
         }
 
         public int Age
         {
             get => _age;
-            set
-            {
-                _age = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _age, value);
         }
 
         public IReadOnlyCollection<Photo> Photos
         {
             get => _photos;
-            set
-            {
-                _photos = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _photos, value);
         }
 
         private Guid _id = animal.Id;

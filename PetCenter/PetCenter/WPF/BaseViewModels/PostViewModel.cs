@@ -13,91 +13,55 @@ namespace PetCenter.WPF.BaseViewModels
         public Guid Id
         {
             get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _id, value);
         }
 
         public Person Author
         {
             get => _author;
-            set
-            {
-                _author = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _author, value);
         }
 
         public string Text
         {
             get => _text;
-            set
-            {
-                _text = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _text, value);
         }
 
         public Animal Animal
         {
             get => _animal;
-            set
-            {
-                _animal = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _animal, value);
         }
 
         public PostState State
         {
             get => _state;
-            set
-            {
-                _state = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _state, value);
         }
 
         public DateOnly CreationDate
         {
             get => _creationDate;
-            set
-            {
-                _creationDate = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _creationDate, value);
         }
 
         public IReadOnlyCollection<Person> Likes
         {
             get => _likes;
-            set
-            {
-                _likes = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _likes, value);
         }
 
         public IReadOnlyCollection<Comment> Comments
         {
             get => _comments;
-            set
-            {
-                _comments = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _comments, value);
         }
 
         public IReadOnlyCollection<Offer> Offers
         {
             get => _offers;
-            set
-            {
-                _offers = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _offers, value);
         }
 
         private Guid _id = post.Id;

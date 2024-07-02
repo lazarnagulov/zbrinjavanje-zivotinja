@@ -12,51 +12,31 @@ namespace PetCenter.WPF.BaseViewModels
         public Guid Id
         {
             get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _id, value);
         }
 
         public string Street
         {
             get => _street;
-            set
-            {
-                _street = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _street, value);
         }
 
         public string City
         {
             get => _city;
-            set
-            {
-                _city = value; 
-                OnPropertyChanged();
-            }
+            set => SetField(ref _city, value);
         }
 
         public string Country
         {
             get => _country;
-            set
-            {
-                _country = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _country, value);
         }
 
         public int ZipCode
         {
             get => _zipCode;
-            set
-            {
-                _zipCode = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _zipCode, value);
         }
 
         private Guid _id = address.Id;

@@ -13,71 +13,43 @@ namespace PetCenter.WPF.BaseViewModels
         public Guid Id
         {
             get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _id, value);
         }
 
         public string Name
         {
             get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _name, value);
         }
 
         public string Surname
         {
             get => _surname;
-            set
-            {
-                _surname = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _surname, value);
         }
 
         public string PhoneNumber
         {
             get => _phoneNumber;
-            set
-            {
-                _phoneNumber = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _phoneNumber, value);
         }
 
         public Gender Gender
         {
             get => _gender;
-            set
-            {
-                _gender = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _gender, value);
         }
 
         public DateOnly BirthDate
         {
             get => _birthDate;
-            set
-            {
-                _birthDate = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _birthDate, value);
         }
 
         public Address Address
         {
             get => _address;
-            set
-            {
-                _address = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _address, value);
         }
 
 
