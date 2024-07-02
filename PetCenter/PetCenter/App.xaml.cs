@@ -26,7 +26,8 @@ namespace PetCenter
             => Host.CreateDefaultBuilder(args)
                    .AddViewModels()
                    .AddStores()
-                   .AddWindows();
+                   .AddWindows()
+                   .AddRepositories();
 
         protected override void OnStartup(StartupEventArgs e)
         {
