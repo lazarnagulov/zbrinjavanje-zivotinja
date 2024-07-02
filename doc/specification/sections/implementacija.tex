@@ -3,12 +3,17 @@
         frameshape={}{yy}{}{},
         breaklines=true,
         postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
-        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, where, interface, Account, get, set, ref, Guid, Comment, RelayCommand, PostViewModel},
+        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, where, interface, Account, 
+        get, set, ref, Guid, Comment, RelayCommand, PostViewModel, REPLACE, FUNCTION, RETURNS, IF, RAISE, NEW,
+        CREATE, OR, TRIGGER, DECLARE, BEGIN, SELECT, INTEGER, BEFORE, INSERT, UPDATE, FOR, EACH, ROW, EXECUTE, LANGUAGE, INTO, FROM, ON, JOIN, WHERE, THEN, END, RETURN, AS, RETURNS, EXCEPTION},
         keywordstyle=\color{blue}\ttfamily,
         stringstyle=\color{red}\ttfamily,
         commentstyle=\color{green}\ttfamily,
-        morecomment=[l][\color{magenta}]{\#}
+        morecomment=[l][\color{magenta}]{\#},
+        showstringspaces=false
 }
+
+
 \rhead{10. Implementacija}
 \section{Implementacija}
 \par Implementacija je javno dostupna na githubu: 
@@ -164,5 +169,31 @@ optionsBuilder.UseNpgsql(databaseCredentials.ConnectionString);
 \end{lstlisting}
 \subsubsection*{Validacija}
 \par Validacija na nivou baze podataka je pisana u \textbf{SQL}-u. Najčešće korišćen
-vid validacije je \textbf{BEFORE INSERT/UPDATE TRIGGER}, koji nam omogućava da, pre samog upisa podataka, proverimo njihovu validnost.
+vid validacije je \textbf{BEFORE INSERT/UPDATE TRIGGER} [Listing \ref{list:trig}], koji nam omogućava da, pre samog upisa podataka, proverimo njihovu validnost.
+\begin{lstlisting}[caption={Primer validacije pomoću trigera}, captionpos=b, label=list:trig]
+CREATE OR REPLACE FUNCTION fn_validate_request()
+RETURNS TRIGGER AS $$
+DECLARE
+	account_type INTEGER;
+BEGIN
+	SELECT acc_type
+	INTO account_type
+	FROM request r
+	JOIN account a ON r.person_req_author = a.person_id_person
+	WHERE r.person_req_author = NEW.person_req_author;
+
+	IF account_type <> 0 THEN
+		RAISE EXCEPTION 'Invalid account type for author, expected 0 but got: %', account_type;
+	END IF;
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER trg_validate_request
+BEFORE INSERT OR UPDATE ON request
+FOR EACH ROW
+EXECUTE FUNCTION fn_validate_request();
+\end{lstlisting}
+\par Na listingu \ref{list:trig} proveravamo da li je kreator zahteva \textit{član} (vrednost 0).
 \subsection{Orgnizacija foldera}
