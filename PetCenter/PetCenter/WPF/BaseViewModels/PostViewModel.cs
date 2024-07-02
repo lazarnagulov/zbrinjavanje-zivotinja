@@ -66,15 +66,29 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _offers, value);
         }
 
+        public int LikeCount
+        {
+            get => _likeCount;
+            set => SetField(ref _likeCount, value);
+        }
+
+        public string NewComment
+        {
+            get => _newComment;
+            set => SetField(ref _newComment, value);
+        }
+
         private Guid _id;
         private Person _author;
         private string _text;
         private Animal _animal;
         private PostState _state;
         private DateOnly _creationDate;
-        private ObservableCollection<PersonViewModel> _likes;
-        private ObservableCollection<CommentViewModel> _comments;
-        private ObservableCollection<OfferViewModel> _offers;
+        private ObservableCollection<PersonViewModel> _likes = new();
+        private ObservableCollection<CommentViewModel> _comments = new();
+        private ObservableCollection<OfferViewModel> _offers = new();
+        private int _likeCount;
+        private string _newComment;
 
         public PostViewModel(Post post)
         {
@@ -84,20 +98,16 @@ namespace PetCenter.WPF.BaseViewModels
             _animal = post.Animal;
             _state = post.State;
             _creationDate = post.CreationDate;
-
-            _comments = new ObservableCollection<CommentViewModel>();
+            _likeCount = post.LikeCount;
+            _newComment = string.Empty;
             foreach (var comment in post.Comments)
             {
                 _comments.Add(new CommentViewModel(comment));    
             }
-
-            _likes = new ObservableCollection<PersonViewModel>();
             foreach (var like in post.Likes)
             {
                 _likes.Add(new PersonViewModel(like));
             }
-
-            _offers = new ObservableCollection<OfferViewModel>();
             foreach (var offer in post.Offers)
             {
                 _offers.Add(new OfferViewModel(offer));

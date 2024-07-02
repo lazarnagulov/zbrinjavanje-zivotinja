@@ -1,19 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <!-- Background colors -->
-    <Color x:Key="PrimaryBackColor1">#02474d</Color>
-    <Color x:Key="PrimaryBackColor2">#005555</Color>
-    <Color x:Key="SecondaryBackColor1">#005c65</Color>
-    <Color x:Key="SecondaryBackColor2">#007373</Color>
-    <Color x:Key="SecondaryBackColor3">#1a857d</Color>
+    <Color x:Key="PrimaryBackColor1">#2cbbc2</Color>
+    <Color x:Key="PrimaryBackColor2">#18C0C9</Color>
+    <Color x:Key="SecondaryBackColor1">#3ecdd5</Color>
+    <Color x:Key="SecondaryBackColor2">#22CCD5</Color>
+    <Color x:Key="TertiaryBackColor1">#2ABDC5</Color>
+    <Color x:Key="TertiaryBackColor2">#3EC0C7</Color>
 
     <!--Window Border Colors-->
-    <Color x:Key="WinBorderColor1">#02474d</Color>
-    <Color x:Key="WinBorderColor2">#005555</Color>
-    <Color x:Key="WinBorderColor3">#007373</Color>
-
-
-
+    <Color x:Key="WinBorderColor1">#9fdbea</Color>
+    <Color x:Key="WinBorderColor2">#7AD7EC</Color>
+    <Color x:Key="WinBorderColor3">#58CFE8</Color>
 
 </ResourceDictionary>

@@ -19,21 +19,15 @@
         <Border Grid.Row="0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
-                    <GradientStop Color="{StaticResource SecondaryBackColor2}" Offset="0"/>
-                    <GradientStop Color="{StaticResource SecondaryBackColor1}" Offset="1"/>
+                    <GradientStop Color="{StaticResource TertiaryBackColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource TertiaryBackColor2}" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
             <DockPanel 
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch">
-                <TextBlock Margin="10" TextWrapping="Wrap">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} comments: {1}">
-                            <Binding Path="Author" />
-                            <Binding Path="Text" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
+                <TextBlock Margin="10" TextWrapping="Wrap" Text="{Binding Author}" FontWeight="Bold"/>
+                <TextBlock Margin="10" TextWrapping="Wrap" Text="{Binding Text}" />
             </DockPanel>
         </Border>
     </Grid>
