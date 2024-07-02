@@ -85,28 +85,41 @@
                     FontSize="16"
                     Text="{Binding Text}"
                     TextWrapping="Wrap"/>
-                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <DockPanel Grid.Row="3" HorizontalAlignment="Stretch">
                     <Button 
-                        
                         Command="{Binding DataContext.LikePostCommand, 
                                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                             CommandParameter="{Binding }"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
                         BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         Width="50"
                         Content="Like"/>
-                    <Label Content="{Binding LikeCount}" VerticalAlignment="Center"/>
-                </StackPanel>
+                    <TextBlock Text="{Binding LikeCount}" VerticalAlignment="Center"/>
+                    <StackPanel HorizontalAlignment="Right">
+                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                HorizontalAlignment="Stretch"
+                                Margin="12,0"
+                                FontSize="12"
+                                Content="Request Adoption"/>
+                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                HorizontalAlignment="Stretch"
+                                Margin="12,0"
+                                FontSize="12"
+                                Content="Request Temporary Accommodation"/>
+                    </StackPanel>
+                </DockPanel>
                 <StackPanel Grid.Row="4" Orientation="Vertical" Margin="10,0">
                     <TextBox HorizontalAlignment="Stretch" 
                              Text="{Binding NewComment, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button 
-                        Command="{Binding DataContext.AddCommentCommand, 
-                                    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                CommandParameter="{Binding }"
-                        BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                        HorizontalAlignment="Stretch"
-                        FontSize="12"
-                        Content="Comment"/>
+                        <Button 
+                            Command="{Binding DataContext.AddCommentCommand, 
+                                        RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                    CommandParameter="{Binding }"
+                            BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                            HorizontalAlignment="Stretch"
+                            FontSize="12"
+                            Content="Comment"/>
                 </StackPanel>
             </Grid>
         </Border>

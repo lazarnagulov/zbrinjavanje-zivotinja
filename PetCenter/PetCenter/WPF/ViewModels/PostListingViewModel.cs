@@ -25,6 +25,8 @@ namespace PetCenter.WPF.ViewModels
         public ObservableCollection<PostViewModel> Posts => _posts;
         public ICommand LikePostCommand { get; }
         public ICommand AddCommentCommand { get; }
+        public ICommand RequestAdoptionCommand { get; }
+        public ICommand RequestTemporaryAccommodationCommand { get; }
 
         public PostListingViewModel(PostService postService, AuthenticationStore authenticationStore)
         {
@@ -38,6 +40,18 @@ namespace PetCenter.WPF.ViewModels
 
             LikePostCommand = new RelayCommand<PostViewModel>(LikeCommand);
             AddCommentCommand = new RelayCommand<PostViewModel>(CommentCommand, CanComment);
+            RequestAdoptionCommand = new RelayCommand(AdoptionCommand);
+            RequestTemporaryAccommodationCommand = new RelayCommand(TemporaryAccommodationCommand);
+        }
+
+        private void TemporaryAccommodationCommand(object? obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AdoptionCommand(object? obj)
+        {
+            throw new NotImplementedException();
         }
 
         private static bool CanComment(PostViewModel arg) => !string.IsNullOrEmpty(arg.NewComment);

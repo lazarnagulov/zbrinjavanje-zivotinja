@@ -31,7 +31,7 @@ namespace PetCenter.Repository
                     .ThenInclude(comment => comment.Author)
                     .ThenInclude(author => author.Account)
                 .Include(post => post.State)
-                //.Where(post => post.State is Accepted)
+                .Where(post => post.State is Accepted || post.State is Adopted || post.State is TemporaryAccommodation)
                 .ToList();
 
         public List<Post> GetOnHold()
