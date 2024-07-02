@@ -3,7 +3,7 @@
         frameshape={}{yy}{}{},
         breaklines=true,
         postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
-        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, where, interface, Account, get, set},
+        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, where, interface, Account, get, set, ref, Guid, Comment, RelayCommand, PostViewModel},
         keywordstyle=\color{blue}\ttfamily,
         stringstyle=\color{red}\ttfamily,
         commentstyle=\color{green}\ttfamily,
@@ -18,7 +18,7 @@
 \subsection{Primena MVVM šablona}
 \par Za razvoj je korišćen \textbf{MVVM} (Model-View-ViewModel) arhitektonski obrazac. 
 \subsubsection*{Model}
-\par \textbf{Model} čine \textbf{entiteti}, \textbf{servisi} i \textbf{repozitorijumi}. 
+\par \textbf{Model} čine \textbf{entiteti}, \textbf{servisi} i \textbf{repozitorijumi} (domenski sloj). 
 \par Entiteti su strukture podataka koje, pored samih podataka, sadrže pomoćne funkcije za upravljanje sa konteinerima. 
 \par Na primeru [Listing \ref{list:animal}], klasa \textit{Animal} sadrži listu fotografija i pomoćne funkcije za dodavanje, brisanje i dobavljanje
 readonly liste.
@@ -39,8 +39,8 @@ public class Animal(AnimalType type, string name, int age, string description)
         => _photos.Remove(photo);
 }
 \end{lstlisting}
-\par Servisi: todo
-\par Repozitoriju služi za perzistenciju podataka. Najosnovnije operacije nad \textit{entitetima} u bazi podataka su \textbf{CRUD} (create, read, update, delete) 
+\par Servisi služe za komunikaciju sa podacima i poslovnom logikom. 
+\par Repozitorijumi služe za pristup podacima. Najosnovnije operacije nad \textit{entitetima} u bazi podataka su \textbf{CRUD} (create, read, update, delete) 
 operacije, koje se nalaze u \textit{ICrud$<$T$>$} intefejsu, prikazanom na listingu \ref{list:crud}.
 \begin{lstlisting}[caption={ICrud$<$T$>$ interfejs}, captionpos=b, label={list:crud}]
 public interface ICrud<T> where T : class
@@ -49,9 +49,67 @@ public interface ICrud<T> where T : class
     T? GetById(Guid id);
     bool Insert(T entity);
     bool Delete(T entity);
+    bool Update(T entity)
 }
 \end{lstlisting}
-\par Detaljnije o samoj perzistenciji podataka se nalazi u narednoj sekciji.
+\subsubsection*{View}
+\subsubsection*{ViewModel}
+\par \textbf{ViewModel} je posrednički sloj između korisničkog interfejsa i domenskog sloja.
+\par Za svaki entitet je napravljen \textbf{omotač} (eng. wrapper) [Listing \ref{list:wrap}], kako bi se prilagodilo korisničkom interfejsu. Svaki od svojstava ovih klasa se može povezati
+(eng. binding) za \textit{xmal} dokument koji predstavlja \textit{view}. 
+\begin{lstlisting}[caption={Primer ViewModel omotača}, captionpos=b, label=list:wrap]
+public class ViewModelBase : INotifyPropertyChanged 
+{/*...*/}
+public class PhotoViewModel(Photo photo) : ViewModelBase
+{
+    public Guid Id
+    {
+        get => _id;
+        set => SetField(ref _id, value);
+    }
+
+    public string Description
+    {
+        get => _description;
+        set => SetField(ref _description, value);
+    }
+
+    public string Url
+    {
+        get => _url;
+        set => SetField(ref _url, value);
+    }
+
+    private Guid _id = photo.Id;
+    private string _description = photo.Description;
+    private string _url = photo.Url;
+}
+\end{lstlisting}
+\par Ključan element u svemu ovome je  \textbf{INotifyPropertyChanged} interfejs jer 
+omogućava obaveštavanje korisničkog interfejsa o promenama na \textit{viewmodel}-u - \textbf{posmatrač} (eng. Observer).
+\subsubsection*{Komande}
+\par Bitnu ulogu u odvajanju logike korisničkih akcija od korisničkog interfejsa igra \textbf{ICommand} interfejs. Ovim se povećava modularnost i testiranje u 
+aplikaciji. Postoje dve implementacije komandi: \textbf{Relay} komande [Listing \ref{list:relay}] i \textbf{Klasne} komande.  
+\begin{lstlisting}[caption={Primer \textit{relay} komande za dodavanje komentara}, captionpos=b, label=list:relay]
+public PostListingViewModel(/* ... */)
+{
+    /* ... */
+    LikePostCommand 
+       = new RelayCommand<PostViewModel>(LikeCommand);
+    AddCommentCommand 
+       = new RelayCommand<PostViewModel>(CommentCommand, CanComment);
+}
+
+private static bool CanComment(PostViewModel arg) 
+    => !string.IsNullOrEmpty(arg.NewComment);
+
+private void CommentCommand(PostViewModel obj)
+{
+    var comment = new Comment(_authenticationStore.LoggedUser!, obj.NewComment);
+    obj.Comments.Add(new CommentViewModel(comment));
+    _postService.AddComment(obj.Id, comment);
+}
+\end{lstlisting}
 \subsection{Perzistencija podataka}
 \par Za perzistenciju podataka je korišćena PostgresSQL relaciona baza podataka. U nastavku je opisan način na koji smo kreirali bazu podataka (migracijom)
 i kreirali validaciju. Na kraju je dat primer funkcionisanja manjeg dela sistema za perzistenciju podataka.
