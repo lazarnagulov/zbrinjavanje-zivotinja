@@ -53,6 +53,10 @@
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
+                    <TextBlock Text="{Binding State, StringFormat={}[{0}]}" 
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Right"/>
+
                     <TextBlock Text="{Binding CreationDate}" 
                                HorizontalAlignment="Right"
                                Width="60"
@@ -65,7 +69,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <Image Margin="10,10,10,0" Source="{Binding Url}" MaxHeight="256" MaxWidth="256"/>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Description}" TextWrapping="Wrap" MaxWidth="256"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Description}" TextWrapping="Wrap" MaxWidth="256" />
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
