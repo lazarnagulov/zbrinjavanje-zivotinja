@@ -8,23 +8,39 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ItemsControl
-            ItemsSource="{Binding Posts}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <components:PostCard/>
-                        <ItemsControl
-                            ItemsSource="{Binding Comments}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <components:CommentCard/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <Border CornerRadius="10"                    
+                    BorderThickness="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource WinBorderColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource WinBorderColor2}" Offset="0.5"/>
+                        <GradientStop Color="{StaticResource WinBorderColor3}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl
+                    Margin="30"
+                    ItemsSource="{Binding Posts}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <components:PostCard/>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                    <ItemsControl
+                                        Margin="0,0,0,10"
+                                        ItemsSource="{Binding Comments}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <components:CommentCard/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </UserControl>

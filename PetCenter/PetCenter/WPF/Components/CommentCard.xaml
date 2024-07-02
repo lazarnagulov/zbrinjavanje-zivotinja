@@ -5,8 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PetCenter.WPF.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="100" d:DesignWidth="800">
+    <Grid Margin="20,0,20,0">
+        <Border>
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource WinBorderColor1}" Offset="0"/>
+                    <GradientStop Color="{StaticResource WinBorderColor2}" Offset="0.5"/>
+                    <GradientStop Color="{StaticResource WinBorderColor3}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                    <GradientStop Color="{StaticResource SecondaryBackColor2}" Offset="0"/>
+                    <GradientStop Color="{StaticResource SecondaryBackColor1}" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <DockPanel 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch">
+                <TextBlock Margin="10" TextWrapping="Wrap">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} comments: {1}">
+                            <Binding Path="Author" />
+                            <Binding Path="Text" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </DockPanel>
+        </Border>
     </Grid>
 </UserControl>
