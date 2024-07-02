@@ -12,9 +12,15 @@ namespace PetCenter.Repository
     public class PersonSqlRepository(DataContext dataContext) : IPersonRepository
     {
         private readonly SqlRepository<Person> _sqlRepository = new(dataContext, dataContext.Persons);
-        public Task<List<Person>> GetAll() => _sqlRepository.GetAll();
-        public Task<Person?> GetById(Guid id) => _sqlRepository.GetById(id);
-        public Task<bool> Insert(Person entity) => _sqlRepository.Insert(entity);
-        public Task<bool> Delete(Person entity) => _sqlRepository.Delete(entity);
+        public List<Person> GetAll() => _sqlRepository.GetAll();
+        public Person? GetById(Guid id) => _sqlRepository.GetById(id);
+
+        public bool Insert(Person entity)
+        {
+            entity.Account.Person = entity;
+            return _sqlRepository.Insert(entity);
+        }
+
+        public bool Delete(Person entity) => _sqlRepository.Delete(entity);
     }
 }

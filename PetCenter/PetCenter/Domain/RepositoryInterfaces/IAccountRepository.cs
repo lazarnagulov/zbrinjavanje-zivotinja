@@ -9,6 +9,6 @@ namespace PetCenter.Domain.RepositoryInterfaces
 {
     public interface IAccountRepository : ICrud<Account>
     {
-
+        Account? Authenticate(string username, string encodedPassword);
     }
 }

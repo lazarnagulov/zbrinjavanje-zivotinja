@@ -11,14 +11,14 @@ namespace PetCenter.Repository
     public class SqlRepository<T>(DbContext dataContext, DbSet<T> container) : ICrud<T>
         where T : class
     {
-        public async Task<List<T>> GetAll() => await container.ToListAsync();
-        public async Task<T?> GetById(Guid id) => await container.FindAsync(id);
-        public async Task<bool> Insert(T entity)
+        public List<T> GetAll() => container.ToList();
+        public T? GetById(Guid id) => container.Find(id);
+        public bool Insert(T entity)
         {
             try
             {
-                await container.AddAsync(entity);
-                return await dataContext.SaveChangesAsync() > 0;
+                container.Add(entity);
+                return dataContext.SaveChanges() > 0;
             }
             catch
             {
@@ -26,10 +26,11 @@ namespace PetCenter.Repository
             }
 
         }
-        public async Task<bool> Delete(T entity)
+
+        public bool Delete(T entity)
         {
             container.Remove(entity);
-            return await dataContext.SaveChangesAsync() > 0;
+            return dataContext.SaveChanges() > 0;
         }
     }
 }
