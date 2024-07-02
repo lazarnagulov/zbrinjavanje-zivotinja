@@ -27,6 +27,7 @@ namespace PetCenter.Repository
                     .ThenInclude(animal => animal.Type)
                 .Include(post => post.Comments)
                     .ThenInclude(comment => comment.Author)
+                    .ThenInclude(author => author.Account)
                 .Include(post => post.State)
                 //.Where(post => post.State is Accepted)
                 .ToList();

@@ -15,6 +15,7 @@ public static class AddServicesExtension
         host.ConfigureServices(services =>
         {
             services.AddSingleton<LoginService>();
+            services.AddSingleton<PostService>();
         });
         
         return host;

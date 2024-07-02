@@ -12,12 +12,19 @@
             ItemsSource="{Binding Posts}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <components:PostCard/>
+                    <StackPanel>
+                        <components:PostCard/>
+                        <ItemsControl
+                            ItemsSource="{Binding Comments}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <components:CommentCard/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-            <ItemsControl ItemsSource="{Binding Posts.Comments}">
-
-            </ItemsControl>
         </ItemsControl>
     </Grid>
 </UserControl>

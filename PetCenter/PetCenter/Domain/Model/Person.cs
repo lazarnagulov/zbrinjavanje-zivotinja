@@ -57,5 +57,6 @@ namespace PetCenter.Domain.Model
         [ForeignKey("address_id_adr")]
         public Address Address { get; set; }
 
+        public override string ToString() => Account.Username;
     }
 }

@@ -17,11 +17,7 @@ namespace PetCenter
     /// </summary>
     public partial class App : Application
     {
-        private readonly IHost _host;
-
-        public App()
-            => _host = CreateHostBuilder().Build();
-
+        private readonly IHost _host = CreateHostBuilder().Build();
         private static IHostBuilder CreateHostBuilder(string[]? args = null)
             => Host.CreateDefaultBuilder(args)
                    .AddViewModels()
@@ -36,7 +32,7 @@ namespace PetCenter
 
             Window window = _host.Services.GetRequiredService<MainWindow>();
             NavigationStore navigationStore = _host.Services.GetRequiredService<NavigationStore>();
-            navigationStore.CurrentViewModel = _host.Services.GetRequiredService<Test1ViewModel>();
+            navigationStore.CurrentViewModel = _host.Services.GetRequiredService<PostListingViewModel>();
             window.Show();
 
             base.OnStartup(e);

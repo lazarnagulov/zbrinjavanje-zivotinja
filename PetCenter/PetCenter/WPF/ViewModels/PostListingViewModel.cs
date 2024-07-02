@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using PetCenter.Core.Service;
 using PetCenter.WPF.BaseViewModels;
+using PetCenter.WPF.MVVM;
 
 namespace PetCenter.WPF.ViewModels
 {
     public class PostListingViewModel : ViewModelBase
     {
-        private readonly PostService _postService;
-        public ObservableCollection<PostViewModel> Posts;
+
+        private readonly ObservableCollection<PostViewModel> _posts;
+        public ObservableCollection<PostViewModel> Posts => _posts;
         public ICommand LikePostCommand { get; }
         public ICommand AddCommentCommand { get; }
 
         public PostListingViewModel(PostService postService)
         {
-            _postService = postService;
-            Posts = new ObservableCollection<PostViewModel>();
+            _posts = new ObservableCollection<PostViewModel>();
             foreach (var post in postService.GetAccepted())
             {
-                Posts.Add(new PostViewModel(post));
+                _posts.Add(new PostViewModel(post));
             }
         }
     }
