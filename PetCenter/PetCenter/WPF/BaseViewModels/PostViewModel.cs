@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.State;
+using PetCenter.WPF.MVVM;
 
 namespace PetCenter.WPF.BaseViewModels
 {
