@@ -27,6 +27,7 @@ namespace PetCenter
                    .AddViewModels()
                    .AddStores()
                    .AddWindows()
+                   .AddServices()
                    .AddRepositories();
 
         protected override void OnStartup(StartupEventArgs e)
