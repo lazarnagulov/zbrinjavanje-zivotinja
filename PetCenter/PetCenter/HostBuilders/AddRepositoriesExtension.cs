@@ -1,9 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using PetCenter;
 using PetCenter.Core.Stores;
+using PetCenter.Core.Util;
 using PetCenter.Domain.RepositoryInterfaces;
 using PetCenter.Repository;
 using PetCenter.WPF.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace LangLang.HostBuilders;
 
@@ -13,6 +18,10 @@ public static class AddRepositoriesExtension
     {
         host.ConfigureServices(services =>
         {
+            services.AddDbContext<DataContext>((serviceProvider, options) =>
+            {
+                options.UseNpgsql(GetConnectionString());
+            });
             services.AddSingleton<IAccountRepository, AccountSqlRepository>();
             services.AddSingleton<IAnimalRepository, AnimalSqlRepository>();
             services.AddSingleton<ICommentRepository, CommentSqlRepository>();
@@ -23,5 +32,22 @@ public static class AddRepositoriesExtension
         });
         
         return host;
+    }
+
+    private static string GetConnectionString()
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddUserSecrets<App>()
+            .Build();
+        var databaseCredentials =
+            new DatabaseCredentials(
+                config["Database:Host"] ?? string.Empty,
+                int.Parse(config["Database:Port"] ?? string.Empty),
+                config["Database:Username"] ?? string.Empty,
+                config["Database:Password"] ?? string.Empty,
+                config["Database:DatabaseName"] ?? string.Empty
+            );
+        return databaseCredentials.ConnectionString;
     }
 }
