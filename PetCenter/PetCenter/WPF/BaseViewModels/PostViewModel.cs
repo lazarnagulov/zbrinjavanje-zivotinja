@@ -90,6 +90,11 @@ namespace PetCenter.WPF.BaseViewModels
         private int _likeCount;
         private string _newComment;
 
+        public PostViewModel()
+        {
+            _animal = new();
+        }
+
         public PostViewModel(Post post)
         {
             _id = post.Id;

@@ -34,5 +34,7 @@ namespace PetCenter.Domain.Model
         [Required]
         [Column("breed")]
         public string Breed { get; set; }
+
+        public override string ToString() => $"{Type} ({Breed})";
     }
 }

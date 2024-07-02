@@ -33,7 +33,7 @@ namespace PetCenter
 
             Window window = _host.Services.GetRequiredService<MainWindow>();
             NavigationStore navigationStore = _host.Services.GetRequiredService<NavigationStore>();
-            navigationStore.CurrentViewModel = _host.Services.GetRequiredService<PostListingViewModel>();
+            navigationStore.CurrentViewModel = _host.Services.GetRequiredService<CreatePostViewModel>();
             window.Show();
 
             base.OnStartup(e);

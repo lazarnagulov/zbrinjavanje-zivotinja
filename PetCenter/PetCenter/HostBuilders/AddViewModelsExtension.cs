@@ -12,6 +12,7 @@ public static class AddViewModelsExtension
         {
             services.AddScoped<MainViewModel>();
             services.AddScoped<PostListingViewModel>();
+            services.AddScoped<CreatePostViewModel>();
             services.AddScoped<Test1ViewModel>();
             services.AddScoped<Test2ViewModel>();
         });
