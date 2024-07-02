@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace PetCenter.WPF.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MemberViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
-        public MainViewModel(NavigationStore navigationStore)
+        public MemberViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;

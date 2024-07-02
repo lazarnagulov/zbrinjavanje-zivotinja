@@ -2,8 +2,10 @@
 using Microsoft.Extensions.Hosting;
 using PetCenter.Core.Service;
 using PetCenter.Core.Stores;
+using PetCenter.Core.Util;
 using PetCenter.Domain.RepositoryInterfaces;
 using PetCenter.Repository;
+using PetCenter.WPF.MVVM;
 using PetCenter.WPF.ViewModels;
 
 namespace LangLang.HostBuilders;
@@ -14,7 +16,10 @@ public static class AddServicesExtension
     {
         host.ConfigureServices(services =>
         {
+            services.AddSingleton<WindowFactory>();
+            services.AddSingleton<ViewModelFactory>();
             services.AddSingleton<LoginService>();
+            services.AddSingleton<NavigationService>();
         });
         
         return host;

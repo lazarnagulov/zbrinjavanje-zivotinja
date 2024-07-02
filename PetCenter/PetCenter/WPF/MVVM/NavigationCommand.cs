@@ -8,8 +8,8 @@ namespace PetCenter.WPF.Command
     public class NavigationCommand<TViewModel> : CommandBase where TViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
-        private readonly Func<TViewModel> _createViewModel;
-        public NavigationCommand(NavigationStore navigationStore, Func<TViewModel> createViewModel)
+        private readonly CreateViewModel<TViewModel> _createViewModel;
+        public NavigationCommand(NavigationStore navigationStore, CreateViewModel<TViewModel> createViewModel)
         {
             _navigationStore = navigationStore;
             _createViewModel = createViewModel;

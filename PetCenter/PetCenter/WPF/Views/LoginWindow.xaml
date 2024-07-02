@@ -1,4 +1,4 @@
-﻿<Window x:Class="PetCenter.WPF.Views.MainWindow"
+﻿<Window x:Class="PetCenter.WPF.Views.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:mvvm="clr-namespace:PetCenter.WPF.MVVM"
         xmlns:views="clr-namespace:PetCenter.WPF.Views"
@@ -6,9 +6,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PetCenter" d:DataContext="{d:DesignInstance Type=viewModels:TestViewModel}"
+        xmlns:local="clr-namespace:PetCenter" d:DataContext="{d:DesignInstance Type=viewModels:LoginViewModel}"
                   mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="LoginWindow" Height="450" Width="800">
     <ContentControl Content="{Binding CurrentViewModel}">
         <ContentControl.Resources>
             <DataTemplate DataType="{x:Type viewModels:Test1ViewModel}">

@@ -1,5 +1,7 @@
 ﻿using LangLang.WPF.MVVM;
 using PetCenter.Core.Stores;
+using PetCenter.Core.Util;
+using PetCenter.Domain.Enumerations;
 using PetCenter.WPF.Command;
 using PetCenter.WPF.MVVM;
 using System;
@@ -14,10 +16,9 @@ namespace PetCenter.WPF.ViewModels
     public class Test2ViewModel : ViewModelBase
     {
         public NavigationCommand<Test1ViewModel> NavigateCommand { get; }
-        public Test2ViewModel(NavigationStore navigationStore)
+        public Test2ViewModel(NavigationService navigationService)
         {
-            NavigateCommand = new NavigationCommand<Test1ViewModel>(navigationStore,
-                () => new Test1ViewModel(navigationStore));
+            NavigateCommand = navigationService.CreateNavCommand<Test1ViewModel>(ViewType.Test1);
         }
     }
 }

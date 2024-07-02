@@ -17,9 +17,9 @@ namespace PetCenter.WPF.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MemberWindow : Window
     {
-        public MainWindow(MainViewModel viewModel)// : base(viewModel)
+        public MemberWindow(MemberViewModel viewModel)// : base(viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

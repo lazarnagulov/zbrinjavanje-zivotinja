@@ -6,10 +6,15 @@
              xmlns:local="clr-namespace:PetCenter.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <StackPanel>
         <Button Content="Go to test 2" 
                 FontSize="100" 
-                Command="{Binding NavigateCommand}" 
-                CommandParameter="Test2"/>
-    </Grid>
+                Command="{Binding NavigateCommand}"/>
+        <Button Content="Continue As Guest" 
+                FontSize="90"
+                Command="{Binding ContinueAsGuestCommand}"/>
+        <Button Content="Logout" 
+                FontSize="90"
+                Command="{Binding LogoutCommand}"/>
+    </StackPanel>
 </UserControl>
