@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Model;
+using PetCenter.WPF.MVVM;
 
 namespace PetCenter.WPF.BaseViewModels
 {
@@ -12,31 +13,19 @@ namespace PetCenter.WPF.BaseViewModels
         public Guid Id
         {
             get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _id, value);
         }
 
         public string Type
         {
             get => _type;
-            set
-            {
-                _type = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _type, value);
         }
 
         public string Breed
         {
             get => _breed;
-            set
-            {
-                _breed = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _breed, value);
         }
 
         private Guid _id = animalType.Id;

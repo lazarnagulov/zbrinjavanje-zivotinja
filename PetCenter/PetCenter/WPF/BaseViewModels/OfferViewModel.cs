@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
+using PetCenter.WPF.MVVM;
 
 namespace PetCenter.WPF.BaseViewModels
 {
@@ -13,51 +14,31 @@ namespace PetCenter.WPF.BaseViewModels
         public Guid Id
         {
             get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _id, value);
         }
 
         public Person Offerer
         {
             get => _offerer;
-            set
-            {
-                _offerer = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _offerer, value);
         }
 
         public OfferType Type
         {
             get => _type;
-            set
-            {
-                _type = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _type, value);
         }
 
         public Status Status
         {
             get => _status;
-            set
-            {
-                _status = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _status, value);
         }
 
         public IReadOnlyCollection<Review> Reviews
         {
             get => _reviews;
-            set
-            {
-                _reviews = value;
-                OnPropertyChanged();
-            }
+            set => SetField(ref _reviews, value);
         }
 
         private Guid _id = offer.Id;
