@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.TextFormatting;
 using PetCenter.Core.Service;
 using PetCenter.Core.Stores;
 using PetCenter.Domain.Model;
@@ -43,13 +44,14 @@ namespace PetCenter.WPF.ViewModels
         private void CommentCommand(PostViewModel obj)
         {
             var comment = new Comment(_authenticationStore.LoggedUser!, obj.NewComment);
-            obj.Comments.Add(comment);
+            obj.Comments.Add(new CommentViewModel(comment));
             _postService.AddComment(obj.Id, comment);
         }
 
         private void LikeCommand(PostViewModel obj)
         {
             var user = _authenticationStore.LoggedUser!;
+
             if (obj.Likes.Contains(user))
             {
                 obj.Likes.Remove(user);

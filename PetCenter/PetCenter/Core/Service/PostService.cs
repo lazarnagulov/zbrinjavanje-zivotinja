@@ -19,47 +19,36 @@ namespace PetCenter.Core.Service
         public List<Post> GetAccepted() => postRepository.GetAccepted();
         public List<Post> GetOnHold() => postRepository.GetOnHold();
 
-        public void AddLike(Guid id)
+        public bool AddLike(Guid id)
         {
-            if (authenticationStore.LoggedUser is { } user)
-            {
-                var post = GetById(id);
-                if (post is not null)
-                {
-                    if (post.Likes.Contains(user))
-                    {
-                        post.RemoveLike(user);
+            var post = GetById(id);
+            var user = authenticationStore.LoggedUser;
+            Trace.Assert(post is not null);
+            Trace.Assert(user is not null);
 
-                    }
-                    else
-                    {
-                        post.AddLike(user);
-                    }
-                    var updated = postRepository.Update(post!);
-                }
-                else
-                {
-                    throw new UnreachableException("Post should exist here");
-                }
+            if (post.Likes.Contains(user))
+            {
+                post.RemoveLike(user);
+
             }
+            else
+            {
+                post.AddLike(user);
+            }
+
+            return postRepository.Update(post!);
         }
 
         public void AddComment(Guid id, Comment comment)
         {
-            if (authenticationStore.LoggedUser is { } user)
-            {
-                var post = GetById(id);
-                if (post is not null)
-                {
-                    commentRepository.Insert(comment);
-                    post?.AddComment(comment);
-                    postRepository.Update(post!);
-                }
-                else
-                {
-                    throw new UnreachableException("Post should exist here");
-                }
-            }
+            var post = GetById(id);
+            var user = authenticationStore.LoggedUser;
+            Trace.Assert(post is not null);
+            Trace.Assert(user is not null);
+
+            commentRepository.Insert(comment);
+            post?.AddComment(comment);
+            postRepository.Update(post!);
         }
     }
 }

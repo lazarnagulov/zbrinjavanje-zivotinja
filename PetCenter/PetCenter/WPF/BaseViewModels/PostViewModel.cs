@@ -54,7 +54,7 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _likes, value);
         }
 
-        public ObservableCollection<Comment> Comments
+        public ObservableCollection<CommentViewModel> Comments
         {
             get => _comments;
             set => SetField(ref _comments, value);
@@ -85,7 +85,7 @@ namespace PetCenter.WPF.BaseViewModels
         private PostState _state;
         private DateOnly _creationDate;
         private ObservableCollection<Person> _likes = new();
-        private ObservableCollection<Comment> _comments = new();
+        private ObservableCollection<CommentViewModel> _comments = new();
         private ObservableCollection<OfferViewModel> _offers = new();
         private int _likeCount;
         private string _newComment;
@@ -103,6 +103,10 @@ namespace PetCenter.WPF.BaseViewModels
             foreach (var offer in post.Offers)
             {
                 _offers.Add(new OfferViewModel(offer));
+            }
+            foreach (var comment in post.Comments)
+            {
+                _comments.Add(new CommentViewModel(comment));    
             }
         }
     }
