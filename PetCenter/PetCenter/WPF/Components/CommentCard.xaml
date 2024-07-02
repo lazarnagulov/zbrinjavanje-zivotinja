@@ -26,7 +26,14 @@
             <DockPanel 
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch">
-                <TextBlock Margin="10" TextWrapping="Wrap" Text="{Binding Author}" FontWeight="Bold"/>
+                <TextBlock Margin="10" TextWrapping="Wrap" FontWeight="Bold">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Author:  {0} ({1})">
+                            <Binding Path="Author" />
+                            <Binding Path="Author.Account.Type" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
                 <TextBlock Margin="10" TextWrapping="Wrap" Text="{Binding Text}" />
             </DockPanel>
         </Border>

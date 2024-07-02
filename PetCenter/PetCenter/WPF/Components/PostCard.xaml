@@ -47,8 +47,9 @@
                     VerticalAlignment="Stretch">
                     <TextBlock Width="200" Margin="10" FontWeight="Bold">
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}Author:  {0}">
+                            <MultiBinding StringFormat="{}Author:  {0} ({1})">
                                 <Binding Path="Author" />
+                                <Binding Path="Author.Account.Type" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
@@ -57,6 +58,23 @@
                                Width="60"
                                Margin="10"/>
                 </DockPanel>
+                <ItemsControl Grid.Row="1" 
+                              ItemsSource="{Binding Animal.Photos}"
+                              >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Margin="10,10,10,0" Source="{Binding Url}" MaxHeight="256" MaxWidth="256"/>
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding Description}" TextWrapping="Wrap" MaxWidth="256"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
                 <TextBlock 
                     Margin="10"
                     Grid.Row="2"
