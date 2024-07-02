@@ -19,6 +19,8 @@ namespace PetCenter.Repository
         public Post? GetById(Guid id) => _sqlRepository.GetById(id);
         public bool Insert(Post entity) => _sqlRepository.Insert(entity);
         public bool Delete(Post entity) => _sqlRepository.Delete(entity);
+        public bool Update(Post entity) => _sqlRepository.Update(entity);
+
         public List<Post> GetAccepted()
             => dataContext.Posts
                 .Include(post => post.Animal)

@@ -75,7 +75,8 @@
                     <Label Content="{Binding LikeCount}" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Grid.Row="4" Orientation="Vertical" Margin="10,0">
-                    <TextBox HorizontalAlignment="Stretch"/>
+                    <TextBox HorizontalAlignment="Stretch" 
+                             Text="{Binding NewComment, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button 
                         Command="{Binding DataContext.AddCommentCommand, 
                                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"

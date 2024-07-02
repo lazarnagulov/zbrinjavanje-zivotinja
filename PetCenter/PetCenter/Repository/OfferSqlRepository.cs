@@ -15,5 +15,6 @@ namespace PetCenter.Repository
         public Offer? GetById(Guid id) => _sqlRepository.GetById(id);
         public bool Insert(Offer entity) => _sqlRepository.Insert(entity);
         public bool Delete(Offer entity) => _sqlRepository.Delete(entity);
+        public bool Update(Offer entity) => _sqlRepository.Update(entity);
     }
 }

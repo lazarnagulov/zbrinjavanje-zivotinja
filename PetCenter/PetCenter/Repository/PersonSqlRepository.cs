@@ -22,5 +22,6 @@ namespace PetCenter.Repository
         }
 
         public bool Delete(Person entity) => _sqlRepository.Delete(entity);
+        public bool Update(Person entity) => _sqlRepository.Update(entity);
     }
 }
