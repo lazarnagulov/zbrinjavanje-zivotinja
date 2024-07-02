@@ -65,6 +65,10 @@
                     TextWrapping="Wrap"/>
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button 
+                        
+                        Command="{Binding DataContext.LikePostCommand, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                            CommandParameter="{Binding }"
                         BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         Width="50"
                         Content="Like"/>
@@ -73,6 +77,9 @@
                 <StackPanel Grid.Row="4" Orientation="Vertical" Margin="10,0">
                     <TextBox HorizontalAlignment="Stretch"/>
                     <Button 
+                        Command="{Binding DataContext.AddCommentCommand, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding }"
                         BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         HorizontalAlignment="Stretch"
                         FontSize="12"

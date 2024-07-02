@@ -16,5 +16,15 @@ namespace PetCenter.Core.Service
         public List<Post> GetAll() => postRepository.GetAll();
         public List<Post> GetAccepted() => postRepository.GetAccepted();
         public List<Post> GetOnHold() => postRepository.GetOnHold();
+
+        public void AddLike()
+        {
+
+        }
+
+        public void AddComment()
+        {
+
+        }
     }
 }
