@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PetCenter.Core.Util;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
 
@@ -18,6 +19,7 @@ namespace PetCenter.Repository
         public bool Insert(Person entity)
         {
             entity.Account.Person = entity;
+            entity.Account.Password = PasswordEncoder.Encode(entity.Account.Password);
             return _sqlRepository.Insert(entity);
         }
 

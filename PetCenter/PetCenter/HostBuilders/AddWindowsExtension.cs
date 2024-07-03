@@ -5,6 +5,7 @@ using PetCenter.WPF.Views;
 using PetCenter.WPF.Views.Administrator;
 using PetCenter.WPF.Views.Authentication;
 using PetCenter.WPF.Views.Guest;
+using PetCenter.WPF.Views.Member;
 using PetCenter.WPF.Views.Volunteer;
 
 namespace PetCenter.HostBuilders;

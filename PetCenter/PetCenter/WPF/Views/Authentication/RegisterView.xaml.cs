@@ -24,5 +24,10 @@ namespace PetCenter.WPF.Views.Authentication
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
