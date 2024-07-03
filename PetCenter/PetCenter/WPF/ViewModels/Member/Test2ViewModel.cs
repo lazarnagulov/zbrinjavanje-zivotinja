@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.ViewModels.Member
 {
     public class Test2ViewModel : ViewModelBase
     {

@@ -1,7 +1,8 @@
-﻿using PetCenter.Core.Stores;
-using PetCenter.WPF.MVVM;
-using PetCenter.WPF.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetCenter.WPF.Views
+namespace PetCenter.WPF.Views.Authentication
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginView : UserControl
     {
-        public LoginWindow(LoginViewModel viewModel)// : base(viewModel)
+        public LoginView()
         {
             InitializeComponent();
-            DataContext = viewModel;
         }
     }
 }

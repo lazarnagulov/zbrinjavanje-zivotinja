@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.ViewModels.Member
 {
     public class MemberViewModel : ViewModelBase
     {

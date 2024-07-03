@@ -9,6 +9,8 @@ namespace PetCenter.Domain.Enumerations
     public enum ViewType
     {
         Test1,
-        Test2
+        Test2,
+        Login,
+        Register
     }
 }

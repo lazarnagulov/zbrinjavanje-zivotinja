@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.ViewModels.Member
 {
     public class Test1ViewModel : ViewModelBase
     {
@@ -28,24 +28,10 @@ namespace PetCenter.WPF.ViewModels
         }
 
         public void ContinueAsGuest()
-        {
-            _navigationService.SwitchWindow(WindowType.Member);
-        }
-        public void Logout()
-        {
-            _navigationService.SwitchWindow(WindowType.Login);
-        }
+            => _navigationService.SwitchWindow(WindowType.Member);
 
-        /*public void Navigate(string? destination)
-        {
-            ArgumentNullException.ThrowIfNull(destination);
-            switch (destination)
-            {
-                case "test":
-                    Navigate("a");
-                    break;
-            }
-        }*/
+        public void Logout()
+            => _navigationService.SwitchWindow(WindowType.Authentication);
 
     }
 }

@@ -24,6 +24,9 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="WPF\Views\Guest\" />
+    <Folder Include="WPF\Views\Administrator\" />
+    <Folder Include="WPF\Views\Volunteer\" />
   </ItemGroup>
   
 </Project>

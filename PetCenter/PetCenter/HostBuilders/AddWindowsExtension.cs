@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using PetCenter.WPF.MVVM;
 using PetCenter.WPF.Views;
+using PetCenter.WPF.Views.Authentication;
 
 namespace PetCenter.HostBuilders;
 
@@ -11,7 +12,7 @@ public static class AddWindowsExtension
     {
         host.ConfigureServices(services =>
         {
-            services.AddSingleton<LoginWindow>();
+            services.AddSingleton<AuthenticationWindow>();
             services.AddSingleton<MemberWindow>();
         });
         

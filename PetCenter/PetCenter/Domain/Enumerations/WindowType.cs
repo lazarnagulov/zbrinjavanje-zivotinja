@@ -8,7 +8,10 @@ namespace PetCenter.Domain.Enumerations
 {
     public enum WindowType
     {
-        Login,
-        Member
+        Authentication,
+        Guest,
+        Member,
+        Volunteer,
+        Administrator
     }
 }

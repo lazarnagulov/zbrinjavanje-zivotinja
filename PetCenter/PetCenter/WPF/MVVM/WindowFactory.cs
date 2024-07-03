@@ -2,6 +2,7 @@
 using PetCenter.Domain.Enumerations;
 using PetCenter.WPF.ViewModels;
 using PetCenter.WPF.Views;
+using PetCenter.WPF.Views.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,12 @@ namespace PetCenter.WPF.MVVM
     {
         private readonly Dictionary<WindowType, Window> _windows;
         public WindowFactory(
-            LoginWindow loginWindow,
+            AuthenticationWindow authenticationWindow,
             MemberWindow memberWindow)
         {
             _windows = new Dictionary<WindowType, Window>()
             {
-                [WindowType.Login] = loginWindow,
+                [WindowType.Authentication] = authenticationWindow,
                 [WindowType.Member] = memberWindow
             };
         }
@@ -37,8 +38,8 @@ namespace PetCenter.WPF.MVVM
         {
             return type switch
             {
-                WindowType.Login => ViewType.Test1,
-                WindowType.Member => ViewType.Test2,
+                WindowType.Authentication => ViewType.Login,
+                WindowType.Member => ViewType.Test1,
                 _ => throw new ArgumentException($"WindowType {type} doesn't have an associated first view")
             };
         }
