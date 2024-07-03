@@ -2,7 +2,10 @@
 using PetCenter.Domain.Enumerations;
 using PetCenter.WPF.ViewModels;
 using PetCenter.WPF.Views;
+using PetCenter.WPF.Views.Administrator;
 using PetCenter.WPF.Views.Authentication;
+using PetCenter.WPF.Views.Guest;
+using PetCenter.WPF.Views.Volunteer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +20,18 @@ namespace PetCenter.WPF.MVVM
         private readonly Dictionary<WindowType, Window> _windows;
         public WindowFactory(
             AuthenticationWindow authenticationWindow,
-            MemberWindow memberWindow)
+            GuestWindow guestWindow,
+            MemberWindow memberWindow,
+            VolunteerWindow volunteerWindow,
+            AdministratorWindow administratorWindow) 
         {
             _windows = new Dictionary<WindowType, Window>()
             {
                 [WindowType.Authentication] = authenticationWindow,
-                [WindowType.Member] = memberWindow
+                [WindowType.Guest] = guestWindow,
+                [WindowType.Member] = memberWindow,
+                [WindowType.Volunteer] = volunteerWindow,
+                [WindowType.Administrator] = administratorWindow
             };
         }
 

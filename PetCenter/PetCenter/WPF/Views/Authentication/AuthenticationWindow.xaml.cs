@@ -24,5 +24,11 @@ namespace PetCenter.WPF.Views.Authentication
             InitializeComponent();
             DataContext = viewModel;
         }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
+        }
     }
 }
