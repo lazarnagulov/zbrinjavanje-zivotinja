@@ -32,10 +32,14 @@ namespace PetCenter.Domain.State
         public override void AdoptAnimal()
         { }
 
+        public override void ReturnAnimal()
+        { }
+
         public override void GiveAnimalTemporaryAccommodation()
         { }
 
         public override string ToString() => nameof(Created);
 
+        
     }
 }

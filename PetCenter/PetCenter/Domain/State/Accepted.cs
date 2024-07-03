@@ -30,7 +30,7 @@ namespace PetCenter.Domain.State
 
         public override void HidePost()
         {
-            throw new NotImplementedException();
+            Context.ChangeState(new Hidden(Context));
         }
 
         public override void ShowPost()
@@ -40,12 +40,17 @@ namespace PetCenter.Domain.State
 
         public override void AdoptAnimal()
         {
+            Context.ChangeState(new Adopted(Context));
+        }
+
+        public override void ReturnAnimal()
+        {
             throw new NotImplementedException();
         }
 
         public override void GiveAnimalTemporaryAccommodation()
         {
-            throw new NotImplementedException();
+            Context.ChangeState(new TemporaryAccommodation(Context));
         }
 
         public override void Initialize()
@@ -54,5 +59,7 @@ namespace PetCenter.Domain.State
         }
 
         public override string ToString() => nameof(Accepted);
+
+        
     }
 }

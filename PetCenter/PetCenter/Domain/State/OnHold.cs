@@ -16,12 +16,12 @@ namespace PetCenter.Domain.State
 
         public override void AcceptPost()
         {
-            throw new NotImplementedException();
+            Context.ChangeState(new Accepted(Context));
         }
 
         public override void DeclinePost()
         {
-            throw new NotImplementedException();
+            Context.ChangeState(new Declined(Context));
         }
 
         public override void HidePost()
@@ -35,6 +35,11 @@ namespace PetCenter.Domain.State
         }
 
         public override void AdoptAnimal()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ReturnAnimal()
         {
             throw new NotImplementedException();
         }

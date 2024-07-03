@@ -39,6 +39,11 @@ namespace PetCenter.Domain.State
             throw new NotImplementedException();
         }
 
+        public override void ReturnAnimal()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void GiveAnimalTemporaryAccommodation()
         {
             throw new NotImplementedException();

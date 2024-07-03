@@ -30,6 +30,7 @@ namespace PetCenter.Domain.State
         public abstract void HidePost();
         public abstract void ShowPost();
         public abstract void AdoptAnimal();
+        public abstract void ReturnAnimal();
         public abstract void GiveAnimalTemporaryAccommodation();
         public abstract void Initialize();
 
