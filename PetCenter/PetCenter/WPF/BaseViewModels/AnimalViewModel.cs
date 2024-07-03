@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Model;
@@ -8,7 +10,7 @@ using PetCenter.WPF.MVVM;
 
 namespace PetCenter.WPF.BaseViewModels
 {
-    public class AnimalViewModel(Animal animal) : ViewModelBase
+    public class AnimalViewModel : ViewModelBase
     {
         public Guid Id
         {
@@ -40,17 +42,38 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _age, value);
         }
 
-        public IReadOnlyCollection<Photo> Photos
+        public ObservableCollection<PhotoViewModel> Photos
         {
             get => _photos;
             set => SetField(ref _photos, value);
         }
 
-        private Guid _id = animal.Id;
-        private string _name = animal.Name;
-        private string _description = animal.Description;
-        private AnimalType _type = animal.Type;
-        private IReadOnlyCollection<Photo> _photos = animal.Photos;
-        private int _age = animal.Age;
+        public PhotoViewModel NewPhoto
+        {
+            get => _newPhoto;
+            set => SetField(ref _newPhoto, value);
+        }
+
+        private Guid _id;
+        private string _name;
+        private string _description;
+        private AnimalType _type;
+        private ObservableCollection<PhotoViewModel> _photos;
+        private int _age;
+        private PhotoViewModel _newPhoto = new(new Photo());
+
+        public AnimalViewModel(Animal animal)
+        {
+            _id = animal.Id;
+            _name = animal.Name;
+            _description = animal.Description;
+            _type = animal.Type;
+            _age = animal.Age;
+            _photos = new();
+            foreach (var photo in animal.Photos)
+            {
+                _photos.Add(new PhotoViewModel(photo));
+            }
+        }
     }
 }

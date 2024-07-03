@@ -31,5 +31,7 @@ namespace PetCenter.WPF.BaseViewModels
         private Guid _id = photo.Id;
         private string _description = photo.Description;
         private string _url = photo.Url;
+
+        public override string ToString() => $"Url: {Url} Description {Description}";
     }
 }

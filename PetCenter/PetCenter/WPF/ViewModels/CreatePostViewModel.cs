@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore.Metadata;
 using PetCenter.Core.Service;
 using PetCenter.Core.Stores;
 using PetCenter.Domain.Model;
@@ -19,6 +20,8 @@ namespace PetCenter.WPF.ViewModels
 {
     public class CreatePostViewModel : ViewModelBase
     {
+        private readonly PostService _postService;
+        private readonly AuthenticationStore _authenticationStore;
         private PostViewModel _post = new();
 
         public List<AnimalType> AnimalTypes { get; }
@@ -31,23 +34,43 @@ namespace PetCenter.WPF.ViewModels
 
         public ICommand CreatePostCommand { get; }
         public ICommand CancelPostCommand { get; }
+        public ICommand AddPhotoCommand { get; }
+        public ICommand DeletePhotoCommand { get; }
 
-        public CreatePostViewModel(PostService postService, AuthenticationStore authenticationStore, NavigationStore navigationStore)
+        public CreatePostViewModel(PostService postService, AuthenticationStore authenticationStore, NavigationStore navigationStore, LoginService login)
         {
+            login.Login("lazar", "");
+            _postService = postService;
+            _authenticationStore = authenticationStore;
             AnimalTypes = new();
-            CreatePostCommand = new RelayCommand(CreateCommand, CanCreate);
+            AddPhotoCommand = new RelayCommand(AddPhoto, CanAddPhoto);
+            DeletePhotoCommand = new RelayCommand(DeletePhoto, CanDeletePhoto);
+            CreatePostCommand = new RelayCommand(CreatePost, CanCreatePost);
             CancelPostCommand =
                 new NavigationCommand<PostListingViewModel>(navigationStore, () => new PostListingViewModel(postService, authenticationStore));
         }
 
-        private bool CanCreate(object? arg)
+        private bool CanDeletePhoto(object? arg) => Post.Animal.Photos.Count != 0;
+        private void DeletePhoto(object? obj) => Post.Animal.Photos.RemoveAt(0);
+        
+        private bool CanAddPhoto(object? arg)
+            => !string.IsNullOrEmpty(Post.Animal.NewPhoto.Url) &&
+               !string.IsNullOrEmpty(Post.Animal.NewPhoto.Description);
+        
+        private void AddPhoto(object? obj)
         {
-            throw new NotImplementedException();
+            var photo = Post.Animal.NewPhoto;
+            Post.Animal.NewPhoto = new PhotoViewModel(new Photo());
+            Post.Animal.Photos.Add(photo);
         }
 
-        private void CreateCommand(object? obj)
+        private bool CanCreatePost(object? arg) => true;
+        private void CreatePost(object? obj)
         {
-            throw new NotImplementedException();
+            var animal = new Animal(Post.Animal.Type, Post.Animal.Name, Post.Animal.Age, Post.Animal.Description);
+            var photos = Post.Animal.Photos.Select(photo => new Photo(photo.Url, photo.Description)).ToList();
+            animal.AddRangePhoto(photos);
+            _postService.Insert(new Post(_authenticationStore.LoggedUser!, Post.Text, animal));
         }
     }
 }
