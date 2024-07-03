@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PetCenter.WPF.ViewModels.Administrator;
+using PetCenter.WPF.ViewModels.Member;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +12,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetCenter.WPF.Views
+namespace PetCenter.WPF.Views.Administrator
 {
     /// <summary>
-    /// Interaction logic for TestView1.xaml
+    /// Interaction logic for AdministratorWindow.xaml
     /// </summary>
-    public partial class Test1View : UserControl
+    public partial class AdministratorWindow : Window
     {
-        public Test1View()
+        public AdministratorWindow(AdministratorViewModel viewModel)// : base(viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }

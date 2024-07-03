@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetCenter.WPF.ViewModels.Guest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,20 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PetCenter.WPF.ViewModels;
 
-namespace PetCenter.WPF.Views
+namespace PetCenter.WPF.Views.Guest
 {
     /// <summary>
-    /// Interaction logic for PostListingView.xaml
+    /// Interaction logic for GuestWindow.xaml
     /// </summary>
-    public partial class PostListingView : UserControl
+    public partial class GuestWindow : Window
     {
-        public PostListingView()
+        public GuestWindow(GuestViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }

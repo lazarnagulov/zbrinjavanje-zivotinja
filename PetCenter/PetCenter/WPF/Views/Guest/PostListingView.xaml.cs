@@ -12,15 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PetCenter.WPF.ViewModels;
 
-namespace PetCenter.WPF.Views
+namespace PetCenter.WPF.Views.Guest
 {
     /// <summary>
-    /// Interaction logic for TestView2.xaml
+    /// Interaction logic for PostListingView.xaml
     /// </summary>
-    public partial class Test2View : UserControl
+    public partial class PostListingView : UserControl
     {
-        public Test2View()
+        public PostListingView()
         {
             InitializeComponent();
         }

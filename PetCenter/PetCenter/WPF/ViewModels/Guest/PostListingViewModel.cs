@@ -14,7 +14,7 @@ using PetCenter.Domain.Model;
 using PetCenter.WPF.BaseViewModels;
 using PetCenter.WPF.MVVM;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.ViewModels.Guest
 {
     public class PostListingViewModel : ViewModelBase
     {

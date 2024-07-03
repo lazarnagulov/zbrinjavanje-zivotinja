@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="PetCenter.WPF.Views.Authentication.RegisterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PetCenter.WPF.Views.Authentication" 
+             xmlns:Register="clr-namespace:PetCenter.WPF.ViewModels.Authentication" 
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="140"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0"  VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label FontSize="20">Username:</Label>
+                <TextBox Width="200"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
+                <Label FontSize="20" Margin="0 0 5 0">Password:</Label>
+                <TextBox Width="200"></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <Button Grid.Row="1" Width="150" Height="50" Content="Register" FontSize="20" Command="{Binding RegisterCommand}"/>
+    </Grid>
+</UserControl>

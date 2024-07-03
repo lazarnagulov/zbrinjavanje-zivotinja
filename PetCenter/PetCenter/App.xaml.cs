@@ -11,6 +11,8 @@ using PetCenter.Core.Stores;
 using PetCenter.Domain.Model;
 using PetCenter.Repository;
 using PetCenter.WPF.ViewModels;
+using PetCenter.Core.Util;
+using PetCenter.Domain.Enumerations;
 
 namespace PetCenter
 {
@@ -22,20 +24,18 @@ namespace PetCenter
         private readonly IHost _host = CreateHostBuilder().Build();
         private static IHostBuilder CreateHostBuilder(string[]? args = null)
             => Host.CreateDefaultBuilder(args)
+                   .AddServices()
                    .AddViewModels()
                    .AddStores()
                    .AddWindows()
-                   .AddServices()
                    .AddRepositories();
 
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
 
-            Window window = _host.Services.GetRequiredService<MainWindow>();
-            NavigationStore navigationStore = _host.Services.GetRequiredService<NavigationStore>();
-            navigationStore.CurrentViewModel = _host.Services.GetRequiredService<PostListingViewModel>();
-            window.Show();
+            INavigationService navigationService = _host.Services.GetRequiredService<INavigationService>();
+            navigationService.SwitchWindow(WindowType.Authentication);
 
             base.OnStartup(e);
         }
