@@ -15,11 +15,11 @@ namespace PetCenter.WPF.ViewModels.Member
 {
     public class Test1ViewModel : ViewModelBase
     {
-        private NavigationService _navigationService;
+        private INavigationService _navigationService;
         public NavigationCommand<Test2ViewModel> NavigateCommand { get; }
         public RelayCommand ContinueAsGuestCommand { get; }
         public RelayCommand LogoutCommand { get; }
-        public Test1ViewModel(NavigationService navigationService)
+        public Test1ViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             NavigateCommand = navigationService.CreateNavCommand<Test2ViewModel>(ViewType.Test2);

@@ -15,12 +15,12 @@ namespace PetCenter.WPF.ViewModels.Authentication
 {
     public class RegisterViewModel : ViewModelBase
     {
-        private NavigationService _navigationService;
+        private INavigationService _navigationService;
 
         public NavigationCommand<LoginViewModel> ToLoginCommand { get; }
         public RelayCommand RegisterCommand { get; }
 
-        public RegisterViewModel(NavigationService navigationService)
+        public RegisterViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             ToLoginCommand = navigationService.CreateNavCommand<LoginViewModel>(ViewType.Login);

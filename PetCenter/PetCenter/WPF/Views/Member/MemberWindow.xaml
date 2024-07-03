@@ -6,17 +6,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PetCenter"
-                  mc:Ignorable="d"
-        Title="MemberWindow" Height="450" Width="800">
-    <ContentControl Content="{Binding CurrentViewModel}">
-        <ContentControl.Resources>
-            <DataTemplate DataType="{x:Type viewModels:Test1ViewModel}">
-                <views:Test1View></views:Test1View>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:Test2ViewModel}">
-                <views:Test2View></views:Test2View>
-            </DataTemplate>
-        </ContentControl.Resources>
-    </ContentControl>
+        xmlns:local="clr-namespace:PetCenter" d:DataContext="{d:DesignInstance Type=viewModels:MemberViewModel}"
+        mc:Ignorable="d"
+        Title="MemberWindow" Height="900" Width="1600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Margin="30 20 40 20" FontSize="30" Command="{Binding LogoutCommand}" Content="Logout" Width="250"/>
+            <Button Margin="20 20 40 20" FontSize="30" Command="{Binding NavTest1Command}" Content="Test1" Width="250"/>
+            <Button Margin="20 20 40 20" FontSize="30" Command="{Binding NavTest2Command}" Content="Test2" Width="250"/>
+        </StackPanel>
+        <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewModels:Test1ViewModel}">
+                    <views:Test1View></views:Test1View>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:Test2ViewModel}">
+                    <views:Test2View></views:Test2View>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
 </Window>

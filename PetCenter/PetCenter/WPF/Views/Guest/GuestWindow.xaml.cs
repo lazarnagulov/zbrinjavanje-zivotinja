@@ -25,11 +25,5 @@ namespace PetCenter.WPF.Views.Guest
             InitializeComponent();
             DataContext = viewModel;
         }
-        protected override void OnClosed(EventArgs e)
-        {
-            base.OnClosed(e);
-
-            Application.Current.Shutdown();
-        }
     }
 }

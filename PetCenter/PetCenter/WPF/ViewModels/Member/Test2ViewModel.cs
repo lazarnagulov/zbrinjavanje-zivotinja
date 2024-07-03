@@ -16,7 +16,7 @@ namespace PetCenter.WPF.ViewModels.Member
     public class Test2ViewModel : ViewModelBase
     {
         public NavigationCommand<Test1ViewModel> NavigateCommand { get; }
-        public Test2ViewModel(NavigationService navigationService)
+        public Test2ViewModel(INavigationService navigationService)
         {
             NavigateCommand = navigationService.CreateNavCommand<Test1ViewModel>(ViewType.Test1);
         }
