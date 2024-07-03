@@ -15,11 +15,11 @@ public static class AddWindowsExtension
     {
         host.ConfigureServices(services =>
         {
-            services.AddSingleton<AuthenticationWindow>();
-            services.AddSingleton<GuestWindow>();
-            services.AddSingleton<MemberWindow>();
-            services.AddSingleton<VolunteerWindow>();
-            services.AddSingleton<AdministratorWindow>();
+            services.AddTransient<AuthenticationWindow>();
+            services.AddTransient<GuestWindow>();
+            services.AddTransient<MemberWindow>();
+            services.AddTransient<VolunteerWindow>();
+            services.AddTransient<AdministratorWindow>();
         });
         
         return host;

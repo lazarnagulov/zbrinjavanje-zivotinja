@@ -1,4 +1,5 @@
-﻿using PetCenter.Core.Stores;
+﻿using Microsoft.Extensions.DependencyInjection;
+using PetCenter.Core.Stores;
 using PetCenter.Domain.Enumerations;
 using PetCenter.WPF.ViewModels;
 using PetCenter.WPF.Views;
@@ -15,32 +16,26 @@ using System.Windows;
 
 namespace PetCenter.WPF.MVVM
 {
-    public class WindowFactory
+    public class WindowFactory : IWindowFactory
     {
-        private readonly Dictionary<WindowType, Window> _windows;
-        public WindowFactory(
-            AuthenticationWindow authenticationWindow,
-            GuestWindow guestWindow,
-            MemberWindow memberWindow,
-            VolunteerWindow volunteerWindow,
-            AdministratorWindow administratorWindow) 
+        private readonly IServiceProvider _serviceProvider;
+
+        public WindowFactory(IServiceProvider serviceProvider)
         {
-            _windows = new Dictionary<WindowType, Window>()
-            {
-                [WindowType.Authentication] = authenticationWindow,
-                [WindowType.Guest] = guestWindow,
-                [WindowType.Member] = memberWindow,
-                [WindowType.Volunteer] = volunteerWindow,
-                [WindowType.Administrator] = administratorWindow
-            };
+            _serviceProvider = serviceProvider;
         }
 
-        public Window GetWindow(WindowType type)
+        public Window CreateWindow(WindowType type)
         {
-            if (_windows.TryGetValue(type, out Window? value))
-                return value;
-            else
-                throw new ArgumentException($"WindowType {type} doesn't have an associated window");
+            return type switch
+            {
+                WindowType.Authentication => _serviceProvider.GetRequiredService<AuthenticationWindow>(),
+                WindowType.Guest => _serviceProvider.GetRequiredService<GuestWindow>(),
+                WindowType.Member => _serviceProvider.GetRequiredService<MemberWindow>(),
+                WindowType.Volunteer => _serviceProvider.GetRequiredService<VolunteerWindow>(),
+                WindowType.Administrator => _serviceProvider.GetRequiredService<AdministratorWindow>(),
+                _ => throw new ArgumentException($"WindowType {type} doesn't have an associated window")
+            };
         }
 
         public ViewType GetFirstViewModelType(WindowType type)

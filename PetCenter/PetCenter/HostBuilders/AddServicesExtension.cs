@@ -16,10 +16,10 @@ public static class AddServicesExtension
     {
         host.ConfigureServices(services =>
         {
-            services.AddSingleton<WindowFactory>();
+            services.AddSingleton<IWindowFactory, WindowFactory>();
             services.AddSingleton<ViewModelFactory>();
             services.AddSingleton<LoginService>();
-            services.AddSingleton<NavigationService>();
+            services.AddSingleton<INavigationService, NavigationService>();
         });
         
         return host;
