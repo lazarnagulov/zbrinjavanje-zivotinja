@@ -1,12 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PetCenter.Core.Service;
-using PetCenter.Core.Stores;
-using PetCenter.Domain.RepositoryInterfaces;
-using PetCenter.Repository;
-using PetCenter.WPF.ViewModels;
 
-namespace LangLang.HostBuilders;
+namespace PetCenter.HostBuilders;
 
 public static class AddServicesExtension
 {
@@ -16,6 +12,7 @@ public static class AddServicesExtension
         {
             services.AddSingleton<LoginService>();
             services.AddSingleton<PostService>();
+            services.AddSingleton<AnimalTypeService>();
         });
         
         return host;

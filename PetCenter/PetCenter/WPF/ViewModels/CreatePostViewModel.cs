@@ -37,12 +37,11 @@ namespace PetCenter.WPF.ViewModels
         public ICommand AddPhotoCommand { get; }
         public ICommand DeletePhotoCommand { get; }
 
-        public CreatePostViewModel(PostService postService, AuthenticationStore authenticationStore, NavigationStore navigationStore, LoginService login)
+        public CreatePostViewModel(PostService postService, AuthenticationStore authenticationStore, NavigationStore navigationStore, AnimalTypeService animalTypeService)
         {
-            login.Login("lazar", "");
             _postService = postService;
             _authenticationStore = authenticationStore;
-            AnimalTypes = new();
+            AnimalTypes = animalTypeService.GetAll();
             AddPhotoCommand = new RelayCommand(AddPhoto, CanAddPhoto);
             DeletePhotoCommand = new RelayCommand(DeletePhoto, CanDeletePhoto);
             CreatePostCommand = new RelayCommand(CreatePost, CanCreatePost);

@@ -8,6 +8,7 @@ using PetCenter.WPF.Views;
 using PetCenter.HostBuilders;
 using LangLang.HostBuilders;
 using PetCenter.Core.Stores;
+using PetCenter.Domain.Model;
 using PetCenter.Repository;
 using PetCenter.WPF.ViewModels;
 
@@ -33,7 +34,7 @@ namespace PetCenter
 
             Window window = _host.Services.GetRequiredService<MainWindow>();
             NavigationStore navigationStore = _host.Services.GetRequiredService<NavigationStore>();
-            navigationStore.CurrentViewModel = _host.Services.GetRequiredService<CreatePostViewModel>();
+            navigationStore.CurrentViewModel = _host.Services.GetRequiredService<PostListingViewModel>();
             window.Show();
 
             base.OnStartup(e);
