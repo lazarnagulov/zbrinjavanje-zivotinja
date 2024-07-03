@@ -22,6 +22,8 @@ namespace PetCenter.WPF.ViewModels.Guest
         private readonly AuthenticationStore _authenticationStore;
 
         private readonly ObservableCollection<PostViewModel> _posts;
+
+        public bool LoggedUser => _authenticationStore.IsLoggedIn;
         public ObservableCollection<PostViewModel> Posts => _posts;
         public ICommand LikePostCommand { get; }
         public ICommand AddCommentCommand { get; }
