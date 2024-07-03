@@ -21,6 +21,7 @@ namespace PetCenter.Domain.Model
             Text = text;
         }
 
+
         [Key]
         [Column("id_comment")]
         public Guid Id { get; set; } = Guid.NewGuid();

@@ -15,5 +15,6 @@ namespace PetCenter.Repository
         public Comment? GetById(Guid id) => _sqlRepository.GetById(id);
         public bool Insert(Comment entity) => _sqlRepository.Insert(entity);
         public bool Delete(Comment entity) => _sqlRepository.Delete(entity);
+        public bool Update(Comment entity) => _sqlRepository.Update(entity);
     }
 }

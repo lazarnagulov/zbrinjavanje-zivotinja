@@ -12,5 +12,6 @@ namespace PetCenter.Domain.RepositoryInterfaces
         T? GetById(Guid id);
         bool Insert(T entity);
         bool Delete(T entity);
+        bool Update(T entity);
     }
 }

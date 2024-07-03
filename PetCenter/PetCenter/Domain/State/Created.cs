@@ -34,5 +34,8 @@ namespace PetCenter.Domain.State
 
         public override void GiveAnimalTemporaryAccommodation()
         { }
+
+        public override string ToString() => nameof(Created);
+
     }
 }

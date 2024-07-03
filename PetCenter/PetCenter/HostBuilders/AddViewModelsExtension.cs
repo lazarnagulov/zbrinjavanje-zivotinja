@@ -11,6 +11,7 @@ public static class AddViewModelsExtension
         host.ConfigureServices(services =>
         {
             services.AddScoped<MainViewModel>();
+            services.AddScoped<PostListingViewModel>();
             services.AddScoped<Test1ViewModel>();
             services.AddScoped<Test2ViewModel>();
         });
