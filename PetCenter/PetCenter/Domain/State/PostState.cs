@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PetCenter.Core.Service;
 using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
@@ -13,25 +14,30 @@ namespace PetCenter.Domain.State
     {
 
         public Guid Id { get; set; }
-        // TODO: Change to PostService
-        protected Post Context;
+        protected PostService Context;
 
         protected PostState()
         {
             
         }
-        protected PostState(Post context)
+        protected PostState(PostService context)
         {
             Context = context;
         }
 
-        public abstract void AcceptPost();
-        public abstract void DeclinePost();
-        public abstract void HidePost();
-        public abstract void ShowPost();
-        public abstract void AdoptAnimal();
-        public abstract void GiveAnimalTemporaryAccommodation();
-        public abstract void Initialize();
+        public void SetContext(PostService context)
+        {
+            Context = context;
+        }
+
+        public abstract void AcceptPost(Post post);
+        public abstract void DeclinePost(Post post);
+        public abstract void HidePost(Post post);
+        public abstract void ShowPost(Post post);
+        public abstract void AdoptAnimal(Post post);
+        public abstract void ReturnAnimal(Post post);
+        public abstract void GiveAnimalTemporaryAccommodation(Post post);
+        public abstract void Initialize(Post post);
 
     }
 }

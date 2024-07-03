@@ -23,6 +23,7 @@ public static class AddServicesExtension
             services.AddSingleton<PostService>();
             services.AddSingleton<PersonService>();
             services.AddSingleton<AnimalTypeService>();
+            services.AddSingleton<NotificationService>();
         });
         
         return host;

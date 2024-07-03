@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using PetCenter.Core.Stores;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
+using PetCenter.Domain.State;
 
 namespace PetCenter.Core.Service
 {
@@ -56,6 +57,12 @@ namespace PetCenter.Core.Service
             var comment = commentRepository.GetById(commentId);
             Trace.Assert(comment is not null);
             commentRepository.Delete(comment);
+        }
+
+        public void ChangeState(Post post, PostState newState)
+        {
+            post.State = newState;
+            newState.SetContext(this);
         }
     }
 }
