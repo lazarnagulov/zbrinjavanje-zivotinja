@@ -8,7 +8,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetCenter" d:DataContext="{d:DesignInstance Type=viewModels:MemberViewModel}"
         mc:Ignorable="d"
-        Title="MemberWindow" Height="900" Width="1600">
+        WindowStartupLocation="CenterScreen"
+        Title="MemberWindow" Height="700" Width="1300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>

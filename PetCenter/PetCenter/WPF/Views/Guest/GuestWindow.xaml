@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetCenter.WPF.Views.Guest"
         mc:Ignorable="d"
-        Title="GuestWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="GuestWindow" Height="700" Width="1300">
     <Grid>
         
     </Grid>
