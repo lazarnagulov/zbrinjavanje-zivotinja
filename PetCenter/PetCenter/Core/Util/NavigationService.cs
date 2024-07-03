@@ -1,6 +1,5 @@
 ﻿using PetCenter.Core.Stores;
 using PetCenter.Domain.Enumerations;
-using PetCenter.WPF.Command;
 using PetCenter.WPF.MVVM;
 using System.Windows;
 

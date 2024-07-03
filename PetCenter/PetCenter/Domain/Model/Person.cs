@@ -28,7 +28,7 @@ namespace PetCenter.Domain.Model
         [Column("id_person")]
         public Guid Id { get; set; } = Guid.NewGuid();
 
-        public Account Account { get; set; }
+        public Account Account { get; set; } = new();
 
         [MaxLength(30)]
         [Required]
@@ -52,10 +52,10 @@ namespace PetCenter.Domain.Model
         [Column("birth")]
         [Required]
         public DateOnly BirthDate { get; set; }
-        
+
         [Required]
         [ForeignKey("address_id_adr")]
-        public Address Address { get; set; }
+        public Address Address { get; set; } = new();
 
         public override string ToString() => Account.Username;
     }

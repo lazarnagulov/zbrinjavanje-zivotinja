@@ -17,7 +17,6 @@ using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
 using PetCenter.Repository;
 using PetCenter.WPF.BaseViewModels;
-using PetCenter.WPF.Command;
 using PetCenter.WPF.MVVM;
 using PetCenter.WPF.ViewModels.Guest;
 

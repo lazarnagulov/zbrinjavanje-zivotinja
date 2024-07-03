@@ -1,7 +1,6 @@
 ﻿using PetCenter.Core.Stores;
 using PetCenter.Core.Util;
 using PetCenter.Domain.Enumerations;
-using PetCenter.WPF.Command;
 using PetCenter.WPF.MVVM;
 using PetCenter.WPF.ViewModels.Member;
 using System;

@@ -53,16 +53,22 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Button Width="150"
-                        Height="50"
-                        Content="Login"
-                        FontSize="20"
-                        Style="{StaticResource LoginButton}"
-                        Command="{Binding LoginCommand}" />
-                <Button Width="150"
+                    <Button Width="150"
+                            Height="50"
+                            Content="Login"
+                            Margin="0,0,0,5"
+                            FontSize="20"
+                            Style="{StaticResource LoginButton}"
+                            Command="{Binding LoginCommand}" />
+                    <Button Width="75"
+                            Height="25"
+                            Content="Register"
+                            FontSize="14"
+                            Style="{StaticResource LoginButton}"
+                            Command="{Binding ToRegisterCommand}" />
+                    <Button Width="150"
                         BorderThickness="0"
                         Margin="10"
-                        Foreground="Blue"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         Content="Login as guest"
                         FontSize="12"

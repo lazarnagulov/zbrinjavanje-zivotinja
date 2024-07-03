@@ -22,6 +22,12 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _street, value);
         }
 
+        public int Number
+        {
+            get => _number;
+            set => SetField(ref _number, value);
+        }
+
         public string City
         {
             get => _city;
@@ -42,6 +48,7 @@ namespace PetCenter.WPF.BaseViewModels
 
         private Guid _id = address.Id;
         private string _street = address.Street;
+        private int _number = address.Number;
         private string _city = address.City;
         private string _country = address.Country;
         private int _zipCode = address.ZipCode;

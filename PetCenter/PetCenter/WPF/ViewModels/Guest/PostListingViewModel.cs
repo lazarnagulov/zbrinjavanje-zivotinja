@@ -62,9 +62,13 @@ namespace PetCenter.WPF.ViewModels.Guest
             HidePostCommand = new RelayCommand(HidePost);
             DeleteCommentCommand = new RelayCommand(DeleteComment);
 
-            createPostViewModel.OnPostInsert += (postViewModel) => Posts.Add(postViewModel);
+            createPostViewModel.OnPostInsert += InsertPostEvent;
         }
 
+        private void InsertPostEvent(PostViewModel postViewModel)
+        {
+            Posts.Add(postViewModel);
+        }
 
         private void DeleteComment(object? obj)
         {
