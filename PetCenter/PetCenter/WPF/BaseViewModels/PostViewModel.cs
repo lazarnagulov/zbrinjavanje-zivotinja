@@ -30,7 +30,7 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _text, value);
         }
 
-        public Animal Animal
+        public AnimalViewModel Animal
         {
             get => _animal;
             set => SetField(ref _animal, value);
@@ -81,7 +81,7 @@ namespace PetCenter.WPF.BaseViewModels
         private Guid _id;
         private Person _author;
         private string _text;
-        private Animal _animal;
+        private AnimalViewModel _animal;
         private PostState _state;
         private DateOnly _creationDate;
         private ObservableCollection<Person> _likes = new();
@@ -90,12 +90,17 @@ namespace PetCenter.WPF.BaseViewModels
         private int _likeCount;
         private string _newComment;
 
+        public PostViewModel()
+        {
+            _animal = new(new Animal());
+        }
+
         public PostViewModel(Post post)
         {
             _id = post.Id;
             _author = post.Author;
             _text = post.Text;
-            _animal = post.Animal;
+            _animal = new AnimalViewModel(post.Animal);
             _state = post.State;
             _creationDate = post.CreationDate;
             _likeCount = post.LikeCount;

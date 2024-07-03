@@ -13,6 +13,9 @@
             <DataTemplate DataType="{x:Type viewModels:PostListingViewModel}">
                 <views:PostListingView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:CreatePostViewModel}">
+                <views:CreatePostView/>
+            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModels:Test1ViewModel}">
                 <views:Test1View></views:Test1View>
             </DataTemplate>

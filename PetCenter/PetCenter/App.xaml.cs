@@ -8,6 +8,7 @@ using PetCenter.WPF.Views;
 using PetCenter.HostBuilders;
 using LangLang.HostBuilders;
 using PetCenter.Core.Stores;
+using PetCenter.Domain.Model;
 using PetCenter.Repository;
 using PetCenter.WPF.ViewModels;
 
