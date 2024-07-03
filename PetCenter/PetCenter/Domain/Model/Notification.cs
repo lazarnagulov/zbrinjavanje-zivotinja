@@ -22,7 +22,7 @@ namespace PetCenter.Domain.Model
         }
 
         [Key]
-        [Column("id_mess")]
+        [Column("id_notification")]
         public Guid Id { get; set; } = Guid.NewGuid();
 
         [ForeignKey("id_recipient")]
