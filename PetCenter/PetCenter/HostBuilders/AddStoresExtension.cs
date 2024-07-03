@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PetCenter.Core.Stores;
-using PetCenter.WPF.ViewModels;
 
-namespace LangLang.HostBuilders;
+namespace PetCenter.HostBuilders;
 
 public static class AddStoresExtension
 {

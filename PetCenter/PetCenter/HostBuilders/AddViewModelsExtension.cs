@@ -7,7 +7,7 @@ using PetCenter.WPF.ViewModels.Guest;
 using PetCenter.WPF.ViewModels.Member;
 using PetCenter.WPF.ViewModels.Volunteer;
 
-namespace LangLang.HostBuilders;
+namespace PetCenter.HostBuilders;
 
 public static class AddViewModelsExtension
 {

@@ -17,7 +17,6 @@ using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
 using PetCenter.Repository;
 using PetCenter.WPF.BaseViewModels;
-using PetCenter.WPF.Command;
 using PetCenter.WPF.MVVM;
 using PetCenter.WPF.ViewModels.Guest;
 
@@ -25,6 +24,7 @@ namespace PetCenter.WPF.ViewModels.Member
 {
     public class CreatePostViewModel : ViewModelBase
     {
+        public Action<PostViewModel> OnPostInsert;
         private readonly PostService _postService;
         private readonly AuthenticationStore _authenticationStore;
         private PostViewModel _post = new();
@@ -38,11 +38,10 @@ namespace PetCenter.WPF.ViewModels.Member
         }
 
         public ICommand CreatePostCommand { get; }
-        public ICommand CancelPostCommand { get; }
         public ICommand AddPhotoCommand { get; }
         public ICommand DeletePhotoCommand { get; }
 
-        public CreatePostViewModel(PostService postService, AuthenticationStore authenticationStore, INavigationService navigationService, AnimalTypeService animalTypeService)
+        public CreatePostViewModel(PostService postService, AuthenticationStore authenticationStore,  AnimalTypeService animalTypeService)
         {
             _postService = postService;
             _authenticationStore = authenticationStore;
@@ -50,7 +49,6 @@ namespace PetCenter.WPF.ViewModels.Member
             AddPhotoCommand = new RelayCommand(AddPhoto, CanAddPhoto);
             DeletePhotoCommand = new RelayCommand(DeletePhoto, CanDeletePhoto);
             CreatePostCommand = new RelayCommand(CreatePost, CanCreatePost);
-            CancelPostCommand = navigationService.CreateNavCommand<PostListingViewModel>(ViewType.PostListing);
         }
 
         private bool CanDeletePhoto(object? arg) => Post.Animal.Photos.Count != 0;
@@ -77,10 +75,15 @@ namespace PetCenter.WPF.ViewModels.Member
         {
             Trace.Assert(_authenticationStore.LoggedUser is not null);
             Trace.Assert(Post.Animal.Type is not null);
+
             var animal = new Animal(Post.Animal.Type, Post.Animal.Name, Post.Animal.Age, Post.Animal.Description);
             var photos = Post.Animal.Photos.Select(photo => new Photo(photo.Url, photo.Description)).ToList();
             animal.AddRangePhoto(photos);
-            _postService.Insert(new Post(_authenticationStore.LoggedUser!, Post.Text, animal));
+            var post = new Post(_authenticationStore.LoggedUser!, Post.Text, animal);
+            if (_postService.Insert(post))
+            {
+                OnPostInsert?.Invoke(Post);
+            }
         }
     }
 }

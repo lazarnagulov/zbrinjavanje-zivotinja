@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PetCenter.Repository;
@@ -11,9 +12,11 @@ using PetCenter.Repository;
 namespace PetCenter.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240703162751_Notifications")]
+    partial class Notifications
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,35 +166,6 @@ namespace PetCenter.Migrations
                     b.ToTable("animal_type");
                 });
 
-            modelBuilder.Entity("PetCenter.Domain.Model.Association", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id_assoc");
-
-                    b.Property<string>("AccountNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("assoc_acc_number");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)")
-                        .HasColumnName("assoc_name");
-
-                    b.Property<string>("WebsiteLink")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("assoc_website");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("association");
-                });
-
             modelBuilder.Entity("PetCenter.Domain.Model.Comment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -220,7 +194,7 @@ namespace PetCenter.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id_notification");
+                        .HasColumnName("id_mess");
 
                     b.Property<string>("Message")
                         .IsRequired()

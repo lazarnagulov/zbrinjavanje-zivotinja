@@ -21,7 +21,9 @@ public static class AddServicesExtension
             services.AddSingleton<LoginService>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<PostService>();
+            services.AddSingleton<PersonService>();
             services.AddSingleton<AnimalTypeService>();
+            services.AddSingleton<NotificationService>();
             services.AddSingleton<OfferService>();
         });
         

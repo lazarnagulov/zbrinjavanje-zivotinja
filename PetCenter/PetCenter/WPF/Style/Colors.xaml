@@ -13,15 +13,22 @@
     <Color x:Key="WinBorderColor1">#9fdbea</Color>
     <Color x:Key="WinBorderColor2">#7AD7EC</Color>
     <Color x:Key="WinBorderColor3">#58CFE8</Color>
-
+    
     <Color x:Key="HeaderColor">#809191</Color>
     <Color x:Key="HeaderBtnColor">#B5BFBF</Color>
     <Color x:Key="HeaderBtnHoverColor">#C4C9C9</Color>
-    
-    
-    <!-- Solid Brushes for colors -->
+
+    <Color x:Key="LoginBtnColor">#55ffff</Color>
+    <Color x:Key="LoginBtnHoverColor">#00ffff</Color>
+
+
+<!-- Solid Brushes for colors -->
     <SolidColorBrush x:Key="SBHeaderColor" Color="{StaticResource HeaderColor}"></SolidColorBrush>
     <SolidColorBrush x:Key="SBHeaderBtnColor" Color="{StaticResource HeaderBtnColor}"></SolidColorBrush>
     <SolidColorBrush x:Key="SBHeaderBtnHoverColor" Color="{StaticResource HeaderBtnHoverColor}"></SolidColorBrush>
-    
-</ResourceDictionary>
+
+    <!-- Solid Brushes for colors -->
+    <SolidColorBrush x:Key="SBLoginBtnColor" Color="{StaticResource LoginBtnColor}"/>
+    <SolidColorBrush x:Key="SBLoginBtnHoverColor" Color="{StaticResource LoginBtnHoverColor}"/>
+
+    </ResourceDictionary>

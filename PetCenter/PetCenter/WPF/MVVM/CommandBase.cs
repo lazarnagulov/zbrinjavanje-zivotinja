@@ -1,7 +1,6 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
-namespace PetCenter.WPF.Command
+namespace PetCenter.WPF.MVVM
 {
     public abstract class CommandBase : ICommand
     {

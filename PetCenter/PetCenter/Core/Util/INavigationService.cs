@@ -1,5 +1,4 @@
 ﻿using PetCenter.Domain.Enumerations;
-using PetCenter.WPF.Command;
 using PetCenter.WPF.MVVM;
 
 namespace PetCenter.Core.Util

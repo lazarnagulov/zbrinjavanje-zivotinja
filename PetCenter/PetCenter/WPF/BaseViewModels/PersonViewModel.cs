@@ -47,12 +47,17 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _birthDate, value);
         }
 
-        public Address Address
+        public AddressViewModel Address
         {
             get => _address;
             set => SetField(ref _address, value);
         }
 
+        public Account Account
+        {
+            get => _account;
+            set => SetField(ref _account, value);
+        }
 
         private Guid _id = person.Id;
         private string _name = person.Name;
@@ -60,6 +65,7 @@ namespace PetCenter.WPF.BaseViewModels
         private string _phoneNumber = person.PhoneNumber;
         private Gender _gender = person.Gender;
         private DateOnly _birthDate = person.BirthDate;
-        private Address _address = person.Address;
+        private AddressViewModel _address = new(person.Address);
+        private Account _account = person.Account;
     }
 }

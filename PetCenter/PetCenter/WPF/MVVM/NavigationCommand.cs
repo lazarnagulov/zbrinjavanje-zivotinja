@@ -1,8 +1,6 @@
-﻿using System;
-using PetCenter.Core.Stores;
-using PetCenter.WPF.MVVM;
+﻿using PetCenter.Core.Stores;
 
-namespace PetCenter.WPF.Command
+namespace PetCenter.WPF.MVVM
 {
     public class NavigationCommand<TViewModel> : CommandBase where TViewModel : ViewModelBase
     {

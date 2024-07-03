@@ -140,10 +140,6 @@
                     <Button Content="Create"
                             Command="{Binding CreatePostCommand}"
                             Width="100" />
-                    <Button Content="Cancel"
-                            Command="{Binding CancelPostCommand}"
-                            Width="100"
-                            Margin="10,0,0,0" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

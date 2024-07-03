@@ -1,16 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using PetCenter;
-using PetCenter.Core.Stores;
 using PetCenter.Core.Util;
 using PetCenter.Domain.RepositoryInterfaces;
 using PetCenter.Repository;
-using PetCenter.WPF.ViewModels;
-using Microsoft.EntityFrameworkCore;
 
-namespace LangLang.HostBuilders;
+namespace PetCenter.HostBuilders;
 
 public static class AddRepositoriesExtension
 {
@@ -30,6 +26,8 @@ public static class AddRepositoriesExtension
             services.AddSingleton<IPostRepository, PostSqlRepository>();
             services.AddSingleton<IRequestRepository, RequestSqlRepository>();
             services.AddSingleton<IAnimalTypeRepository, AnimalTypeSqlRepository>();
+            services.AddSingleton<INotificationRepository, NotificationSqlRepository>();
+            services.AddSingleton<IAssociationRepository, AssociationSqlRepository>();
         });
         
         return host;
