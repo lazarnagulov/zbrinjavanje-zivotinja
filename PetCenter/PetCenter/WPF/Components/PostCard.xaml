@@ -61,11 +61,33 @@
                     <TextBlock Text="{Binding State, StringFormat={}[{0}]}" 
                                VerticalAlignment="Center"
                                HorizontalAlignment="Right"/>
+                    <Button 
+                        VerticalAlignment="Center"
+                        Padding="5"
+                        Margin="10,0"
+                        Content="Hide">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Visibility"
+                                        Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DataContext.LoggedAccount, 
+                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                 Value="Volunteer">
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
 
-                    <TextBlock Text="{Binding CreationDate}" 
+                        </Button>
+
+                            <TextBlock Text="{Binding CreationDate}" 
                                HorizontalAlignment="Right"
                                Width="60"
                                Margin="10"/>
+
                 </DockPanel>
                 <ItemsControl Grid.Row="1" 
                               ItemsSource="{Binding Animal.Photos}"

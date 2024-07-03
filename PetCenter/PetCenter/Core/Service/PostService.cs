@@ -50,5 +50,12 @@ namespace PetCenter.Core.Service
             post?.AddComment(comment);
             postRepository.Update(post!);
         }
+
+        public void DeleteComment(Guid commentId)
+        {
+            var comment = commentRepository.GetById(commentId);
+            Trace.Assert(comment is not null);
+            commentRepository.Delete(comment);
+        }
     }
 }

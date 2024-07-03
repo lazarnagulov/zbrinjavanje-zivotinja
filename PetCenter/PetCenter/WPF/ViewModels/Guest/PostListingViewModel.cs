@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media.TextFormatting;
 using PetCenter.Core.Service;
 using PetCenter.Core.Stores;
+using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
 using PetCenter.WPF.BaseViewModels;
 using PetCenter.WPF.MVVM;
@@ -24,11 +26,23 @@ namespace PetCenter.WPF.ViewModels.Guest
         private readonly ObservableCollection<PostViewModel> _posts;
 
         public bool LoggedUser => _authenticationStore.IsLoggedIn;
+        public AccountType? LoggedAccount
+        {
+            get
+            {
+                if (_authenticationStore.CurrentUserProfile is not null)
+                    return _authenticationStore.CurrentUserProfile.Type;
+                return null;
+            }
+        }
+
         public ObservableCollection<PostViewModel> Posts => _posts;
         public ICommand LikePostCommand { get; }
         public ICommand AddCommentCommand { get; }
         public ICommand RequestAdoptionCommand { get; }
         public ICommand RequestTemporaryAccommodationCommand { get; }
+        public ICommand HidePostCommand { get; }
+        public ICommand DeleteCommentCommand { get; }
 
         public PostListingViewModel(PostService postService, AuthenticationStore authenticationStore)
         {
@@ -44,6 +58,23 @@ namespace PetCenter.WPF.ViewModels.Guest
             AddCommentCommand = new RelayCommand<PostViewModel>(CommentCommand, CanComment);
             RequestAdoptionCommand = new RelayCommand(AdoptionCommand);
             RequestTemporaryAccommodationCommand = new RelayCommand(TemporaryAccommodationCommand);
+            HidePostCommand = new RelayCommand(HidePost);
+            DeleteCommentCommand = new RelayCommand(DeleteComment);
+        }
+
+        private void DeleteComment(object? obj)
+        {
+            var parameters = obj as object[];
+            var post = parameters?[0] as PostViewModel;
+            var comment = parameters?[1] as CommentViewModel;
+
+            post!.Comments.Remove(comment!);
+            _postService.DeleteComment(comment!.Id);
+        }
+
+        private void HidePost(object? obj)
+        {
+            throw new NotImplementedException();
         }
 
         private void TemporaryAccommodationCommand(object? obj)
