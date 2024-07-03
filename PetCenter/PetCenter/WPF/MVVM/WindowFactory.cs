@@ -43,7 +43,10 @@ namespace PetCenter.WPF.MVVM
             return type switch
             {
                 WindowType.Authentication => ViewType.Login,
-                WindowType.Member => ViewType.Test1,
+                WindowType.Guest => ViewType.PostListing,
+                WindowType.Member => ViewType.PostListing,
+                WindowType.Volunteer => ViewType.PostListing,
+                WindowType.Administrator => ViewType.PostListing,
                 _ => throw new ArgumentException($"WindowType {type} doesn't have an associated first view")
             };
         }

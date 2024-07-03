@@ -11,6 +11,7 @@ namespace PetCenter.Domain.Enumerations
         Test1,
         Test2,
         Login,
-        Register
+        Register,
+        PostListing
     }
 }

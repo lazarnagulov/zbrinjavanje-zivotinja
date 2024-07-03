@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PetCenter.WPF.ViewModels;
 
-namespace PetCenter.WPF.Views
+namespace PetCenter.WPF.Views.Guest
 {
     /// <summary>
     /// Interaction logic for PostListingView.xaml

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetCenter.WPF.Views
+namespace PetCenter.WPF.Views.Member
 {
     /// <summary>
     /// Interaction logic for TestView1.xaml
