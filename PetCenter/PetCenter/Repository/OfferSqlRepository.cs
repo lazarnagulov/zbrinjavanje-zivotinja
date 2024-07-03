@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,5 +17,7 @@ namespace PetCenter.Repository
         public bool Insert(Offer entity) => _sqlRepository.Insert(entity);
         public bool Delete(Offer entity) => _sqlRepository.Delete(entity);
         public bool Update(Offer entity) => _sqlRepository.Update(entity);
+
+        public List<Offer> GetAllIncluded() => dataContext.Offers.Include(offer => offer.Offerer).ToList();
     }
 }

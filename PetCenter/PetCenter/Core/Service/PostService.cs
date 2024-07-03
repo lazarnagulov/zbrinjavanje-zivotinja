@@ -57,5 +57,15 @@ namespace PetCenter.Core.Service
             post.State = newState;
             newState.SetContext(this);
         }
+
+        public Post? GetPostByOffer(Guid offerId)
+        {
+            var allPosts = postRepository.GetAll();
+
+            var postWithOffer = allPosts
+                .FirstOrDefault(post => post.Offers.Any(offer => offer.Id == offerId));
+
+            return postWithOffer;
+        }
     }
 }
