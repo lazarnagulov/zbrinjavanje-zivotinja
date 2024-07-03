@@ -67,5 +67,8 @@ namespace PetCenter.Domain.Model
         public void RemoveLike(Person person) => _likes.Remove(person);
         public void AddComment(Comment comment) => _comments.Add(comment);
         public void RemoveComment(Comment comment) => _comments.Remove(comment);
+
+        public void ChangeState(PostState newState) => State = newState;
+
     }
 }
