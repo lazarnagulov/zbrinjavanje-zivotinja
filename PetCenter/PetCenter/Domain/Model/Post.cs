@@ -18,6 +18,7 @@ namespace PetCenter.Domain.Model
             Author = author;
             Text = text;
             Animal = animal;
+            State = new Accepted();
         }
         
         [Key]

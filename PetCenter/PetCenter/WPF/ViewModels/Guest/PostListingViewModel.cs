@@ -15,6 +15,7 @@ using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
 using PetCenter.WPF.BaseViewModels;
 using PetCenter.WPF.MVVM;
+using PetCenter.WPF.ViewModels.Member;
 
 namespace PetCenter.WPF.ViewModels.Guest
 {
@@ -44,7 +45,7 @@ namespace PetCenter.WPF.ViewModels.Guest
         public ICommand HidePostCommand { get; }
         public ICommand DeleteCommentCommand { get; }
 
-        public PostListingViewModel(PostService postService, AuthenticationStore authenticationStore)
+        public PostListingViewModel(PostService postService, AuthenticationStore authenticationStore, CreatePostViewModel createPostViewModel)
         {
             _authenticationStore = authenticationStore;
             _postService = postService;
@@ -60,7 +61,10 @@ namespace PetCenter.WPF.ViewModels.Guest
             RequestTemporaryAccommodationCommand = new RelayCommand(TemporaryAccommodationCommand);
             HidePostCommand = new RelayCommand(HidePost);
             DeleteCommentCommand = new RelayCommand(DeleteComment);
+
+            createPostViewModel.OnPostInsert += (postViewModel) => Posts.Add(postViewModel);
         }
+
 
         private void DeleteComment(object? obj)
         {
