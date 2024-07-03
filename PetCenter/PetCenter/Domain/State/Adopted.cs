@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PetCenter.Core.Service;
 using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
@@ -10,46 +11,46 @@ namespace PetCenter.Domain.State
     public class Adopted : PostState
     {
         public Adopted() { }
-        public Adopted(Post context) : base(context)
+        public Adopted(PostService context) : base(context)
         {
         }
 
-        public override void AcceptPost()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void DeclinePost()
+        public override void AcceptPost(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public override void HidePost()
+        public override void DeclinePost(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public override void ShowPost()
+        public override void HidePost(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public override void AdoptAnimal()
+        public override void ShowPost(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public override void ReturnAnimal()
-        {
-            Context.ChangeState(new Accepted(Context));
-        }
-
-        public override void GiveAnimalTemporaryAccommodation()
+        public override void AdoptAnimal(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public override void Initialize()
+        public override void ReturnAnimal(Post post)
+        {
+            Context.ChangeState(post,new Accepted(Context));
+        }
+
+        public override void GiveAnimalTemporaryAccommodation(Post post)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Initialize(Post post)
         {
             throw new NotImplementedException();
         }

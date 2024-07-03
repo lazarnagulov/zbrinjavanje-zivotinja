@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PetCenter.Core.Service;
 using PetCenter.Domain.Model;
 
 namespace PetCenter.Domain.State
@@ -14,46 +15,46 @@ namespace PetCenter.Domain.State
 
         }
 
-        public Accepted(Post context) : base(context)
+        public Accepted(PostService context) : base(context)
         {
         }
 
-        public override void AcceptPost()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void DeclinePost()
+        public override void AcceptPost(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public override void HidePost()
-        {
-            Context.ChangeState(new Hidden(Context));
-        }
-
-        public override void ShowPost()
+        public override void DeclinePost(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public override void AdoptAnimal()
+        public override void HidePost(Post post)
         {
-            Context.ChangeState(new Adopted(Context));
+            Context.ChangeState(post, new Hidden(Context));
         }
 
-        public override void ReturnAnimal()
+        public override void ShowPost(Post post)
         {
             throw new NotImplementedException();
         }
 
-        public override void GiveAnimalTemporaryAccommodation()
+        public override void AdoptAnimal(Post post)
         {
-            Context.ChangeState(new TemporaryAccommodation(Context));
+            Context.ChangeState(post, new Adopted(Context));
         }
 
-        public override void Initialize()
+        public override void ReturnAnimal(Post post)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void GiveAnimalTemporaryAccommodation(Post post)
+        {
+            Context.ChangeState(post, new TemporaryAccommodation(Context));
+        }
+
+        public override void Initialize(Post post)
         {
             throw new NotImplementedException();
         }
