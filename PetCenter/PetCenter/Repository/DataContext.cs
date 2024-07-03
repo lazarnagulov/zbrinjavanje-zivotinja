@@ -28,6 +28,7 @@ namespace PetCenter.Repository
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<AnimalType> AnimalTypes { get; set; }
+        public DbSet<Association> Associations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

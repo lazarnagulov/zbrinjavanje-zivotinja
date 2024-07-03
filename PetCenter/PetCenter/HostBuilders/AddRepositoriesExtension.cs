@@ -31,6 +31,7 @@ public static class AddRepositoriesExtension
             services.AddSingleton<IRequestRepository, RequestSqlRepository>();
             services.AddSingleton<IAnimalTypeRepository, AnimalTypeSqlRepository>();
             services.AddSingleton<INotificationRepository, NotificationSqlRepository>();
+            services.AddSingleton<IAssociationRepository, AssociationSqlRepository>();
         });
         
         return host;
