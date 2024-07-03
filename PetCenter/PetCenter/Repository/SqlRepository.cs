@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
 
 namespace PetCenter.Repository
@@ -32,5 +33,7 @@ namespace PetCenter.Repository
             container.Remove(entity);
             return dataContext.SaveChanges() > 0;
         }
+
+        public bool Update(T entity) => dataContext.SaveChanges() > 0;
     }
 }

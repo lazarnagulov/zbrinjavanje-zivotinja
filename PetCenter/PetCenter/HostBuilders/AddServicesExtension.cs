@@ -20,6 +20,7 @@ public static class AddServicesExtension
             services.AddSingleton<ViewModelFactory>();
             services.AddSingleton<LoginService>();
             services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<PostService>();
         });
         
         return host;

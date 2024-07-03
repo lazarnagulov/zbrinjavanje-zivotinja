@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using PetCenter.WPF.MVVM;
 
 namespace PetCenter.WPF.BaseViewModels
 {
-    public class PostViewModel(Post post) : ViewModelBase
+    public class PostViewModel : ViewModelBase
     {
         public Guid Id
         {
@@ -47,32 +48,66 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _creationDate, value);
         }
 
-        public IReadOnlyCollection<Person> Likes
+        public ObservableCollection<Person> Likes
         {
             get => _likes;
             set => SetField(ref _likes, value);
         }
 
-        public IReadOnlyCollection<Comment> Comments
+        public ObservableCollection<CommentViewModel> Comments
         {
             get => _comments;
             set => SetField(ref _comments, value);
         }
 
-        public IReadOnlyCollection<Offer> Offers
+        public ObservableCollection<OfferViewModel> Offers
         {
             get => _offers;
             set => SetField(ref _offers, value);
         }
 
-        private Guid _id = post.Id;
-        private Person _author = post.Author;
-        private string _text = post.Text;
-        private Animal _animal = post.Animal;
-        private PostState _state = post.State;
-        private DateOnly _creationDate = post.CreationDate;
-        private IReadOnlyCollection<Person> _likes = post.Likes;
-        private IReadOnlyCollection<Comment> _comments = post.Comments;
-        private IReadOnlyCollection<Offer> _offers = post.Offers;
+        public int LikeCount
+        {
+            get => _likeCount;
+            set => SetField(ref _likeCount, value);
+        }
+
+        public string NewComment
+        {
+            get => _newComment;
+            set => SetField(ref _newComment, value);
+        }
+
+        private Guid _id;
+        private Person _author;
+        private string _text;
+        private Animal _animal;
+        private PostState _state;
+        private DateOnly _creationDate;
+        private ObservableCollection<Person> _likes = new();
+        private ObservableCollection<CommentViewModel> _comments = new();
+        private ObservableCollection<OfferViewModel> _offers = new();
+        private int _likeCount;
+        private string _newComment;
+
+        public PostViewModel(Post post)
+        {
+            _id = post.Id;
+            _author = post.Author;
+            _text = post.Text;
+            _animal = post.Animal;
+            _state = post.State;
+            _creationDate = post.CreationDate;
+            _likeCount = post.LikeCount;
+            _newComment = string.Empty;
+            foreach (var offer in post.Offers)
+            {
+                _offers.Add(new OfferViewModel(offer));
+            }
+            foreach (var comment in post.Comments)
+            {
+                _comments.Add(new CommentViewModel(comment));    
+            }
+        }
     }
 }

@@ -25,6 +25,7 @@ public static class AddViewModelsExtension
             services.AddScoped<RegisterViewModel>();
             services.AddScoped<Test1ViewModel>();
             services.AddScoped<Test2ViewModel>();
+            services.AddScoped<PostListingViewModel>();
 
             services.AddScoped<CreateViewModel<AuthenticationViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<AuthenticationViewModel>);
@@ -45,6 +46,8 @@ public static class AddViewModelsExtension
                 serviceProvider => serviceProvider.GetRequiredService<Test1ViewModel>);
             services.AddScoped<CreateViewModel<Test2ViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<Test2ViewModel>);
+            services.AddScoped<CreateViewModel<PostListingiewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<PostListingiewModel>);
         });
         
         return host;

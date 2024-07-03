@@ -12,6 +12,7 @@ public static class AddStoresExtension
         host.ConfigureServices(services =>
         {
             services.AddSingleton<NavigationStore>();
+            services.AddSingleton<AuthenticationStore>();
         });
         
         return host;

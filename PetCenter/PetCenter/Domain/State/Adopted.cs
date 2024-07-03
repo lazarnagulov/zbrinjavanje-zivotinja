@@ -48,5 +48,7 @@ namespace PetCenter.Domain.State
         {
             throw new NotImplementedException();
         }
+
+        public override string ToString() => nameof(Adopted);
     }
 }

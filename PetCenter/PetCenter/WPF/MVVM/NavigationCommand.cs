@@ -1,5 +1,4 @@
 ﻿using System;
-using LangLang.WPF.MVVM;
 using PetCenter.Core.Stores;
 using PetCenter.WPF.MVVM;
 

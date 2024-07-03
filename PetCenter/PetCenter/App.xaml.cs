@@ -8,6 +8,7 @@ using PetCenter.WPF.Views;
 using PetCenter.HostBuilders;
 using LangLang.HostBuilders;
 using PetCenter.Core.Stores;
+using PetCenter.Repository;
 using PetCenter.WPF.ViewModels;
 using PetCenter.Core.Util;
 using PetCenter.Domain.Enumerations;
@@ -19,11 +20,7 @@ namespace PetCenter
     /// </summary>
     public partial class App : Application
     {
-        private readonly IHost _host;
-
-        public App()
-            => _host = CreateHostBuilder().Build();
-
+        private readonly IHost _host = CreateHostBuilder().Build();
         private static IHostBuilder CreateHostBuilder(string[]? args = null)
             => Host.CreateDefaultBuilder(args)
                    .AddServices()
