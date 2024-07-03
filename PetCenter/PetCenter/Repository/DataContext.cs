@@ -13,13 +13,13 @@ namespace PetCenter.Repository
 {
     public class DataContext : DbContext
     {
-        private readonly DatabaseCredentials _credentials;
         public DataContext()
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
+        public DbSet<Notification> Notifications { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Offer> Offers { get; set; }
