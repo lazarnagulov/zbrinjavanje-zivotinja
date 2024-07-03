@@ -23,6 +23,8 @@ namespace PetCenter.Repository
 
         public List<Post> GetAccepted()
             => dataContext.Posts
+                .Include(post => post.Author)
+                    .ThenInclude(author => author.Account)
                 .Include(post => post.Animal)
                     .ThenInclude(animal => animal.Photos)
                 .Include(post => post.Animal)

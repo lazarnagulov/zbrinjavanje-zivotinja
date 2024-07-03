@@ -8,7 +8,7 @@ using PetCenter.Repository;
 using PetCenter.WPF.MVVM;
 using PetCenter.WPF.ViewModels;
 
-namespace LangLang.HostBuilders;
+namespace PetCenter.HostBuilders;
 
 public static class AddServicesExtension
 {
@@ -21,6 +21,7 @@ public static class AddServicesExtension
             services.AddSingleton<LoginService>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<PostService>();
+            services.AddSingleton<AnimalTypeService>();
         });
         
         return host;

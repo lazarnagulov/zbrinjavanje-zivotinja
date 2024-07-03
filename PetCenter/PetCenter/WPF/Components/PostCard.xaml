@@ -20,10 +20,11 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" CornerRadius="10,10,0,0">
                     <Border.Background>
@@ -33,7 +34,8 @@
                         </LinearGradientBrush>
                     </Border.Background>
                 </Border>
-                <Border Grid.Row="1" Grid.RowSpan="4" >
+
+                <Border Grid.Row="1" Grid.RowSpan="5" >
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
                             <GradientStop Color="{StaticResource SecondaryBackColor1}" Offset="0"/>
@@ -85,7 +87,27 @@
                     FontSize="16"
                     Text="{Binding Text}"
                     TextWrapping="Wrap"/>
-                <DockPanel Grid.Row="3" HorizontalAlignment="Stretch">
+                <StackPanel Grid.Row="3">
+                    <TextBlock Text="Animal Info"
+                               FontWeight="Bold"
+                               FontSize="12"
+                               Margin="10,5,0,0" />
+                    <TextBlock Margin="10,5,0,0"
+                               FontSize="12"
+                               TextWrapping="Wrap">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Name: {0}  Age: {1}">
+                                <Binding Path="Animal.Name" />
+                                <Binding Path="Animal.Age" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Margin="10,0"
+                               Text="{Binding Animal.Description}"
+                               FontSize="12"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+                <DockPanel Grid.Row="4" HorizontalAlignment="Stretch">
                     <Button 
                         Command="{Binding DataContext.LikePostCommand, 
                                     RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
@@ -109,7 +131,7 @@
                                 Content="Request Temporary Accommodation"/>
                     </StackPanel>
                 </DockPanel>
-                <StackPanel Grid.Row="4" Orientation="Vertical" Margin="10,0">
+                <StackPanel Grid.Row="5" Orientation="Vertical" Margin="10,0">
                     <TextBox HorizontalAlignment="Stretch" 
                              Text="{Binding NewComment, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button 

@@ -6,6 +6,7 @@
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
                     <ResourceDictionary Source="/WPF/Style/Colors.xaml"/>
+                    <ResourceDictionary Source="/WPF/Style/ComponentStyle.xaml"/>
                     <ResourceDictionary Source="/WPF/Style/Buttons.xaml"/>
                 </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>

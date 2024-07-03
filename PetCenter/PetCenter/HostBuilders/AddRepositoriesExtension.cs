@@ -29,6 +29,7 @@ public static class AddRepositoriesExtension
             services.AddSingleton<IPersonRepository, PersonSqlRepository>();
             services.AddSingleton<IPostRepository, PostSqlRepository>();
             services.AddSingleton<IRequestRepository, RequestSqlRepository>();
+            services.AddSingleton<IAnimalTypeRepository, AnimalTypeSqlRepository>();
         });
         
         return host;
