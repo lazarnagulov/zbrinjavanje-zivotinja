@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,9 +65,16 @@ namespace PetCenter.WPF.ViewModels
             Post.Animal.Photos.Add(photo);
         }
 
-        private bool CanCreatePost(object? arg) => true;
+        private bool CanCreatePost(object? arg)
+            => !string.IsNullOrEmpty(Post.Text) &&
+               !string.IsNullOrEmpty(Post.Animal.Name) &&
+               !string.IsNullOrEmpty(Post.Animal.Description) &&
+               Post.Animal.Type is not null;
+
         private void CreatePost(object? obj)
         {
+            Trace.Assert(_authenticationStore.LoggedUser is not null);
+            Trace.Assert(Post.Animal.Type is not null);
             var animal = new Animal(Post.Animal.Type, Post.Animal.Name, Post.Animal.Age, Post.Animal.Description);
             var photos = Post.Animal.Photos.Select(photo => new Photo(photo.Url, photo.Description)).ToList();
             animal.AddRangePhoto(photos);

@@ -30,7 +30,7 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _description, value);
         }
 
-        public AnimalType Type
+        public AnimalType? Type
         {
             get => _type;
             set => SetField(ref _type, value);
@@ -57,7 +57,7 @@ namespace PetCenter.WPF.BaseViewModels
         private Guid _id;
         private string _name;
         private string _description;
-        private AnimalType _type;
+        private AnimalType? _type;
         private ObservableCollection<PhotoViewModel> _photos;
         private int _age;
         private PhotoViewModel _newPhoto = new(new Photo());

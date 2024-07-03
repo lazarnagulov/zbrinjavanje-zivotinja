@@ -83,7 +83,7 @@
                          AcceptsReturn="True"
                          VerticalScrollBarVisibility="Visible"
                          Width="300"
-                         MaxLength="30"
+                         MaxLength="300"
                          Text="{Binding Post.Animal.Description}" />
                 <TextBlock Text="Type"
                            HorizontalAlignment="Center"
