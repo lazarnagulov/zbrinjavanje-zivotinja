@@ -10,6 +10,7 @@ namespace PetCenter.Domain.State
 {
     internal class Declined : PostState
     {
+        public Declined() { }
         public Declined(Post post) { }
         public Declined(PostService context) : base(context)
         {

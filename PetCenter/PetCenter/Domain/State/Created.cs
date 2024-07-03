@@ -10,6 +10,7 @@ namespace PetCenter.Domain.State
 {
     internal class Created : PostState
     {
+        public Created() { }
         public Created(Post post) { }
         public Created(PostService context) : base(context)
         {

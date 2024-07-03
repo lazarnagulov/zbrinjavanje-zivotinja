@@ -10,6 +10,7 @@ namespace PetCenter.Domain.State
 {
     public class TemporaryAccommodation : PostState
     {
+        public TemporaryAccommodation() { }
         public TemporaryAccommodation(Post post) { }
         public TemporaryAccommodation(PostService context) : base(context)
         {
