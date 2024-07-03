@@ -17,7 +17,7 @@ namespace PetCenter.WPF.Views.Volunteer
     /// <summary>
     /// Interaction logic for OfferListingView.xaml
     /// </summary>
-    public partial class OfferListingView : Window
+    public partial class OfferListingView : UserControl
     {
         public OfferListingView()
         {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.Enumerations;
+using PetCenter.Repository;
 
 namespace PetCenter.Core.Service
 {
@@ -26,8 +27,9 @@ namespace PetCenter.Core.Service
 
                 return offerRepository.Update(offerToUpdate);
             }
-
             return false;
         }
+
+        public List<Offer> GetAllIncluded() => offerRepository.GetAllIncluded();
     }
 }

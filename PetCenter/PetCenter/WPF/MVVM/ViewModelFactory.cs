@@ -3,6 +3,7 @@ using PetCenter.Domain.Enumerations;
 using PetCenter.WPF.ViewModels.Authentication;
 using PetCenter.WPF.ViewModels.Guest;
 using PetCenter.WPF.ViewModels.Member;
+using PetCenter.WPF.ViewModels.Volunteer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,8 @@ namespace PetCenter.WPF.MVVM
         CreateViewModel<LoginViewModel> createLoginViewModel,
         CreateViewModel<RegisterViewModel> createRegisterViewModel,
         CreateViewModel<PostListingViewModel> createPostListingViewModel,
-        CreateViewModel<CreatePostViewModel> createCreatePostViewModel
+        CreateViewModel<CreatePostViewModel> createCreatePostViewModel,
+        CreateViewModel<OfferListingViewModel> createOfferListingViewModel
         )
     {
         public CreateViewModel<T> GetCreateViewModel<T>(ViewType type) where T : ViewModelBase
@@ -27,6 +29,7 @@ namespace PetCenter.WPF.MVVM
                 ViewType.Register => (createRegisterViewModel as CreateViewModel<T>)!,
                 ViewType.PostListing => (createPostListingViewModel as CreateViewModel<T>)!,
                 ViewType.CreatePost => (createCreatePostViewModel as CreateViewModel<T>)!,
+                ViewType.OfferListing => (createOfferListingViewModel as CreateViewModel<T>)!,
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }
@@ -38,6 +41,7 @@ namespace PetCenter.WPF.MVVM
                 ViewType.Register => createRegisterViewModel(),
                 ViewType.PostListing => createPostListingViewModel(),
                 ViewType.CreatePost => createCreatePostViewModel(),
+                ViewType.OfferListing => createOfferListingViewModel(),
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }

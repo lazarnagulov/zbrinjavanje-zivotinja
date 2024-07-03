@@ -22,6 +22,7 @@ public static class AddServicesExtension
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<PostService>();
             services.AddSingleton<AnimalTypeService>();
+            services.AddSingleton<OfferService>();
         });
         
         return host;

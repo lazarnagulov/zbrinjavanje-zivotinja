@@ -17,7 +17,7 @@ namespace PetCenter.WPF.Components
     /// <summary>
     /// Interaction logic for OfferCard.xaml
     /// </summary>
-    public partial class OfferCard : Window
+    public partial class OfferCard : UserControl
     {
         public OfferCard()
         {

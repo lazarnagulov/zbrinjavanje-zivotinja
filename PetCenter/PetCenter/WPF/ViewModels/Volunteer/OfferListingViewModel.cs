@@ -17,7 +17,6 @@ namespace PetCenter.WPF.ViewModels.Volunteer
 {
     public class OfferListingViewModel : ViewModelBase
     {
-        private readonly OfferSqlRepository _offerRepository;
         private readonly PostService _postService;
         private readonly OfferService _offerService;
 
@@ -30,10 +29,9 @@ namespace PetCenter.WPF.ViewModels.Volunteer
         {
             _postService = postService;
             _offerService = offerService;
-            _offerRepository = new OfferSqlRepository(dataContext);
 
             _offers = new ObservableCollection<OfferViewModel>();
-            foreach (var offer in _offerRepository.GetAllIncluded())
+            foreach (var offer in _offerService.GetAllIncluded())
             {
                 _offers.Add(new OfferViewModel(offer));
             }
