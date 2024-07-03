@@ -4,6 +4,7 @@ using PetCenter.Domain.Enumerations;
 using PetCenter.WPF.Command;
 using PetCenter.WPF.MVVM;
 using PetCenter.WPF.ViewModels.Guest;
+using PetCenter.WPF.ViewModels.Member;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace PetCenter.WPF.ViewModels.Volunteer
 
         public RelayCommand LogoutCommand { get; }
         public NavigationCommand<PostListingViewModel> NavPostListingCommand { get; }
+        public NavigationCommand<CreatePostViewModel> NavCreatePostCommand { get; }
 
         public VolunteerViewModel(NavigationStore navigationStore, INavigationService navigationService)
         {
@@ -29,6 +31,7 @@ namespace PetCenter.WPF.ViewModels.Volunteer
 
             LogoutCommand = new RelayCommand(execute => _navigationService.SwitchWindow(WindowType.Authentication));
             NavPostListingCommand = _navigationService.CreateNavCommand<PostListingViewModel>(ViewType.PostListing);
+            NavCreatePostCommand = _navigationService.CreateNavCommand<CreatePostViewModel>(ViewType.CreatePost);
         }
 
         private void OnCurrentViewModelChanged()

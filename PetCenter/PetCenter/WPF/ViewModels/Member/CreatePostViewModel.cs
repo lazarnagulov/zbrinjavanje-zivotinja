@@ -11,14 +11,17 @@ using System.Windows.Input;
 using Microsoft.EntityFrameworkCore.Metadata;
 using PetCenter.Core.Service;
 using PetCenter.Core.Stores;
+using PetCenter.Core.Util;
+using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
 using PetCenter.Repository;
 using PetCenter.WPF.BaseViewModels;
 using PetCenter.WPF.Command;
 using PetCenter.WPF.MVVM;
+using PetCenter.WPF.ViewModels.Guest;
 
-namespace PetCenter.WPF.ViewModels
+namespace PetCenter.WPF.ViewModels.Member
 {
     public class CreatePostViewModel : ViewModelBase
     {
@@ -39,7 +42,7 @@ namespace PetCenter.WPF.ViewModels
         public ICommand AddPhotoCommand { get; }
         public ICommand DeletePhotoCommand { get; }
 
-        public CreatePostViewModel(PostService postService, AuthenticationStore authenticationStore, NavigationStore navigationStore, AnimalTypeService animalTypeService)
+        public CreatePostViewModel(PostService postService, AuthenticationStore authenticationStore, INavigationService navigationService, AnimalTypeService animalTypeService)
         {
             _postService = postService;
             _authenticationStore = authenticationStore;
@@ -47,17 +50,16 @@ namespace PetCenter.WPF.ViewModels
             AddPhotoCommand = new RelayCommand(AddPhoto, CanAddPhoto);
             DeletePhotoCommand = new RelayCommand(DeletePhoto, CanDeletePhoto);
             CreatePostCommand = new RelayCommand(CreatePost, CanCreatePost);
-            CancelPostCommand =
-                new NavigationCommand<PostListingViewModel>(navigationStore, () => new PostListingViewModel(postService, authenticationStore));
+            CancelPostCommand = navigationService.CreateNavCommand<PostListingViewModel>(ViewType.PostListing);
         }
 
         private bool CanDeletePhoto(object? arg) => Post.Animal.Photos.Count != 0;
         private void DeletePhoto(object? obj) => Post.Animal.Photos.RemoveAt(0);
-        
+
         private bool CanAddPhoto(object? arg)
             => !string.IsNullOrEmpty(Post.Animal.NewPhoto.Url) &&
                !string.IsNullOrEmpty(Post.Animal.NewPhoto.Description);
-        
+
         private void AddPhoto(object? obj)
         {
             var photo = Post.Animal.NewPhoto;

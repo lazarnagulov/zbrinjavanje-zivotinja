@@ -21,8 +21,7 @@ namespace PetCenter.WPF.ViewModels.Member
 
         public RelayCommand LogoutCommand { get; }
         public NavigationCommand<PostListingViewModel> NavPostListingCommand { get; }
-        public NavigationCommand<Test1ViewModel> NavTest1Command { get; }
-        public NavigationCommand<Test2ViewModel> NavTest2Command { get; }
+        public NavigationCommand<CreatePostViewModel> NavCreatePostCommand { get; }
 
         public MemberViewModel(NavigationStore navigationStore, INavigationService navigationService)
         {
@@ -32,8 +31,7 @@ namespace PetCenter.WPF.ViewModels.Member
 
             LogoutCommand = new RelayCommand(execute => _navigationService.SwitchWindow(WindowType.Authentication));
             NavPostListingCommand = _navigationService.CreateNavCommand<PostListingViewModel>(ViewType.PostListing);
-            NavTest1Command = _navigationService.CreateNavCommand<Test1ViewModel>(ViewType.Test1);
-            NavTest2Command = _navigationService.CreateNavCommand<Test2ViewModel>(ViewType.Test2);
+            NavCreatePostCommand = _navigationService.CreateNavCommand<CreatePostViewModel>(ViewType.CreatePost);
         }
 
         private void OnCurrentViewModelChanged()

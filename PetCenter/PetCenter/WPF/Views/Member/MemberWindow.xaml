@@ -24,19 +24,15 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource SBHeaderColor}">
             <Button Margin="30 16 30 16" Command="{Binding LogoutCommand}" Content="Logout" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavPostListingCommand}" Content="Posts" Width="150" Style="{StaticResource HeaderButton}"/>
-            <Button Margin="20 16 30 16" Command="{Binding NavTest1Command}" Content="Test1" Width="150" Style="{StaticResource HeaderButton}"/>
-            <Button Margin="20 16 30 16" Command="{Binding NavTest2Command}" Content="Test2" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16" Command="{Binding NavCreatePostCommand}" Content="Create post" Width="150" Style="{StaticResource HeaderButton}"/>
         </StackPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vmG:PostListingViewModel}">
                     <vG:PostListingView></vG:PostListingView>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type vmM:Test1ViewModel}">
-                    <vM:Test1View></vM:Test1View>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type vmM:Test2ViewModel}">
-                    <vM:Test2View></vM:Test2View>
+                <DataTemplate DataType="{x:Type vmM:CreatePostViewModel}">
+                    <vM:CreatePostView></vM:CreatePostView>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

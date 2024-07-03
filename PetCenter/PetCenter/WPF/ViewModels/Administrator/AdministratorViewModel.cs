@@ -22,6 +22,7 @@ namespace PetCenter.WPF.ViewModels.Administrator
 
         public RelayCommand LogoutCommand { get; }
         public NavigationCommand<PostListingViewModel> NavPostListingCommand { get; }
+        public NavigationCommand<CreatePostViewModel> NavCreatePostCommand { get; }
 
         public AdministratorViewModel(NavigationStore navigationStore, INavigationService navigationService)
         {
@@ -31,6 +32,7 @@ namespace PetCenter.WPF.ViewModels.Administrator
 
             LogoutCommand = new RelayCommand(execute => _navigationService.SwitchWindow(WindowType.Authentication));
             NavPostListingCommand = _navigationService.CreateNavCommand<PostListingViewModel>(ViewType.PostListing);
+            NavCreatePostCommand = _navigationService.CreateNavCommand<CreatePostViewModel>(ViewType.CreatePost);
         }
 
         private void OnCurrentViewModelChanged()
