@@ -15,10 +15,9 @@ namespace PetCenter.Core.Util
 
         public const string HiddenPost = "The post was successfully hidden.";
         public const string DisplayedPost = "The post was successfully displayed.";
-        public const string AddedPost = "The post was successfully created.";
+        public const string CreatedPost = "The post was successfully created.";
+        public const string CreatedPostFail = "An error occured on creating post.";
         public static string CannotHidePostMessage(string state) => $"Cannot hide the post in {state} state!";
-
-
 
         public static void SuccessfulHiddenPost() 
             => MessageBox.Show(HiddenPost, NotificationCaption, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -30,7 +29,10 @@ namespace PetCenter.Core.Util
             => MessageBox.Show(CannotHidePostMessage(state), ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
 
         public static void SuccessfullyCreatedPost()
-            => MessageBox.Show(AddedPost, NotificationCaption, MessageBoxButton.OK, MessageBoxImage.Information);
+            => MessageBox.Show(CreatedPost, NotificationCaption, MessageBoxButton.OK, MessageBoxImage.Information);
+
+        public static void PostCreationError()
+            => MessageBox.Show(CreatedPostFail, ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
 
 
     }

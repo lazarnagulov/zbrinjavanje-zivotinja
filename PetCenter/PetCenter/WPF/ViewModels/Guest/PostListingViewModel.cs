@@ -66,7 +66,6 @@ namespace PetCenter.WPF.ViewModels.Guest
         private void InsertPostEvent(PostViewModel postViewModel)
         {
             Posts.Add(postViewModel);
-            Feedback.SuccessfullyCreatedPost();
         }
 
         private void DeleteComment(object? obj)
