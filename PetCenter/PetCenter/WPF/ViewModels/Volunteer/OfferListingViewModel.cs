@@ -20,12 +20,16 @@ namespace PetCenter.WPF.ViewModels.Volunteer
         private readonly PostService _postService;
         private readonly OfferService _offerService;
 
-        private readonly ObservableCollection<OfferViewModel> _offers;
-        public ObservableCollection<OfferViewModel> Offers => _offers;
+        private ObservableCollection<OfferViewModel> _offers;
+        public ObservableCollection<OfferViewModel> Offers
+        {
+            get => _offers;
+            set => SetField(ref _offers, value);
+        }
         public ICommand AcceptOfferCommand { get; }
         public ICommand RejectOfferCommand { get; }
 
-        public OfferListingViewModel(DataContext dataContext, PostService postService, OfferService offerService)
+        public OfferListingViewModel(PostService postService, OfferService offerService)
         {
             _postService = postService;
             _offerService = offerService;
@@ -33,7 +37,7 @@ namespace PetCenter.WPF.ViewModels.Volunteer
             _offers = new ObservableCollection<OfferViewModel>();
             foreach (var offer in _offerService.GetAllIncluded())
             {
-                _offers.Add(new OfferViewModel(offer));
+                _offers.Add(new OfferViewModel(offer, _postService.GetPostByOffer(offer.Id)!));
             }
 
             AcceptOfferCommand = new RelayCommand<OfferViewModel>(AcceptCommand);

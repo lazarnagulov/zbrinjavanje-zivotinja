@@ -67,7 +67,7 @@ namespace PetCenter.Core.Service
 
         public Post? GetPostByOffer(Guid offerId)
         {
-            var allPosts = postRepository.GetAll();
+            var allPosts = postRepository.GetAllIncluded();
 
             var postWithOffer = allPosts
                 .FirstOrDefault(post => post.Offers.Any(offer => offer.Id == offerId));

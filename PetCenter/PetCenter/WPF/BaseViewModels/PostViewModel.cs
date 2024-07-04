@@ -107,7 +107,7 @@ namespace PetCenter.WPF.BaseViewModels
             _newComment = string.Empty;
             foreach (var offer in post.Offers)
             {
-                _offers.Add(new OfferViewModel(offer));
+                _offers.Add(new OfferViewModel(offer, post));
             }
             foreach (var comment in post.Comments)
             {

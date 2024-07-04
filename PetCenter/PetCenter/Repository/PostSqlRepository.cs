@@ -47,5 +47,17 @@ namespace PetCenter.Repository
                 .Include(post => post.State)
                 //.Where(post => post.State is OnHold)
                 .ToList();
+
+        public List<Post> GetAllIncluded()
+            => dataContext.Posts
+                .Include(post => post.Animal)
+                .ThenInclude(animal => animal.Photos)
+                .Include(post => post.Animal)
+                .ThenInclude(animal => animal.Type)
+                .Include(post => post.Comments)
+                .ThenInclude(comment => comment.Author)
+                .Include(post => post.State)
+                .Include(post => post.Offers)
+                .ToList();
     }
 }
