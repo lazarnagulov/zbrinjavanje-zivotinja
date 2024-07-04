@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media.TextFormatting;
 using PetCenter.Core.Service;
 using PetCenter.Core.Stores;
+using PetCenter.Core.Util;
 using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.State;
@@ -65,6 +66,7 @@ namespace PetCenter.WPF.ViewModels.Guest
         private void InsertPostEvent(PostViewModel postViewModel)
         {
             Posts.Add(postViewModel);
+            Feedback.SuccessfullyCreatedPost();
         }
 
         private void DeleteComment(object? obj)
@@ -83,18 +85,19 @@ namespace PetCenter.WPF.ViewModels.Guest
             {
                 postViewModel.State.HidePost();
                 postViewModel.State = postViewModel.State.Context.State;
+                Feedback.SuccessfulHiddenPost();
             }
             else if (postViewModel.State is Hidden)
             {
                 postViewModel.State.ShowPost();
                 postViewModel.State = postViewModel.State.Context.State;
+                Feedback.SuccessfullyDisplayedPost();
             }
             else
             {
-                MessageBox.Show($"Cannot hide {postViewModel.State} post!");
+                Feedback.CannotHidePost(postViewModel.State.ToString()!);
             }
             _postService.Update(postViewModel.State.Context);
-            MessageBox.Show($"Successfully hidden post!");
         }
 
         private void TemporaryAccommodationCommand(object? obj)
