@@ -83,6 +83,11 @@ namespace PetCenter.WPF.ViewModels.Member
             if (_postService.Insert(post))
             {
                 OnPostInsert?.Invoke(Post);
+                Feedback.SuccessfullyCreatedPost();
+            }
+            else
+            {
+                Feedback.PostCreationError();
             }
         }
     }

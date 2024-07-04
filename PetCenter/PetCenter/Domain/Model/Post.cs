@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.State;
 
 namespace PetCenter.Domain.Model
@@ -70,6 +71,13 @@ namespace PetCenter.Domain.Model
         public void RemoveComment(Comment comment) => _comments.Remove(comment);
 
         public void ChangeState(PostState newState) => State = newState;
-
+        public void Accept() => State.AcceptPost();
+        public void Decline() => State.DeclinePost();
+        public void Hide() => State.HidePost();
+        public void Show() => State.ShowPost();
+        public void AdoptAnimal() => State.AdoptAnimal();
+        public void ReturnAnimal() => State.ReturnAnimal();
+        public void GiveAnimalTemporaryAccommodation() => State.GiveAnimalTemporaryAccommodation();
+        public void Initialize(AccountType type) => State.Initialize(type);
     }
 }

@@ -11,8 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media.TextFormatting;
 using PetCenter.Core.Service;
 using PetCenter.Core.Stores;
+using PetCenter.Core.Util;
 using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
+using PetCenter.Domain.State;
 using PetCenter.WPF.BaseViewModels;
 using PetCenter.WPF.MVVM;
 using PetCenter.WPF.ViewModels.Member;
@@ -24,20 +26,10 @@ namespace PetCenter.WPF.ViewModels.Guest
         private readonly PostService _postService;
         private readonly AuthenticationStore _authenticationStore;
 
-        private readonly ObservableCollection<PostViewModel> _posts;
-
         public bool LoggedUser => _authenticationStore.IsLoggedIn;
-        public AccountType? LoggedAccount
-        {
-            get
-            {
-                if (_authenticationStore.CurrentUserProfile is not null)
-                    return _authenticationStore.CurrentUserProfile.Type;
-                return null;
-            }
-        }
+        public AccountType? LoggedAccount => _authenticationStore.CurrentUserProfile?.Type;
 
-        public ObservableCollection<PostViewModel> Posts => _posts;
+        public ObservableCollection<PostViewModel> Posts { get; } = [];
         public ICommand LikePostCommand { get; }
         public ICommand AddCommentCommand { get; }
         public ICommand RequestAdoptionCommand { get; }
@@ -49,17 +41,23 @@ namespace PetCenter.WPF.ViewModels.Guest
         {
             _authenticationStore = authenticationStore;
             _postService = postService;
-            _posts = new ObservableCollection<PostViewModel>();
-            foreach (var post in postService.GetAccepted())
+
+            var posts = authenticationStore.CurrentUserProfile?.Type switch
             {
-                _posts.Add(new PostViewModel(post));
+                AccountType.Volunteer => postService.GetAcceptedWithHidden(),
+                _ => postService.GetAccepted()
+            };
+
+            foreach (var post in posts)
+            {
+                Posts.Add(new PostViewModel(post));
             }
 
             LikePostCommand = new RelayCommand<PostViewModel>(LikeCommand);
             AddCommentCommand = new RelayCommand<PostViewModel>(CommentCommand, CanComment);
             RequestAdoptionCommand = new RelayCommand(AdoptionCommand);
             RequestTemporaryAccommodationCommand = new RelayCommand(TemporaryAccommodationCommand);
-            HidePostCommand = new RelayCommand(HidePost);
+            HidePostCommand = new RelayCommand<PostViewModel>(HidePost);
             DeleteCommentCommand = new RelayCommand(DeleteComment);
 
             createPostViewModel.OnPostInsert += InsertPostEvent;
@@ -80,9 +78,25 @@ namespace PetCenter.WPF.ViewModels.Guest
             _postService.DeleteComment(comment!.Id);
         }
 
-        private void HidePost(object? obj)
+        private void HidePost(PostViewModel postViewModel)
         {
-            throw new NotImplementedException();
+            if (postViewModel.State is Accepted)
+            {
+                postViewModel.State.HidePost();
+                postViewModel.State = postViewModel.State.Context.State;
+                Feedback.SuccessfulHiddenPost();
+            }
+            else if (postViewModel.State is Hidden)
+            {
+                postViewModel.State.ShowPost();
+                postViewModel.State = postViewModel.State.Context.State;
+                Feedback.SuccessfullyDisplayedPost();
+            }
+            else
+            {
+                Feedback.CannotHidePost(postViewModel.State.ToString()!);
+            }
+            _postService.Update(postViewModel.State.Context);
         }
 
         private void TemporaryAccommodationCommand(object? obj)
@@ -103,21 +117,6 @@ namespace PetCenter.WPF.ViewModels.Guest
             _postService.AddComment(obj.Id, comment);
         }
 
-        private void LikeCommand(PostViewModel obj)
-        {
-            var user = _authenticationStore.LoggedUser!;
-
-            if (obj.Likes.Contains(user))
-            {
-                obj.Likes.Remove(user);
-                obj.LikeCount--;
-            }
-            else
-            {
-                obj.LikeCount++;
-                obj.Likes.Add(user);
-            }
-            _postService.AddLike(obj.Id);
-        }
+        private void LikeCommand(PostViewModel obj) => obj.LikeCount = _postService.AddLike(obj.Id);
     }
 }

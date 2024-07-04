@@ -15,6 +15,7 @@ namespace PetCenter.WPF.ViewModels.Volunteer
     public class VolunteerViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
+        private readonly AuthenticationStore _authenticationStore;
         private readonly INavigationService _navigationService;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
@@ -23,17 +24,25 @@ namespace PetCenter.WPF.ViewModels.Volunteer
         public NavigationCommand<CreatePostViewModel> NavCreatePostCommand { get; }
         public NavigationCommand<OfferListingViewModel> NavOffersCommand { get; }
 
-        public VolunteerViewModel(NavigationStore navigationStore, INavigationService navigationService)
+        public VolunteerViewModel(NavigationStore navigationStore, INavigationService navigationService, AuthenticationStore authenticationStore)
         {
+            _authenticationStore = authenticationStore;
             _navigationStore = navigationStore;
             _navigationService = navigationService;
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
-            LogoutCommand = new RelayCommand(execute => _navigationService.SwitchWindow(WindowType.Authentication));
+            LogoutCommand = new RelayCommand(execute => Logout());
             NavPostListingCommand = _navigationService.CreateNavCommand<PostListingViewModel>(ViewType.PostListing);
             NavCreatePostCommand = _navigationService.CreateNavCommand<CreatePostViewModel>(ViewType.CreatePost);
             NavOffersCommand = _navigationService.CreateNavCommand<OfferListingViewModel>(ViewType.OfferListing);
         }
+
+        private void Logout()
+        {
+            _authenticationStore.Logout();
+            _navigationService.SwitchWindow(WindowType.Authentication);
+        }
+
 
         private void OnCurrentViewModelChanged()
         {
