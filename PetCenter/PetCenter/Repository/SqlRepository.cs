@@ -30,10 +30,27 @@ namespace PetCenter.Repository
 
         public bool Delete(T entity)
         {
-            container.Remove(entity);
-            return dataContext.SaveChanges() > 0;
+            try
+            {
+                container.Remove(entity);
+                return dataContext.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public bool Update(T entity) => dataContext.SaveChanges() > 0;
+        public bool Update(T entity)
+        {
+            try
+            {
+                return dataContext.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

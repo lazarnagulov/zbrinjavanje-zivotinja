@@ -23,7 +23,7 @@ public static class AddViewModelsExtension
 
             services.AddScoped<LoginViewModel>();
             services.AddScoped<RegisterViewModel>();
-            services.AddScoped<PostListingViewModel>();
+            services.AddTransient<PostListingViewModel>();
             services.AddScoped<CreatePostViewModel>();
 
             services.AddScoped<CreateViewModel<AuthenticationViewModel>>(
