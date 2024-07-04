@@ -11,6 +11,9 @@ namespace PetCenter.Domain.Enumerations
         Login,
         Register,
         PostListing,
-        CreatePost
+        CreatePost,
+        AddFirstVolunteer,
+        PetCenterInfo,
+        Administrator
     }
 }
