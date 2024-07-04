@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Core.Service;
+using System.Windows;
 
 namespace PetCenter.WPF.ViewModels.Authentication
 {
@@ -59,6 +60,10 @@ namespace PetCenter.WPF.ViewModels.Authentication
                         AccountType.Administrator => WindowType.Administrator,
                         _ => throw new ArgumentOutOfRangeException(nameof(account.Type), $"Unexpected account type: {account.Type}")
                     });
+            }
+            else
+            {
+                MessageBox.Show("Incorrect creditials!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
