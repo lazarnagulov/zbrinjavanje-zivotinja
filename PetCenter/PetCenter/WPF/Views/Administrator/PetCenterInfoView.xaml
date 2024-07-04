@@ -29,34 +29,31 @@
         </Border.Background>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button HorizontalAlignment="Left"
-                    Margin="5,5,0,0"
-                    Content="Back"
-                    VerticalAlignment="Center"
-                    Height="30"
-                    Width="75"
-                    FontSize="12"
-                    Command="{Binding ToAdministratorWindowCommand}"
-                    Style="{StaticResource LoginButton}"
-                    />
                 <TextBlock Grid.Column="0"
                        Grid.Row="0"
                        HorizontalAlignment="Center"
                        Text="Pet center info"
                        FontSize="24"
                        FontWeight="Bold"
-                       Grid.ColumnSpan="2"
-                       Margin="10,0" />
+                       Margin="10,5" />
 
                 <StackPanel Grid.Column="0" Grid.Row="1">
+                    <TextBlock HorizontalAlignment="Center"
+                               Text="{Binding Association.Name}"
+                               FontWeight="Bold"
+                               FontSize="24"
+                               Margin="0,10,0,0" />
+                    <TextBlock HorizontalAlignment="Center"
+                               Text="{Binding Association.AccountNumber}"
+                               FontSize="14"/>
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="14"
+                               Text="{Binding Association.WebsiteLink}"
+                               Margin="0,0,0,20"/>
                     <TextBlock HorizontalAlignment="Center"
                                Text="Name"
                                FontSize="14"

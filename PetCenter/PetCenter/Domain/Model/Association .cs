@@ -39,5 +39,12 @@ namespace PetCenter.Domain.Model
         [MaxLength(50)]
         [Column("assoc_website")]
         public string? WebsiteLink { get; set; }
+
+        public void Update(Association association)
+        {
+            Name = association.Name;
+            AccountNumber = association.AccountNumber;
+            WebsiteLink = association.WebsiteLink;
+        }
     }
 }

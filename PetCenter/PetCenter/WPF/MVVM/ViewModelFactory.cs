@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using PetCenter.WPF.ViewModels.Administrator;
 
 namespace PetCenter.WPF.MVVM
 {
@@ -16,8 +17,9 @@ namespace PetCenter.WPF.MVVM
         CreateViewModel<LoginViewModel> createLoginViewModel,
         CreateViewModel<RegisterViewModel> createRegisterViewModel,
         CreateViewModel<PostListingViewModel> createPostListingViewModel,
-        CreateViewModel<CreatePostViewModel> createCreatePostViewModel
-        )
+        CreateViewModel<CreatePostViewModel> createCreatePostViewModel,
+        CreateViewModel<AddFirstVolunteerViewModel> createAddFirstVolunteerViewModel,
+        CreateViewModel<PetCenterInfoViewModel> createPetCenterInfoViewModel)
     {
         public CreateViewModel<T> GetCreateViewModel<T>(ViewType type) where T : ViewModelBase
         {
@@ -27,6 +29,8 @@ namespace PetCenter.WPF.MVVM
                 ViewType.Register => (createRegisterViewModel as CreateViewModel<T>)!,
                 ViewType.PostListing => (createPostListingViewModel as CreateViewModel<T>)!,
                 ViewType.CreatePost => (createCreatePostViewModel as CreateViewModel<T>)!,
+                ViewType.AddFirstVolunteer => (createAddFirstVolunteerViewModel as CreateViewModel<T>)!,
+                ViewType.PetCenterInfo => (createPetCenterInfoViewModel as CreateViewModel<T>)!,
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }
@@ -38,6 +42,8 @@ namespace PetCenter.WPF.MVVM
                 ViewType.Register => createRegisterViewModel(),
                 ViewType.PostListing => createPostListingViewModel(),
                 ViewType.CreatePost => createCreatePostViewModel(),
+                ViewType.AddFirstVolunteer => createAddFirstVolunteerViewModel(),
+                ViewType.PetCenterInfo => createPetCenterInfoViewModel(),
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }

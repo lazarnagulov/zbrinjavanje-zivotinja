@@ -14,6 +14,5 @@ namespace PetCenter.Domain.Enumerations
         CreatePost,
         AddFirstVolunteer,
         PetCenterInfo,
-        Administrator
     }
 }

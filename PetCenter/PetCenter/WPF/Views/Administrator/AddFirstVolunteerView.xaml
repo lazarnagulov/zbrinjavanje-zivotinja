@@ -37,16 +37,6 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button HorizontalAlignment="Left"
-                    Margin="5,5,0,0"
-                    Content="Back"
-                    VerticalAlignment="Center"
-                    Height="30"
-                    Width="75"
-                    FontSize="12"
-                    Command="{Binding ToAdministratorWindowCommand}"
-                    Style="{StaticResource LoginButton}"
-                    />
                 <TextBlock Grid.Column="0"
                        Grid.Row="0"
                        HorizontalAlignment="Center"

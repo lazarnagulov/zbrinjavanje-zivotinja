@@ -26,14 +26,12 @@ namespace PetCenter.WPF.ViewModels.Administrator
         }
 
         public Array Genders => Enum.GetNames(typeof(Gender));
-        public NavigationCommand<AdministratorViewModel> ToAdministratorWindowCommand { get; }
         public RelayCommand AddCommand { get; }
 
         public AddFirstVolunteerViewModel(INavigationService navigationService, PersonService personService)
         {
             _navigationService = navigationService;
             _personService = personService;
-            ToAdministratorWindowCommand = _navigationService.CreateNavCommand<AdministratorViewModel>(ViewType.Administrator);
             AddCommand = new RelayCommand(execute => Register(AccountType.Volunteer), CanRegister);
         }
 

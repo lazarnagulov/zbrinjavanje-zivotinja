@@ -24,22 +24,27 @@ namespace PetCenter.WPF.ViewModels.Administrator
             set => SetField(ref _association, value);
         }
 
-        public NavigationCommand<AdministratorViewModel> ToAdministratorWindowCommand { get; }
-        public RelayCommand UpdateCommand;
+        public RelayCommand UpdateCommand { get; }
 
         public PetCenterInfoViewModel(INavigationService navigationService, AssociationService associationService)
         {
             _navigationService = navigationService;
             _associationService = associationService;
-            ToAdministratorWindowCommand = _navigationService.CreateNavCommand<AdministratorViewModel>(ViewType.Administrator);
             UpdateCommand = new RelayCommand(execute => Update());
             LoadFirstAssociation();
         }
 
         private void Update()
         {
-            Association association = new Association(Association.Name, Association.AccountNumber, Association.WebsiteLink);
-            _associationService.Update(association);
+            var association = new Association(Association.Name, Association.AccountNumber, Association.WebsiteLink);
+            if (_associationService.UpdateById(Association.Id, association))
+            {
+                Feedback.SuccessfullyUpdatedInfo();
+            }
+            else
+            {
+                Feedback.UpdateInfoError();
+            }
         }
 
         private void LoadFirstAssociation()
@@ -47,9 +52,7 @@ namespace PetCenter.WPF.ViewModels.Administrator
             var firstAssociation = _associationService.GetFirst();
             if (firstAssociation != null)
             {
-                Association.Name = firstAssociation.Name;
-                Association.AccountNumber = firstAssociation.AccountNumber;
-                Association.WebsiteLink = firstAssociation.WebsiteLink;
+                Association = new AssociationViewModel(firstAssociation);
             }
         }
     }
