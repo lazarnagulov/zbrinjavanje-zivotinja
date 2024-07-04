@@ -4,7 +4,7 @@
         breaklines=true,
         postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
         morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, where, interface, Account, 
-        get, set, ref, Guid, Comment, RelayCommand, PostViewModel, REPLACE, FUNCTION, RETURNS, IF, RAISE, NEW,
+        get, set, ref, Guid, Comment, RelayCommand, PostViewModel, REPLACE, FUNCTION, RETURNS, IF, RAISE, NEW, INotificationRepository, Notification, Person,
         CREATE, OR, TRIGGER, DECLARE, BEGIN, SELECT, INTEGER, BEFORE, INSERT, UPDATE, FOR, EACH, ROW, EXECUTE, LANGUAGE, INTO, FROM, ON, JOIN, WHERE, THEN, END, RETURN, AS, RETURNS, EXCEPTION},
         keywordstyle=\color{blue}\ttfamily,
         stringstyle=\color{red}\ttfamily,
@@ -24,7 +24,8 @@
 \par Za razvoj je korišćen \textbf{MVVM} (Model-View-ViewModel) arhitektonski obrazac. 
 \subsubsection*{Model}
 \par \textbf{Model} čine \textbf{entiteti}, \textbf{servisi} i \textbf{repozitorijumi} (domenski sloj). 
-\par Entiteti su strukture podataka koje, pored samih podataka, sadrže pomoćne funkcije za upravljanje sa konteinerima. 
+\subsubsection*{Entiteti}
+\par \textbf{Entiteti} su strukture podataka koje, pored samih podataka, sadrže pomoćne funkcije za upravljanje sa konteinerima. 
 \par Na primeru [Listing \ref{list:animal}], klasa \textit{Animal} sadrži listu fotografija i pomoćne funkcije za dodavanje, brisanje i dobavljanje
 readonly liste.
 \begin{lstlisting}[caption={Primer entiteta}, captionpos=b, label=list:animal]
@@ -44,11 +45,49 @@ public class Animal(AnimalType type, string name, int age, string description)
         => _photos.Remove(photo);
 }
 \end{lstlisting}
-\par Servisi služe za komunikaciju sa podacima i poslovnom logikom. 
-\par Repozitorijumi služe za pristup podacima. Najosnovnije operacije nad \textit{entitetima} u bazi podataka su \textbf{CRUD} (create, read, update, delete) 
+\subsubsection*{Servisi}
+\par \textbf{Servisi} služe za komunikaciju sa podacima i poslovnom logikom. U njima se nalazi komplikovanija poslovna logika koja može da uzima u obzir više objekata.
+Koristi interfejse repozitorijuma za pristup podacima u bazi. 
+\begin{lstlisting}[caption={Primer servisa}, captionpos=b, label=list:service]
+public class NotificationService(INotificationRepository notificationRepository)
+{
+    public bool Insert(Notification notification) 
+       => notificationRepository.Insert(notification);
+    public bool Delete(Notification notification) 
+       => notificationRepository.Delete(notification);
+    public Notification? GetById(Guid id) 
+       => notificationRepository.GetById(id);
+    public List<Notification> GetAll() 
+       => notificationRepository.GetAll();
+    public bool SendNotification(Person recipient, string message)
+    {
+        var notification = new Notification(recipient, message);
+        return Insert(notification);
+    }
+    public bool DeleteById(Guid id)
+    {
+        var notification = GetById(id);
+        return notification is not null && notificationRepository.Delete(notification);
+    }
+
+    public List<Notification> GetAllIncluded()
+        => notificationRepository.GetAllIncluded();
+
+    public List<Notification> GetAllForPerson(Person person)
+        => notificationRepository
+            .GetAllIncluded()
+            .Where(n => n.Recipient.Id == person.Id)
+            .ToList();
+}
+\end{lstlisting}
+\par Primer servisa se nalazi na listingu \ref{list:service}. On je zadužen za dobavljanje, kreiranje i brisanje svi obaveštenja, dobavljanje svih objekata
+koji su u relaciji sa obaveštenjem, kao i dobavljanje svakog obaveštenja za određenu \textit{osobu}.
+\subsubsection*{Repozitorijumi}
+\par \textbf{Repozitorijumi} služe za pristup podacima. Najosnovnije operacije nad \textit{entitetima} u bazi podataka su \textbf{CRUD} (create, read, update, delete) 
 operacije, koje se nalaze u \textit{ICrud$<$T$>$} intefejsu, prikazanom na listingu \ref{list:crud}.
 \begin{lstlisting}[caption={ICrud$<$T$>$ interfejs}, captionpos=b, label={list:crud}]
-public interface ICrud<T> where T : class
+public interface ICrud<T> 
+    where T : class
 {
     List<T> GetAll();
     T? GetById(Guid id);
@@ -196,4 +235,5 @@ FOR EACH ROW
 EXECUTE FUNCTION fn_validate_request();
 \end{lstlisting}
 \par Na listingu \ref{list:trig} proveravamo da li je kreator zahteva \textit{član} (vrednost 0).
-\subsection{Orgnizacija foldera}
+\subsection{Organizacija foldera}
+\par Za organizaciju foldera je korišćen \textbf{package by layer} obrazac.
