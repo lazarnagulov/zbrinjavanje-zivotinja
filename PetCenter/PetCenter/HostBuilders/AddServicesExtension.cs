@@ -24,6 +24,7 @@ public static class AddServicesExtension
             services.AddSingleton<PersonService>();
             services.AddSingleton<AnimalTypeService>();
             services.AddSingleton<NotificationService>();
+            services.AddSingleton<OfferService>();
         });
         
         return host;

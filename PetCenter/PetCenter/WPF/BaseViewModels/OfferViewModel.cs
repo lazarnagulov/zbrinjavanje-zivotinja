@@ -9,7 +9,7 @@ using PetCenter.WPF.MVVM;
 
 namespace PetCenter.WPF.BaseViewModels
 {
-    public class OfferViewModel(Offer offer) : ViewModelBase
+    public class OfferViewModel(Offer offer, Post post) : ViewModelBase
     {
         public Guid Id
         {
@@ -41,10 +41,31 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _reviews, value);
         }
 
+        public string PostText
+        {
+            get => _postText;
+            set => SetField(ref _postText, value);
+        }
+
+        public string PostAnimalName
+        {
+            get => _postAnimalName;
+            set => SetField(ref _postAnimalName, value);
+        }
+
+        public string PostAuthor
+        {
+            get => _postAuthor;
+            set => SetField(ref _postAuthor, value);
+        }
+
         private Guid _id = offer.Id;
         private Person _offerer = offer.Offerer;
         private OfferType _type = offer.Type;
         private Status _status = offer.Status;
         private IReadOnlyCollection<Review> _reviews = offer.Reviews;
+        private string _postText = post.Text;
+        private string _postAnimalName = post.Animal.Name;
+        private string _postAuthor = post.Author.ToString();
     }
 }

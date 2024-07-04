@@ -53,5 +53,18 @@ namespace PetCenter.Repository
                 .ThenInclude(author => author.Account)
                 .Include(post => post.Likes)
                 .Include(post => post.State);
+
+
+        public List<Post> GetAllIncluded()
+            => dataContext.Posts
+                .Include(post => post.Animal)
+                .ThenInclude(animal => animal.Photos)
+                .Include(post => post.Animal)
+                .ThenInclude(animal => animal.Type)
+                .Include(post => post.Comments)
+                .ThenInclude(comment => comment.Author)
+                .Include(post => post.State)
+                .Include(post => post.Offers)
+                .ToList();
     }
 }
