@@ -97,6 +97,12 @@ public interface ICrud<T>
 }
 \end{lstlisting}
 \subsubsection*{View}
+\par \textbf{View} je korisnički interfejs aplikacije. Odgovoran je za prikaz podataka i interakcijom sa korisnikom,
+ali ne sadrži poslovnu logiku. 
+\par Obično se implementira pomoću \textbf{XAML}. Podatke dobavlja sa \textit{viewmodela} povezivanjem podataka (eng. data binding).
+\par Aplikacije sadrži 5 glavnih prozora - za uloge u sistemu i početni. Sa početnog prozora se pristupa drugim prozorima prijavom na sistem. U svakom prozoru se smenjuju više \textit{view}-ova.
+To se postiže \textbf{navigacijom}. 
+\par Svaki \textit{view} je povezan sa jedniom \textit{viewmodel} klasom, koja sadrži kontekst - podatke koje se koriste na samom \textit{view}-u.
 \subsubsection*{ViewModel}
 \par \textbf{ViewModel} je posrednički sloj između korisničkog interfejsa i domenskog sloja.
 \par Za svaki entitet je napravljen \textbf{omotač} (eng. wrapper) [Listing \ref{list:wrap}], kako bi se prilagodilo korisničkom interfejsu. Svaki od svojstava ovih klasa se može povezati
