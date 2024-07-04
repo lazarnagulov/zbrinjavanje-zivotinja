@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PetCenter.WPF.Views"
+             xmlns:local="clr-namespace:PetCenter.WPF.Views.Volunteer"
              xmlns:components="clr-namespace:PetCenter.WPF.Components" xmlns:volunteer="clr-namespace:PetCenter.WPF.ViewModels.Volunteer" d:DataContext="{d:DesignInstance Type=volunteer:OfferListingViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -32,8 +32,12 @@
                             <StackPanel>
                                 <components:OfferCard/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Command="{Binding AcceptOfferCommand}" Content="Accept" Margin="5"/>
-                                    <Button Command="{Binding RejectOfferCommand}" Content="Reject" Margin="5"/>
+                                    <Button Command="{Binding DataContext.AcceptOfferCommand, 
+                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OfferListingView}}}" Content="Accept" Margin="5"
+                                            CommandParameter="{Binding}" />
+                                    <Button Command="{Binding DataContext.RejectOfferCommand, 
+                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OfferListingView}}}" Content="Reject" Margin="5"
+                                            CommandParameter="{Binding}" />
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>

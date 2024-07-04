@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace PetCenter.WPF.Views.Volunteer
         public OfferListingView()
         {
             InitializeComponent();
+            this.DataContextChanged += (a,b)=>{ Trace.WriteLine(a); Trace.WriteLine(b.NewValue); Trace.WriteLine(b.OldValue); };
         }
     }
 }

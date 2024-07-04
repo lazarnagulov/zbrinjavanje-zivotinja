@@ -31,5 +31,8 @@ namespace PetCenter.Core.Service
         }
 
         public List<Offer> GetAllIncluded() => offerRepository.GetAllIncluded();
+
+        public List<Offer> GetAllOnHold()
+            => offerRepository.GetAllIncluded().Where(offer => offer.Status == Status.OnHold).ToList();
     }
 }
