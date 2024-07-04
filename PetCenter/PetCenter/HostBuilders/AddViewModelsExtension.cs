@@ -21,10 +21,13 @@ public static class AddViewModelsExtension
             services.AddScoped<VolunteerViewModel>();
             services.AddScoped<AdministratorViewModel>();
 
+            
             services.AddScoped<LoginViewModel>();
             services.AddScoped<RegisterViewModel>();
             services.AddTransient<PostListingViewModel>();
             services.AddScoped<CreatePostViewModel>();
+            services.AddScoped<AddFirstVolunteerViewModel>();
+            services.AddScoped<PetCenterInfoViewModel>();
 
             services.AddScoped<CreateViewModel<AuthenticationViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<AuthenticationViewModel>);
@@ -45,6 +48,10 @@ public static class AddViewModelsExtension
                 serviceProvider => serviceProvider.GetRequiredService<PostListingViewModel>);
             services.AddScoped<CreateViewModel<CreatePostViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<CreatePostViewModel>);
+            services.AddScoped<CreateViewModel<AddFirstVolunteerViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<AddFirstVolunteerViewModel>);
+            services.AddScoped<CreateViewModel<PetCenterInfoViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<PetCenterInfoViewModel>);
         });
         
         return host;
