@@ -35,7 +35,7 @@ namespace PetCenter.Core.Service
 
         public List<Post> GetOnHold() => postRepository.GetOnHold();
 
-        public bool AddLike(Guid id)
+        public int AddLike(Guid id)
         {
             var post = GetById(id);
             var user = authenticationStore.LoggedUser;
@@ -51,8 +51,8 @@ namespace PetCenter.Core.Service
             {
                 post.AddLike(user);
             }
-
-            return postRepository.Update(post!);
+            postRepository.Update(post!);
+            return post.LikeCount;
         }
 
         public void AddComment(Guid id, Comment comment)

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
 using PetCenter.Domain.State;
@@ -22,30 +23,27 @@ namespace PetCenter.Repository
         public bool Update(Post entity) => _sqlRepository.Update(entity);
 
         public List<Post> GetAccepted()
-            => dataContext.Posts
-                .Include(post => post.Author)
-                    .ThenInclude(author => author.Account)
-                .Include(post => post.Animal)
-                    .ThenInclude(animal => animal.Photos)
-                .Include(post => post.Animal)
-                    .ThenInclude(animal => animal.Type)
-                .Include(post => post.Comments)
-                    .ThenInclude(comment => comment.Author)
-                    .ThenInclude(author => author.Account)
-                .Include(post => post.State)
+            =>  GetIncludes()
                 .Where(post => post.State is Accepted || post.State is Adopted || post.State is TemporaryAccommodation)
                 .ToList();
 
         public List<Post> GetOnHold()
+                =>  GetIncludes()
+                .Where(post => post.State is OnHold)
+                .ToList();
+
+        private IIncludableQueryable<Post, PostState> GetIncludes()
             => dataContext.Posts
+                .Include(post => post.Author)
+                .ThenInclude(author => author.Account)
                 .Include(post => post.Animal)
                 .ThenInclude(animal => animal.Photos)
                 .Include(post => post.Animal)
                 .ThenInclude(animal => animal.Type)
                 .Include(post => post.Comments)
                 .ThenInclude(comment => comment.Author)
-                .Include(post => post.State)
-                //.Where(post => post.State is OnHold)
-                .ToList();
+                .ThenInclude(author => author.Account)
+                .Include(post => post.Likes)
+                .Include(post => post.State);
     }
 }

@@ -119,21 +119,7 @@ namespace PetCenter.WPF.ViewModels.Guest
             _postService.AddComment(obj.Id, comment);
         }
 
-        private void LikeCommand(PostViewModel obj)
-        {
-            var user = _authenticationStore.LoggedUser!;
-
-            if (obj.Likes.Contains(user))
-            {
-                obj.Likes.Remove(user);
-                obj.LikeCount--;
-            }
-            else
-            {
-                obj.LikeCount++;
-                obj.Likes.Add(user);
-            }
-            _postService.AddLike(obj.Id);
-        }
+        private void LikeCommand(PostViewModel obj) => obj.LikeCount = _postService.AddLike(obj.Id);
+        
     }
 }
