@@ -3,6 +3,7 @@ using PetCenter.Domain.Enumerations;
 using PetCenter.WPF.ViewModels.Authentication;
 using PetCenter.WPF.ViewModels.Guest;
 using PetCenter.WPF.ViewModels.Member;
+using PetCenter.WPF.ViewModels.Volunteer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,11 @@ namespace PetCenter.WPF.MVVM
         CreateViewModel<RegisterViewModel> createRegisterViewModel,
         CreateViewModel<PostListingViewModel> createPostListingViewModel,
         CreateViewModel<CreatePostViewModel> createCreatePostViewModel,
-        CreateViewModel<AddVolunteerViewModel> createAddFirstVolunteerViewModel,
-        CreateViewModel<PetCenterInfoViewModel> createPetCenterInfoViewModel)
+        CreateViewModel<OfferListingViewModel> createOfferListingViewModel,
+        CreateViewModel<NotificationListingViewModel> createNotificationListingViewModel,
+        CreateViewModel<PetCenterInfoViewModel> createPetCenterInfoViewModel,
+        CreateViewModel<AddVolunteerViewModel> createAddVolunteerViewModel
+        )
     {
         public CreateViewModel<T> GetCreateViewModel<T>(ViewType type) where T : ViewModelBase
         {
@@ -29,8 +33,10 @@ namespace PetCenter.WPF.MVVM
                 ViewType.Register => (createRegisterViewModel as CreateViewModel<T>)!,
                 ViewType.PostListing => (createPostListingViewModel as CreateViewModel<T>)!,
                 ViewType.CreatePost => (createCreatePostViewModel as CreateViewModel<T>)!,
-                ViewType.AddVolunteer => (createAddFirstVolunteerViewModel as CreateViewModel<T>)!,
+                ViewType.AddVolunteer => (createAddVolunteerViewModel as CreateViewModel<T>)!,
                 ViewType.PetCenterInfo => (createPetCenterInfoViewModel as CreateViewModel<T>)!,
+                ViewType.OfferListing => (createOfferListingViewModel as CreateViewModel<T>)!,
+                ViewType.NotificationListing => (createNotificationListingViewModel as CreateViewModel<T>)!,
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }
@@ -42,8 +48,10 @@ namespace PetCenter.WPF.MVVM
                 ViewType.Register => createRegisterViewModel(),
                 ViewType.PostListing => createPostListingViewModel(),
                 ViewType.CreatePost => createCreatePostViewModel(),
-                ViewType.AddVolunteer => createAddFirstVolunteerViewModel(),
+                ViewType.AddVolunteer => createAddVolunteerViewModel(),
                 ViewType.PetCenterInfo => createPetCenterInfoViewModel(),
+                ViewType.OfferListing => createOfferListingViewModel(),
+                ViewType.NotificationListing => createNotificationListingViewModel(),
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }

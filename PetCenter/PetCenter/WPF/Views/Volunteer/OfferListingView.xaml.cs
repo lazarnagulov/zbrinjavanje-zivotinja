@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,23 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetCenter.WPF.Views.Administrator
+namespace PetCenter.WPF.Views.Volunteer
 {
     /// <summary>
-    /// Interaction logic for AddFirstVolunteerView.xaml
+    /// Interaction logic for OfferListingView.xaml
     /// </summary>
-    public partial class AddVolunteerView : UserControl
+    public partial class OfferListingView : UserControl
     {
-        public AddVolunteerView()
+        public OfferListingView()
         {
             InitializeComponent();
-
-            BirthDate.DisplayDateStart = new DateTime(1924, 1, 1);
-            BirthDate.DisplayDateEnd = DateTime.Today.AddYears(-16);   //minimum age of 16
-            BirthDate.SelectedDate = DateTime.Today.AddYears(-16);
+            this.DataContextChanged += (a,b)=>{ Trace.WriteLine(a); Trace.WriteLine(b.NewValue); Trace.WriteLine(b.OldValue); };
         }
     }
 }

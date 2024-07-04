@@ -57,7 +57,7 @@ namespace PetCenter.WPF.ViewModels.Authentication
             var address = new Address(Person.Address.Street, Person.Address.Number, Person.Address.City,
                 Person.Address.Country, Person.Address.ZipCode);
             var person = new Person(Person.Account, Person.Name, Person.Surname, Person.PhoneNumber, Person.Gender,
-                Person.BirthDate, address);
+                DateOnly.FromDateTime(Person.BirthDate), address);
 
             if (_personService.Insert(person))
             {

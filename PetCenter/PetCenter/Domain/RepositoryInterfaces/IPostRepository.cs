@@ -12,5 +12,6 @@ namespace PetCenter.Domain.RepositoryInterfaces
         List<Post> GetAccepted();
         List<Post> GetOnHold();
         List<Post> GetAcceptedWithHidden();
+        List<Post> GetAllIncluded();
     }
 }

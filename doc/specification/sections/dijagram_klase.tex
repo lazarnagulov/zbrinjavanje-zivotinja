@@ -8,11 +8,11 @@ Radi boljeg razumevanja, dijagram je podeljen na nekoliko segmenata:
     \item Zahtevi
     \item Donacija
     \item Objave
-    \item Prevod dijagrama prelaza stanja, prethodno na slici \ref{fig:state-class}
+    \item Prevod dijagrama prelaza stanja, prethodno na dijagramu \ref{fig:state-class}
 \end{itemize}
-Čitav dijagram se može naći na slici \ref{fig:class}.
+Čitav dijagram se može naći na dijagramu \ref{fig:class}.
 \subsection{Enumeracije}
-\par Enumeracije se koriste kada imamo tačan skup povezanih konstanti. Na klasnom dijagramu [Slika \ref{fig:enums}] se nalaze 4 enumeracije: 
+\par Enumeracije se koriste kada imamo tačan skup povezanih konstanti. Na klasnom dijagramu [Dijagram \ref{fig:enums}] se nalaze 4 enumeracije: 
 \begin{itemize}
     \item TipPonude - koristi su klasi \textit{Ponuda} i ima vrednosti \textit{udomljavanje} i \textit{privremenSmeštaj}.
     \item TipNaloga - koristi se klasi \textit{KorisničkiNalog} i ima vrednosti \textit{administrator}, \textit{član} i \textit{volonter}.
@@ -31,7 +31,7 @@ Postoje dve naslednice klase \textit{Osoba} - \textit{Član} i \textit{Volonter}
 sa drugim klasama, oni moraju da postoje u sistemu. Primetimo da ne postoje klase Gost i Administrator, jer oni nemaju dodatne interakcije
 koje se razlikuju od prethodnih klasa. Svi \textit{koirnisčki nalozi} se pamte u klasi \textit{PetCentar}, kao i \textit{korisnički nalog} trenutno
 ulogovane \textit{osobe}.
-\par Korisnici u sistemu su prikazani na slici \ref{fig:users}. 
+\par Korisnici u sistemu su prikazani na dijagramu \ref{fig:users}. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth, height=0.4\textwidth]{img/users.jpg}
@@ -40,8 +40,8 @@ ulogovane \textit{osobe}.
 \end{figure}
 \subsection{Zahtevi}
 \par Zahteve za promociju može samo da podnese \textit{član}, a da odobri \textit{volonter}. Ova interakcija je detaljnije prikazana 
-na dijagramu sekvence [Slika \ref{fig:promotion-seq}]. Svi zahtevi se čuvaju u klasi \textit{PetCentar}.
-\par Zahtevi su prikazani na slici \ref{fig:reqs}.
+na dijagramu sekvence [Dijagram \ref{fig:promotion-seq}]. Svi zahtevi se čuvaju u klasi \textit{PetCentar}.
+\par Zahtevi su prikazani na dijagramu \ref{fig:reqs}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth, height=0.4\textwidth]{img/requests.jpg}
@@ -50,7 +50,7 @@ na dijagramu sekvence [Slika \ref{fig:promotion-seq}]. Svi zahtevi se čuvaju u 
 \end{figure}
 \subsection{Donacije}
 \par Prijavljena \textit{osoba} može da donira. Pamti se ko je donirao kao i datum, dok se sve donacije pamte u klasi \textit{PetCentar}.
-\par Donacije su prikazane na slici \ref{fig:donations}.
+\par Donacije su prikazane na dijagramu \ref{fig:donations}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth, height=0.4\textwidth]{img/donation.jpg}
@@ -62,7 +62,7 @@ na dijagramu sekvence [Slika \ref{fig:promotion-seq}]. Svi zahtevi se čuvaju u 
 listu svih \textit{osoba} koji su označili objavu da im se sviđa, \textit{ponude}, \textit{životinju} za koju je vezana.
 \par Ponude mogu da imaju \textit{recenziju}. 
 \par Pored osnovnih informacija, \textit{životinja} sadrži i \textit{vrstu životinja}. Vrste životinja dodaje \textit{volonter}.
-\par Objave su prikazane na slici \ref{fig:posts}.
+\par Objave su prikazane na dijagramu \ref{fig:posts}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth, height=0.55\textwidth]{img/posts.jpg}

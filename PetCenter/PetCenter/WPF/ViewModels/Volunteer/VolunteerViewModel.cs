@@ -22,6 +22,8 @@ namespace PetCenter.WPF.ViewModels.Volunteer
         public RelayCommand LogoutCommand { get; }
         public NavigationCommand<PostListingViewModel> NavPostListingCommand { get; }
         public NavigationCommand<CreatePostViewModel> NavCreatePostCommand { get; }
+        public NavigationCommand<OfferListingViewModel> NavOffersCommand { get; }
+        public NavigationCommand<NotificationListingViewModel> NavNotificationCommand { get; }
 
         public VolunteerViewModel(NavigationStore navigationStore, INavigationService navigationService, AuthenticationStore authenticationStore)
         {
@@ -33,6 +35,8 @@ namespace PetCenter.WPF.ViewModels.Volunteer
             LogoutCommand = new RelayCommand(execute => Logout());
             NavPostListingCommand = _navigationService.CreateNavCommand<PostListingViewModel>(ViewType.PostListing);
             NavCreatePostCommand = _navigationService.CreateNavCommand<CreatePostViewModel>(ViewType.CreatePost);
+            NavOffersCommand = _navigationService.CreateNavCommand<OfferListingViewModel>(ViewType.OfferListing);
+            NavNotificationCommand = _navigationService.CreateNavCommand<NotificationListingViewModel>(ViewType.NotificationListing);
         }
 
         private void Logout()
