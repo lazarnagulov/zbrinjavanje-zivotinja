@@ -41,7 +41,7 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _gender, value);
         }
 
-        public DateOnly BirthDate
+        public DateTime BirthDate
         {
             get => _birthDate;
             set => SetField(ref _birthDate, value);
@@ -64,7 +64,7 @@ namespace PetCenter.WPF.BaseViewModels
         private string _surname = person.Surname;
         private string _phoneNumber = person.PhoneNumber;
         private Gender _gender = person.Gender;
-        private DateOnly _birthDate = person.BirthDate;
+        private DateTime _birthDate = person.BirthDate.ToDateTime(TimeOnly.MinValue);
         private AddressViewModel _address = new(person.Address);
         private Account _account = person.Account;
     }

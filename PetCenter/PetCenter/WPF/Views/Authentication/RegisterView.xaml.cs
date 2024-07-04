@@ -23,11 +23,9 @@ namespace PetCenter.WPF.Views.Authentication
         public RegisterView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            BirthDate.DisplayDateStart = new DateTime(1924, 1, 1);
+            BirthDate.DisplayDateEnd = DateTime.Today.AddYears(-16);   //minimum age of 16
+            BirthDate.SelectedDate = DateTime.Today.AddYears(-16);
         }
     }
 }
