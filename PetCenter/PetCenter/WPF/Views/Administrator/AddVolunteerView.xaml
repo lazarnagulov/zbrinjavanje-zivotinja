@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PetCenter.WPF.Views.Administrator.AddFirstVolunteerView"
+﻿<UserControl x:Class="PetCenter.WPF.Views.Administrator.AddVolunteerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -40,7 +40,7 @@
                 <TextBlock Grid.Column="0"
                        Grid.Row="0"
                        HorizontalAlignment="Center"
-                       Text="Add first volunteer"
+                       Text="Add Volunteer"
                        FontSize="24"
                        FontWeight="Bold"
                        Grid.ColumnSpan="2"
@@ -102,7 +102,8 @@
                            Margin="10,0" />
 
                     <DatePicker Width="175"
-                            Text="{Binding Person.BirthDate}" />
+                                Text="{Binding Person.BirthDate, Mode=OneWayToSource}" 
+                                x:Name="BirthDate" />
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="1">
 

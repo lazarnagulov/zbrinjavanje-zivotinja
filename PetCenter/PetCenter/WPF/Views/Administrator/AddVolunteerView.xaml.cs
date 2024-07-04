@@ -18,9 +18,9 @@ namespace PetCenter.WPF.Views.Administrator
     /// <summary>
     /// Interaction logic for AddFirstVolunteerView.xaml
     /// </summary>
-    public partial class AddFirstVolunteerView : UserControl
+    public partial class AddVolunteerView : UserControl
     {
-        public AddFirstVolunteerView()
+        public AddVolunteerView()
         {
             InitializeComponent();
         }

@@ -12,7 +12,7 @@ namespace PetCenter.Domain.Enumerations
         Register,
         PostListing,
         CreatePost,
-        AddFirstVolunteer,
+        AddVolunteer,
         PetCenterInfo,
     }
 }

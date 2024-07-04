@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace PetCenter.WPF.ViewModels.Administrator
 {
-    public class AddFirstVolunteerViewModel : ViewModelBase
+    public class AddVolunteerViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private readonly PersonService _personService;
@@ -28,7 +28,7 @@ namespace PetCenter.WPF.ViewModels.Administrator
         public Array Genders => Enum.GetNames(typeof(Gender));
         public RelayCommand AddCommand { get; }
 
-        public AddFirstVolunteerViewModel(INavigationService navigationService, PersonService personService)
+        public AddVolunteerViewModel(INavigationService navigationService, PersonService personService)
         {
             _navigationService = navigationService;
             _personService = personService;
@@ -58,7 +58,8 @@ namespace PetCenter.WPF.ViewModels.Administrator
             {
                 MessageBox.Show("Successfully created an account!");
             }
-            AddCommand.Execute(null);
+
+            Person = new(new Person());
         }
     }
 }

@@ -18,7 +18,7 @@ namespace PetCenter.WPF.MVVM
         CreateViewModel<RegisterViewModel> createRegisterViewModel,
         CreateViewModel<PostListingViewModel> createPostListingViewModel,
         CreateViewModel<CreatePostViewModel> createCreatePostViewModel,
-        CreateViewModel<AddFirstVolunteerViewModel> createAddFirstVolunteerViewModel,
+        CreateViewModel<AddVolunteerViewModel> createAddFirstVolunteerViewModel,
         CreateViewModel<PetCenterInfoViewModel> createPetCenterInfoViewModel)
     {
         public CreateViewModel<T> GetCreateViewModel<T>(ViewType type) where T : ViewModelBase
@@ -29,7 +29,7 @@ namespace PetCenter.WPF.MVVM
                 ViewType.Register => (createRegisterViewModel as CreateViewModel<T>)!,
                 ViewType.PostListing => (createPostListingViewModel as CreateViewModel<T>)!,
                 ViewType.CreatePost => (createCreatePostViewModel as CreateViewModel<T>)!,
-                ViewType.AddFirstVolunteer => (createAddFirstVolunteerViewModel as CreateViewModel<T>)!,
+                ViewType.AddVolunteer => (createAddFirstVolunteerViewModel as CreateViewModel<T>)!,
                 ViewType.PetCenterInfo => (createPetCenterInfoViewModel as CreateViewModel<T>)!,
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
@@ -42,7 +42,7 @@ namespace PetCenter.WPF.MVVM
                 ViewType.Register => createRegisterViewModel(),
                 ViewType.PostListing => createPostListingViewModel(),
                 ViewType.CreatePost => createCreatePostViewModel(),
-                ViewType.AddFirstVolunteer => createAddFirstVolunteerViewModel(),
+                ViewType.AddVolunteer => createAddFirstVolunteerViewModel(),
                 ViewType.PetCenterInfo => createPetCenterInfoViewModel(),
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
