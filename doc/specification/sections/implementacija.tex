@@ -236,4 +236,12 @@ EXECUTE FUNCTION fn_validate_request();
 \end{lstlisting}
 \par Na listingu \ref{list:trig} proveravamo da li je kreator zahteva \textit{član} (vrednost 0).
 \subsection{Organizacija foldera}
-\par Za organizaciju foldera je korišćen \textbf{package by layer} obrazac.
+\par Za organizaciju foldera je korišćen \textbf{package by layer} obrazac. Koristimo 6 glavnih foldera:
+\begin{enumerate}
+    \item \textbf{Core} - aplikativni sloj, sadrži servise, klase koje čuvaju stanja sistema (Stores) i pomoćne klase.
+    \item \textbf{Domain} - domenski sloj, sarži enumeracije, modele i interfejse za repozitorijum.
+    \item \textbf{HostBuilder} - zadužen za \textbf{dependency injection}.
+    \item \textbf{Migrations} - sadrži migracije za bazu podataka.
+    \item \textbf{Repository} - sadrži sve repozitorijume i \textbf{data context}.
+    \item \textbf{WPF} - sadrži kod za korisnički interfejs -  \textbf{view} i \textbf{viewmodel}.
+\end{enumerate}
