@@ -25,20 +25,10 @@ namespace PetCenter.WPF.ViewModels.Guest
         private readonly PostService _postService;
         private readonly AuthenticationStore _authenticationStore;
 
-        private readonly ObservableCollection<PostViewModel> _posts;
-
         public bool LoggedUser => _authenticationStore.IsLoggedIn;
-        public AccountType? LoggedAccount
-        {
-            get
-            {
-                if (_authenticationStore.CurrentUserProfile is not null)
-                    return _authenticationStore.CurrentUserProfile.Type;
-                return null;
-            }
-        }
+        public AccountType? LoggedAccount => _authenticationStore.CurrentUserProfile?.Type;
 
-        public ObservableCollection<PostViewModel> Posts => _posts;
+        public ObservableCollection<PostViewModel> Posts { get; } = [];
         public ICommand LikePostCommand { get; }
         public ICommand AddCommentCommand { get; }
         public ICommand RequestAdoptionCommand { get; }
@@ -50,10 +40,16 @@ namespace PetCenter.WPF.ViewModels.Guest
         {
             _authenticationStore = authenticationStore;
             _postService = postService;
-            _posts = new ObservableCollection<PostViewModel>();
-            foreach (var post in postService.GetAccepted())
+
+            var posts = authenticationStore.CurrentUserProfile?.Type switch
             {
-                _posts.Add(new PostViewModel(post));
+                AccountType.Volunteer => postService.GetAcceptedWithHidden(),
+                _ => postService.GetAccepted()
+            };
+
+            foreach (var post in posts)
+            {
+                Posts.Add(new PostViewModel(post));
             }
 
             LikePostCommand = new RelayCommand<PostViewModel>(LikeCommand);
@@ -120,6 +116,5 @@ namespace PetCenter.WPF.ViewModels.Guest
         }
 
         private void LikeCommand(PostViewModel obj) => obj.LikeCount = _postService.AddLike(obj.Id);
-        
     }
 }

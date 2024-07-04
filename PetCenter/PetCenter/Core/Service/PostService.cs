@@ -73,5 +73,12 @@ namespace PetCenter.Core.Service
             Trace.Assert(comment is not null);
             commentRepository.Delete(comment);
         }
+
+        public List<Post> GetAcceptedWithHidden()
+        {
+            var posts = postRepository.GetAcceptedWithHidden();
+            posts.ForEach(post => post.State.Context = post);
+            return posts;
+        }
     }
 }

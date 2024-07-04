@@ -32,6 +32,14 @@ namespace PetCenter.Repository
                 .Where(post => post.State is OnHold)
                 .ToList();
 
+        public List<Post> GetAcceptedWithHidden()
+            => GetIncludes()
+                .Where(post =>
+                    post.State is Accepted || post.State is Adopted || post.State is TemporaryAccommodation ||
+                    post.State is Hidden)
+                .ToList();
+
+
         private IIncludableQueryable<Post, PostState> GetIncludes()
             => dataContext.Posts
                 .Include(post => post.Author)
