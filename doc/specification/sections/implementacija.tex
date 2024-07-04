@@ -3,7 +3,7 @@
         frameshape={}{yy}{}{},
         breaklines=true,
         postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
-        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, where, interface, Account, 
+        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, where, interface, Account, var, SHA256, Encoding, UTF8, Convert,
         get, set, ref, Guid, Comment, RelayCommand, PostViewModel, REPLACE, FUNCTION, RETURNS, IF, RAISE, NEW, INotificationRepository, Notification, Person,
         CREATE, OR, TRIGGER, DECLARE, BEGIN, SELECT, INTEGER, BEFORE, INSERT, UPDATE, FOR, EACH, ROW, EXECUTE, LANGUAGE, INTO, FROM, ON, JOIN, WHERE, THEN, END, RETURN, AS, RETURNS, EXCEPTION},
         keywordstyle=\color{blue}\ttfamily,
@@ -241,6 +241,18 @@ FOR EACH ROW
 EXECUTE FUNCTION fn_validate_request();
 \end{lstlisting}
 \par Na listingu \ref{list:trig} proveravamo da li je kreator zahteva \textit{član} (vrednost 0).
+\subsection{Zaštita šifre}
+\par Za zaštitu šifre koristimo \textbf{SHA256} [Listing \ref{list:encript}]. 
+\begin{lstlisting}[caption={Primer funkcije za zaštitu šifre}, captionpos=b, label=list:encript]
+public static string Encode(string password)
+{
+    var sha = SHA256.Create();
+    var asBytes = Encoding.UTF8.GetBytes(password);
+    var hashed = sha.ComputeHash(asBytes);
+
+    return Convert.ToBase64String(hashed);
+}
+\end{lstlisting}
 \subsection{Organizacija foldera}
 \par Za organizaciju foldera je korišćen \textbf{package by layer} obrazac. Koristimo 6 glavnih foldera:
 \begin{enumerate}
