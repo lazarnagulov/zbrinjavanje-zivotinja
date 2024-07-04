@@ -58,11 +58,5 @@ namespace PetCenter.Core.Service
             Trace.Assert(comment is not null);
             commentRepository.Delete(comment);
         }
-
-        public void ChangeState(Post post, PostState newState)
-        {
-            post.State = newState;
-            newState.SetContext(this);
-        }
     }
 }

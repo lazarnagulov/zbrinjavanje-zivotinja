@@ -82,7 +82,7 @@ namespace PetCenter.WPF.ViewModels.Guest
 
         private void HidePost(object? obj)
         {
-            throw new NotImplementedException();
+
         }
 
         private void TemporaryAccommodationCommand(object? obj)
