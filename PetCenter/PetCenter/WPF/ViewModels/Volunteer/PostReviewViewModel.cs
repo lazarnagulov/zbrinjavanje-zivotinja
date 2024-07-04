@@ -36,16 +36,18 @@ namespace PetCenter.WPF.ViewModels.Volunteer
             DeclinePostCommand = new RelayCommand<PostViewModel>(DeclinePost);
         }
 
-        private static void DeclinePost(PostViewModel postViewModel)
+        private void DeclinePost(PostViewModel postViewModel)
         {
             postViewModel.State.DeclinePost();
             postViewModel.State = postViewModel.State.Context.State;
+            _postService.Update(postViewModel.State.Context);
         }
 
-        private static void AcceptPost(PostViewModel postViewModel)
+        private void AcceptPost(PostViewModel postViewModel)
         {
-            postViewModel.State.DeclinePost();
+            postViewModel.State.AcceptPost();
             postViewModel.State = postViewModel.State.Context.State;
+            _postService.Update(postViewModel.State.Context);
         }
     }
 }
