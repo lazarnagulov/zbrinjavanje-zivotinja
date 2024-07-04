@@ -1,9 +1,14 @@
 ﻿<Application x:Class="PetCenter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PetCenter"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:PetCenter">
     <Application.Resources>
-         
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/WPF/Style/Colors.xaml"/>
+                    <ResourceDictionary Source="/WPF/Style/ComponentStyle.xaml"/>
+                    <ResourceDictionary Source="/WPF/Style/Buttons.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
     </Application.Resources>
 </Application>
