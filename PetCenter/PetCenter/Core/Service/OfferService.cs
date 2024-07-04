@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.Enumerations;
 using PetCenter.Repository;
+using PetCenter.Domain.State;
 
 namespace PetCenter.Core.Service
 {
-    public class OfferService(IOfferRepository offerRepository, AuthenticationStore authenticationStore)
+    public class OfferService(IOfferRepository offerRepository, AuthenticationStore authenticationStore, PostService postService)
     {
         public bool Insert(Offer offer) => offerRepository.Insert(offer);
         public bool Delete(Offer offer) => offerRepository.Delete(offer);
@@ -33,6 +34,6 @@ namespace PetCenter.Core.Service
         public List<Offer> GetAllIncluded() => offerRepository.GetAllIncluded();
 
         public List<Offer> GetAllOnHold()
-            => offerRepository.GetAllIncluded().Where(offer => offer.Status == Status.OnHold).ToList();
+            => offerRepository.GetAllIncluded().Where(o => o.Status == Status.OnHold).Where(o => postService.GetPostByOffer(o.Id)?.State is Accepted).ToList();
     }
 }

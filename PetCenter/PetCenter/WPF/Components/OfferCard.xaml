@@ -8,6 +8,7 @@
              d:DesignHeight="100" d:DesignWidth="800">
     <Grid Margin="20,0,20,0">
         <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <componentmodel:DateTimeConverter x:Key="DateTimeConverter"/>
         </Grid.Resources>
         <Border>
