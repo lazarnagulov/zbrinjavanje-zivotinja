@@ -13,5 +13,10 @@ namespace PetCenter.Core.Stores
         public Account? CurrentUserProfile { get; set; }
         public Person? LoggedUser => CurrentUserProfile?.Person;
         public bool IsLoggedIn => CurrentUserProfile is not null;
+
+        public void Logout()
+        {
+            CurrentUserProfile = null;
+        }
     }
 }

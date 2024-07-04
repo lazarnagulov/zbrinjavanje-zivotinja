@@ -13,6 +13,7 @@ using PetCenter.Core.Service;
 using PetCenter.Core.Stores;
 using PetCenter.Domain.Enumerations;
 using PetCenter.Domain.Model;
+using PetCenter.Domain.State;
 using PetCenter.WPF.BaseViewModels;
 using PetCenter.WPF.MVVM;
 using PetCenter.WPF.ViewModels.Member;
@@ -59,7 +60,7 @@ namespace PetCenter.WPF.ViewModels.Guest
             AddCommentCommand = new RelayCommand<PostViewModel>(CommentCommand, CanComment);
             RequestAdoptionCommand = new RelayCommand(AdoptionCommand);
             RequestTemporaryAccommodationCommand = new RelayCommand(TemporaryAccommodationCommand);
-            HidePostCommand = new RelayCommand(HidePost);
+            HidePostCommand = new RelayCommand<PostViewModel>(HidePost);
             DeleteCommentCommand = new RelayCommand(DeleteComment);
 
             createPostViewModel.OnPostInsert += InsertPostEvent;
@@ -80,9 +81,24 @@ namespace PetCenter.WPF.ViewModels.Guest
             _postService.DeleteComment(comment!.Id);
         }
 
-        private void HidePost(object? obj)
+        private void HidePost(PostViewModel postViewModel)
         {
-
+            if (postViewModel.State is Accepted)
+            {
+                postViewModel.State.HidePost();
+                postViewModel.State = postViewModel.State.Context.State;
+            }
+            else if (postViewModel.State is Hidden)
+            {
+                postViewModel.State.ShowPost();
+                postViewModel.State = postViewModel.State.Context.State;
+            }
+            else
+            {
+                MessageBox.Show($"Cannot hide {postViewModel.State} post!");
+            }
+            _postService.Update(postViewModel.State.Context);
+            MessageBox.Show($"Successfully hidden post!");
         }
 
         private void TemporaryAccommodationCommand(object? obj)

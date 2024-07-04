@@ -24,7 +24,7 @@ namespace PetCenter.Domain.State
             Context = context;
         }
         public Guid Id { get; set; }
-        protected Post Context;
+        public Post Context;
         
         public abstract void AcceptPost();
         public abstract void DeclinePost();

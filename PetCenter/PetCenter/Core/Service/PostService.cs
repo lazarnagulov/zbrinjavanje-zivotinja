@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using PetCenter.Core.Stores;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
@@ -16,8 +17,22 @@ namespace PetCenter.Core.Service
         public bool Insert(Post post) => postRepository.Insert(post);
         public bool Delete(Post post) => postRepository.Delete(post);
         public Post? GetById(Guid id) => postRepository.GetById(id);
-        public List<Post> GetAll() => postRepository.GetAll();
-        public List<Post> GetAccepted() => postRepository.GetAccepted();
+        public bool Update(Post post) => postRepository.Update(post);
+
+        public List<Post> GetAll()
+        {
+            var posts = postRepository.GetAll();
+            posts.ForEach(post => post.State.Context = post);
+            return posts;
+        }
+
+        public List<Post> GetAccepted()
+        {
+            var posts = postRepository.GetAccepted();
+            posts.ForEach(post => post.State.Context = post);
+            return posts;
+        }
+
         public List<Post> GetOnHold() => postRepository.GetOnHold();
 
         public bool AddLike(Guid id)
