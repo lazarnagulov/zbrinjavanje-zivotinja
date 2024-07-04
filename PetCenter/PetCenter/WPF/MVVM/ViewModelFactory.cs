@@ -18,7 +18,8 @@ namespace PetCenter.WPF.MVVM
         CreateViewModel<RegisterViewModel> createRegisterViewModel,
         CreateViewModel<PostListingViewModel> createPostListingViewModel,
         CreateViewModel<CreatePostViewModel> createCreatePostViewModel,
-        CreateViewModel<OfferListingViewModel> createOfferListingViewModel
+        CreateViewModel<OfferListingViewModel> createOfferListingViewModel,
+        CreateViewModel<NotificationListingViewModel> createNotificationListingViewModel
         )
     {
         public CreateViewModel<T> GetCreateViewModel<T>(ViewType type) where T : ViewModelBase
@@ -30,6 +31,7 @@ namespace PetCenter.WPF.MVVM
                 ViewType.PostListing => (createPostListingViewModel as CreateViewModel<T>)!,
                 ViewType.CreatePost => (createCreatePostViewModel as CreateViewModel<T>)!,
                 ViewType.OfferListing => (createOfferListingViewModel as CreateViewModel<T>)!,
+                ViewType.NotificationListing => (createNotificationListingViewModel as CreateViewModel<T>)!,
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }
@@ -42,6 +44,7 @@ namespace PetCenter.WPF.MVVM
                 ViewType.PostListing => createPostListingViewModel(),
                 ViewType.CreatePost => createCreatePostViewModel(),
                 ViewType.OfferListing => createOfferListingViewModel(),
+                ViewType.NotificationListing => createNotificationListingViewModel(),
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }

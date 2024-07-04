@@ -9,5 +9,6 @@ namespace PetCenter.Domain.RepositoryInterfaces
 {
     public interface INotificationRepository : ICrud<Notification>
     {
+        List<Notification> GetAllIncluded();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,5 +18,7 @@ namespace PetCenter.Repository
         public bool Delete(Notification entity) => _sqlRepository.Delete(entity);
         public bool Update(Notification entity) => _sqlRepository.Update(entity);
 
+        public List<Notification> GetAllIncluded()
+            => dataContext.Notifications.Include(notification => notification.Recipient).ToList();
     }
 }

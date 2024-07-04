@@ -34,7 +34,7 @@ namespace PetCenter
             _host.Start();
 
             INavigationService navigationService = _host.Services.GetRequiredService<INavigationService>();
-            navigationService.SwitchWindow(WindowType.Volunteer);
+            navigationService.SwitchWindow(WindowType.Authentication);
 
             base.OnStartup(e);
         }

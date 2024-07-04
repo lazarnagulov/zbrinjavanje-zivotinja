@@ -19,5 +19,18 @@ namespace PetCenter.Core.Service
             Notification notification = new Notification(recipient, message);
             return Insert(notification);
         }
+        public bool DeleteById(Guid id)
+        {
+            Notification? notification = GetById(id);
+            if (notification == null)
+                return false;
+            return notificationRepository.Delete(notification);
+        }
+
+        public List<Notification> GetAllIncluded()
+            => notificationRepository.GetAllIncluded();
+
+        public List<Notification> GetAllForPerson(Person person)
+            => notificationRepository.GetAllIncluded().Where(n => n.Recipient.Id == person.Id).ToList();
     }
 }
