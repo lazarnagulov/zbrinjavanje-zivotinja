@@ -74,12 +74,14 @@ namespace PetCenter.WPF.ViewModels.Member
         private void CreatePost(object? obj)
         {
             Trace.Assert(_authenticationStore.LoggedUser is not null);
+            Trace.Assert(_authenticationStore.CurrentUserProfile is not null);
             Trace.Assert(Post.Animal.Type is not null);
 
             var animal = new Animal(Post.Animal.Type, Post.Animal.Name, Post.Animal.Age, Post.Animal.Description);
             var photos = Post.Animal.Photos.Select(photo => new Photo(photo.Url, photo.Description)).ToList();
             animal.AddRangePhoto(photos);
-            var post = new Post(_authenticationStore.LoggedUser!, Post.Text, animal);
+            var post = new Post(_authenticationStore.LoggedUser, Post.Text, animal);
+            post.Initialize(_authenticationStore.CurrentUserProfile.Type);
             if (_postService.Insert(post))
             {
                 OnPostInsert?.Invoke(Post);
