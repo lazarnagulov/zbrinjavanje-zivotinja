@@ -45,12 +45,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <components:NotificationCard/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Command="{Binding DataContext.DeleteNotificationCommand, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:NotificationListingView}}}" Content="Delete notification" Margin="5"
-                                            CommandParameter="{Binding}" />
-                                </StackPanel>
+                                <components:NotificationCard Margin="0 10 0 0"/>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

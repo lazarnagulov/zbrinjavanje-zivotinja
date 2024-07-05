@@ -37,7 +37,7 @@ namespace PetCenter.WPF.ViewModels.Authentication
             _personService = personService;
             _navigationService = navigationService;
             ToLoginCommand = navigationService.CreateNavCommand<LoginViewModel>(ViewType.Login);
-            RegisterCommand = new RelayCommand(execute => Register(), CanRegister);
+            RegisterCommand = new RelayCommand(execute => Register(AccountType.Member), CanRegister);
         }
 
         private bool CanRegister(object? arg)
@@ -51,13 +51,13 @@ namespace PetCenter.WPF.ViewModels.Authentication
                !string.IsNullOrEmpty(Person.Account.Password) &&
                !string.IsNullOrEmpty(Person.Account.Username);
         
-        public void Register()
+        public void Register(AccountType type)
         {
-            Person.Account.Type = AccountType.Member;
+            Person.Account.Type = type;
             var address = new Address(Person.Address.Street, Person.Address.Number, Person.Address.City,
                 Person.Address.Country, Person.Address.ZipCode);
             var person = new Person(Person.Account, Person.Name, Person.Surname, Person.PhoneNumber, Person.Gender,
-                Person.BirthDate, address);
+                DateOnly.FromDateTime(Person.BirthDate), address);
 
             if (_personService.Insert(person))
             {

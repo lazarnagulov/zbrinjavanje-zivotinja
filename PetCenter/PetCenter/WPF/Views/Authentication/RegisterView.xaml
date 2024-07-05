@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PetCenter.WPF.Views.Authentication" 
              xmlns:Register="clr-namespace:PetCenter.WPF.ViewModels.Authentication"
-             xmlns:components="clr-namespace:PetCenter.WPF.Components"
+             xmlns:components="clr-namespace:PetCenter.WPF.Components" d:DataContext="{d:DesignInstance Type=Register:RegisterViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="400">
     <Border>
@@ -114,7 +114,7 @@
                                Margin="10,0" />
 
                         <DatePicker Width="175"
-                                Text="{Binding Person.BirthDate}" />
+                                Text="{Binding Person.BirthDate, Mode=OneWayToSource}" x:Name="BirthDate" />
                     </StackPanel>
                     <StackPanel Grid.Column="1" Grid.Row="1">
 

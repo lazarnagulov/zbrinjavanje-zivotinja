@@ -65,8 +65,8 @@ namespace PetCenter.WPF.ViewModels.Volunteer
                     post.AdoptAnimal();
                     _postService.Update(post);
                     string offererMessage = $"Congratulations, you adoption offer for animal {post.Animal.Name} was accepted! You should contact them using {post.Author.PhoneNumber}.";
-                    string authorMessage = $"Congratulations, you animal {post.Animal.Name} got adopted by {offerViewModel.Offerer}! You should contact them using {offerViewModel.Offerer.PhoneNumber}.";
-                    _notificationService.SendNotification(offerViewModel.Offerer, offererMessage);
+                    string authorMessage = $"Congratulations, you animal {post.Animal.Name} got adopted by {offerViewModel.Offerer}! You should contact them using {offerViewModel.Offerer?.PhoneNumber}.";
+                    _notificationService.SendNotification(offerViewModel.Offerer!, offererMessage);
                     _notificationService.SendNotification(post.Author, authorMessage);
                 }
                 else if (offerType == OfferType.TemporaryAccommodation)

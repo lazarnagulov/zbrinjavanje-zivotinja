@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetCenter.WPF.Views.Authentication
+namespace PetCenter.WPF.Views.Administrator
 {
     /// <summary>
-    /// Interaction logic for RegisterView.xaml
+    /// Interaction logic for PetCenterInfoView.xaml
     /// </summary>
-    public partial class RegisterView : UserControl
+    public partial class PetCenterInfoView : UserControl
     {
-        public RegisterView()
+        public PetCenterInfoView()
         {
             InitializeComponent();
-            BirthDate.DisplayDateStart = new DateTime(1924, 1, 1);
-            BirthDate.DisplayDateEnd = DateTime.Today.AddYears(-16);   //minimum age of 16
-            BirthDate.SelectedDate = DateTime.Today.AddYears(-16);
         }
     }
 }

@@ -16,6 +16,6 @@ namespace PetCenter.Repository
         public bool Insert(Association entity) => _sqlRepository.Insert(entity);
         public bool Delete(Association entity) => _sqlRepository.Delete(entity);
         public bool Update(Association entity) => _sqlRepository.Update(entity);
-
+        public Association? GetFirst() => _sqlRepository.GetAll().FirstOrDefault();
     }
 }

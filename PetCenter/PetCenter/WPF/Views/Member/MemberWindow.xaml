@@ -26,6 +26,7 @@
             <Button Margin="20 16 30 16" Command="{Binding NavPostListingCommand}" Content="Posts" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavCreatePostCommand}" Content="Create post" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavNotificationCommand}" Content="Notifications" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16" Command="{Binding NavDonationCommand}" Content="Donate" Width="150" Style="{StaticResource HeaderButton}"/>
         </StackPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
@@ -37,6 +38,9 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vmM:NotificationListingViewModel}">
                     <vM:NotificationListingView></vM:NotificationListingView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmG:DonationViewModel}">
+                    <vG:DonationView></vG:DonationView>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

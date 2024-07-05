@@ -27,6 +27,8 @@
     <SolidColorBrush x:Key="SBHeaderBtnColor" Color="{StaticResource HeaderBtnColor}"></SolidColorBrush>
     <SolidColorBrush x:Key="SBHeaderBtnHoverColor" Color="{StaticResource HeaderBtnHoverColor}"></SolidColorBrush>
 
+    <SolidColorBrush x:Key="SBBackground" Color="{StaticResource PrimaryBackColor1}"/>
+
     <!-- Solid Brushes for colors -->
     <SolidColorBrush x:Key="SBLoginBtnColor" Color="{StaticResource LoginBtnColor}"/>
     <SolidColorBrush x:Key="SBLoginBtnHoverColor" Color="{StaticResource LoginBtnHoverColor}"/>

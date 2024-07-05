@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetCenter.WPF.Views.Authentication
+namespace PetCenter.WPF.Components
 {
     /// <summary>
-    /// Interaction logic for RegisterView.xaml
+    /// Interaction logic for PostReviewCard.xaml
     /// </summary>
-    public partial class RegisterView : UserControl
+    public partial class PostReviewCard : UserControl
     {
-        public RegisterView()
+        public PostReviewCard()
         {
             InitializeComponent();
-            BirthDate.DisplayDateStart = new DateTime(1924, 1, 1);
-            BirthDate.DisplayDateEnd = DateTime.Today.AddYears(-16);   //minimum age of 16
-            BirthDate.SelectedDate = DateTime.Today.AddYears(-16);
         }
     }
 }

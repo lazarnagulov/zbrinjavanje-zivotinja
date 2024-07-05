@@ -24,7 +24,10 @@ namespace PetCenter.WPF.ViewModels.Volunteer
         public NavigationCommand<CreatePostViewModel> NavCreatePostCommand { get; }
         public NavigationCommand<OfferListingViewModel> NavOffersCommand { get; }
         public NavigationCommand<NotificationListingViewModel> NavNotificationCommand { get; }
+        public NavigationCommand<PostReviewViewModel> NavPostReviewCommand { get; }
 
+        public NavigationCommand<AnimalTypeCrudViewModel> NavAnimalTypeCRUDCommand { get; }
+        public NavigationCommand<DonationViewModel> NavDonationCommand { get; }
         public VolunteerViewModel(NavigationStore navigationStore, INavigationService navigationService, AuthenticationStore authenticationStore)
         {
             _authenticationStore = authenticationStore;
@@ -37,6 +40,10 @@ namespace PetCenter.WPF.ViewModels.Volunteer
             NavCreatePostCommand = _navigationService.CreateNavCommand<CreatePostViewModel>(ViewType.CreatePost);
             NavOffersCommand = _navigationService.CreateNavCommand<OfferListingViewModel>(ViewType.OfferListing);
             NavNotificationCommand = _navigationService.CreateNavCommand<NotificationListingViewModel>(ViewType.NotificationListing);
+            NavPostReviewCommand = _navigationService.CreateNavCommand<PostReviewViewModel>(ViewType.PostReview);
+            NavAnimalTypeCRUDCommand =
+                _navigationService.CreateNavCommand<AnimalTypeCrudViewModel>(ViewType.AnimalTypeCrud);
+            NavDonationCommand = _navigationService.CreateNavCommand<DonationViewModel>(ViewType.Donation);
         }
 
         private void Logout()
