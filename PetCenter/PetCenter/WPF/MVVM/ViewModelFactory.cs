@@ -21,7 +21,7 @@ namespace PetCenter.WPF.MVVM
         CreateViewModel<CreatePostViewModel> createCreatePostViewModel,
         CreateViewModel<OfferListingViewModel> createOfferListingViewModel,
         CreateViewModel<NotificationListingViewModel> createNotificationListingViewModel,
-        CreateViewModel<AnimalTypeCRUDViewModel> createAnimalTypeCrudViewModel
+        CreateViewModel<AnimalTypeCRUDViewModel> createAnimalTypeCrudViewModel,
         CreateViewModel<PetCenterInfoViewModel> createPetCenterInfoViewModel,
         CreateViewModel<AddVolunteerViewModel> createAddVolunteerViewModel,
         CreateViewModel<PostReviewViewModel> createPostReviewViewModel

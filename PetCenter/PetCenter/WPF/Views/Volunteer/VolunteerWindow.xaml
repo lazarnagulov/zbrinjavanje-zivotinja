@@ -48,7 +48,8 @@
                     <vM:NotificationListingView></vM:NotificationListingView>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vmV:AnimalTypeCRUDViewModel}">
-                    <vV:AnimalTypeCRUDView></vV:AnimalTypeCRUDView>
+                    <local:AnimalTypeCRUDView></local:AnimalTypeCRUDView>
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type vmV:PostReviewViewModel}">
                     <vV:PostReviewView></vV:PostReviewView>
                 </DataTemplate>
