@@ -23,11 +23,15 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource SBHeaderColor}">
             <Button Margin="30 16 30 16" Command="{Binding LogoutCommand}" Content="Logout" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavPostListingCommand}" Content="Posts" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16" Command="{Binding NavDonationCommand}" Content="Donate" Width="150" Style="{StaticResource HeaderButton}"/>
         </StackPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vmG:PostListingViewModel}">
                     <vG:PostListingView></vG:PostListingView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmG:DonationViewModel}">
+                    <vG:DonationView></vG:DonationView>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

@@ -27,6 +27,7 @@
             <Button Margin="20 16 30 16" Command="{Binding NavOffersCommand}" Content="Offers" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavNotificationCommand}" Content="Notifications" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavAnimalTypeCRUDCommand}" Content="Animal types" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16" Command="{Binding NavDonationCommand}" Content="Donate" Width="150" Style="{StaticResource HeaderButton}"/>
         </StackPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
@@ -44,6 +45,9 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vmV:AnimalTypeCRUDViewModel}">
                     <vV:AnimalTypeCRUDView></vV:AnimalTypeCRUDView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmG:DonationViewModel}">
+                    <vG:DonationView></vG:DonationView>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
