@@ -13,16 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetCenter.WPF.Views.Volunteer
+namespace PetCenter.WPF.Views.Administrator
 {
     /// <summary>
-    /// Interaction logic for AnimalTypeCRUDView.xaml
+    /// Interaction logic for AddFirstVolunteerView.xaml
     /// </summary>
-    public partial class AnimalTypeCrudView : UserControl
+    public partial class AddVolunteerView : UserControl
     {
-        public AnimalTypeCrudView()
+        public AddVolunteerView()
         {
             InitializeComponent();
+
+            BirthDate.DisplayDateStart = new DateTime(1924, 1, 1);
+            BirthDate.DisplayDateEnd = DateTime.Today.AddYears(-16);   //minimum age of 16
+            BirthDate.SelectedDate = DateTime.Today.AddYears(-16);
         }
     }
 }

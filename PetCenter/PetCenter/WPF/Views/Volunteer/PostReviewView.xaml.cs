@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PetCenter.WPF.Views.Volunteer
 {
     /// <summary>
-    /// Interaction logic for AnimalTypeCRUDView.xaml
+    /// Interaction logic for PostReviewView.xaml
     /// </summary>
-    public partial class AnimalTypeCrudView : UserControl
+    public partial class PostReviewView : UserControl
     {
-        public AnimalTypeCrudView()
+        public PostReviewView()
         {
             InitializeComponent();
         }

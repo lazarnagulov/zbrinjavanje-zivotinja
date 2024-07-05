@@ -9,7 +9,7 @@ using PetCenter.Domain.Model;
 
 namespace PetCenter.WPF.ViewModels.Volunteer
 {
-    public class AnimalTypeCRUDViewModel : ViewModelBase
+    public class AnimalTypeCrudViewModel : ViewModelBase
     {
         private readonly AnimalTypeService _animalTypeService;
 
@@ -41,7 +41,7 @@ namespace PetCenter.WPF.ViewModels.Volunteer
         public ICommand UpdateAnimalTypeCommand { get; }
         public ICommand DeleteAnimalTypeCommand { get; }
 
-        public AnimalTypeCRUDViewModel(AnimalTypeService animalTypeService, INavigationService navigationService)
+        public AnimalTypeCrudViewModel(AnimalTypeService animalTypeService, INavigationService navigationService)
         {
             _animalTypeService = animalTypeService;
             _navigationService = navigationService;

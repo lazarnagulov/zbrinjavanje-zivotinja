@@ -23,6 +23,11 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource SBHeaderColor}">
             <Button Margin="30 16 30 16" Command="{Binding LogoutCommand}" Content="Logout" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavPostListingCommand}" Content="Posts" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16"
+                    Command="{Binding NavPostReviewCommand}"
+                    Content="Post review"
+                    Width="150"
+                    Style="{StaticResource HeaderButton}" />
             <Button Margin="20 16 30 16" Command="{Binding NavCreatePostCommand}" Content="Create post" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavOffersCommand}" Content="Offers" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavNotificationCommand}" Content="Notifications" Width="150" Style="{StaticResource HeaderButton}"/>
@@ -43,8 +48,11 @@
                 <DataTemplate DataType="{x:Type vmM:NotificationListingViewModel}">
                     <vM:NotificationListingView></vM:NotificationListingView>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type vmV:AnimalTypeCRUDViewModel}">
-                    <vV:AnimalTypeCRUDView></vV:AnimalTypeCRUDView>
+                <DataTemplate DataType="{x:Type vmV:PostReviewViewModel}">
+                    <vV:PostReviewView></vV:PostReviewView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmV:AnimalTypeCrudViewModel}">
+                    <vV:AnimalTypeCrudView></vV:AnimalTypeCrudView>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vmG:DonationViewModel}">
                     <vG:DonationView></vG:DonationView>
