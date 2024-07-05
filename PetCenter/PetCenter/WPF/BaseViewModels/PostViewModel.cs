@@ -114,5 +114,6 @@ namespace PetCenter.WPF.BaseViewModels
                 _comments.Add(new CommentViewModel(comment));    
             }
         }
+
     }
 }
