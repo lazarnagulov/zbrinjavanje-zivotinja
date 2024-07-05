@@ -123,19 +123,8 @@ namespace PetCenter.WPF.ViewModels.Guest
         private bool CanCancel(PostViewModel postViewModel)
         {
             if (postViewModel.State is not Accepted) return false;
-
-            Guid? userId = _authenticationStore.LoggedUser?.Id;
-
-            if (userId == null) return false;
-
-            foreach (Offer offer in postViewModel.State.Context.Offers)
-            {
-                if (offer.Offerer.Id == userId)
-                {
-                    return true;
-                }
-            }
-            return false;
+            var userId = _authenticationStore.LoggedUser?.Id;
+            return userId != null && postViewModel.State.Context.Offers.Any(offer => offer.Offerer?.Id == userId);
         }
         private void TemporaryAccommodationCommand(PostViewModel postViewModel)
         {
