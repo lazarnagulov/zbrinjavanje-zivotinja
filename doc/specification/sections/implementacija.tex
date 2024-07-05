@@ -1,0 +1,265 @@
+\lstset{language=C++,
+        basicstyle=\ttfamily,
+        frameshape={}{yy}{}{},
+        breaklines=true,
+        postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
+        morekeywords={string, AnimalType, readonly, IReadOnlyCollection, Photo, List, where, interface, Account, var, SHA256, Encoding, UTF8, Convert,
+        get, set, ref, Guid, Comment, RelayCommand, PostViewModel, REPLACE, FUNCTION, RETURNS, IF, RAISE, NEW, INotificationRepository, Notification, Person,
+        CREATE, OR, TRIGGER, DECLARE, BEGIN, SELECT, INTEGER, BEFORE, INSERT, UPDATE, FOR, EACH, ROW, EXECUTE, LANGUAGE, INTO, FROM, ON, JOIN, WHERE, THEN, END, RETURN, AS, RETURNS, EXCEPTION},
+        keywordstyle=\color{blue}\ttfamily,
+        stringstyle=\color{red}\ttfamily,
+        commentstyle=\color{green}\ttfamily,
+        morecomment=[l][\color{magenta}]{\#},
+        showstringspaces=false
+}
+
+
+\rhead{10. Implementacija}
+\section{Implementacija}
+\par Implementacija je javno dostupna na githubu: 
+\begin{center}
+    https://github.com/lazarnagulov/zbrinjavanje-zivotinja
+\end{center}
+\subsection{Primena MVVM šablona}
+\par Za razvoj je korišćen \textbf{MVVM} (Model-View-ViewModel) arhitektonski obrazac. 
+\subsubsection*{Model}
+\par \textbf{Model} čine \textbf{entiteti}, \textbf{servisi} i \textbf{repozitorijumi} (domenski sloj). 
+\subsubsection*{Entiteti}
+\par \textbf{Entiteti} su strukture podataka koje, pored samih podataka, sadrže pomoćne funkcije za upravljanje sa konteinerima. 
+\par Na primeru [Listing \ref{list:animal}], klasa \textit{Animal} sadrži listu fotografija i pomoćne funkcije za dodavanje, brisanje i dobavljanje
+readonly liste.
+\begin{lstlisting}[caption={Primer entiteta}, captionpos=b, label=list:animal]
+public class Animal(AnimalType type, string name, int age, string description)
+{
+    public AnimalType Type { get; set; } = type;
+    public string Name { get; set; } = name;
+    public int Age { get; set; } = age;
+    public string Description { get; set; } = description;
+    private readonly List<Photo> _photos = [];
+    public IReadOnlyCollection<Photo> Photos 
+        => _photos;
+
+    public void AddPhoto(Photo photo) 
+        => _photos.Add(photo);
+    public void RemovePhoto(Photo photo) 
+        => _photos.Remove(photo);
+}
+\end{lstlisting}
+\subsubsection*{Servisi}
+\par \textbf{Servisi} služe za komunikaciju sa podacima i poslovnom logikom. U njima se nalazi komplikovanija poslovna logika koja može da uzima u obzir više objekata.
+Koristi interfejse repozitorijuma za pristup podacima u bazi. 
+\begin{lstlisting}[caption={Primer servisa}, captionpos=b, label=list:service]
+public class NotificationService(INotificationRepository notificationRepository)
+{
+    public bool Insert(Notification notification) 
+       => notificationRepository.Insert(notification);
+    public bool Delete(Notification notification) 
+       => notificationRepository.Delete(notification);
+    public Notification? GetById(Guid id) 
+       => notificationRepository.GetById(id);
+    public List<Notification> GetAll() 
+       => notificationRepository.GetAll();
+    public bool SendNotification(Person recipient, string message)
+    {
+        var notification = new Notification(recipient, message);
+        return Insert(notification);
+    }
+    public bool DeleteById(Guid id)
+    {
+        var notification = GetById(id);
+        return notification is not null && notificationRepository.Delete(notification);
+    }
+
+    public List<Notification> GetAllIncluded()
+        => notificationRepository.GetAllIncluded();
+
+    public List<Notification> GetAllForPerson(Person person)
+        => notificationRepository
+            .GetAllIncluded()
+            .Where(n => n.Recipient.Id == person.Id)
+            .ToList();
+}
+\end{lstlisting}
+\par Primer servisa se nalazi na listingu \ref{list:service}. On je zadužen za dobavljanje, kreiranje i brisanje svi obaveštenja, dobavljanje svih objekata
+koji su u relaciji sa obaveštenjem, kao i dobavljanje svakog obaveštenja za određenu \textit{osobu}.
+\subsubsection*{Repozitorijumi}
+\par \textbf{Repozitorijumi} služe za pristup podacima. Najosnovnije operacije nad \textit{entitetima} u bazi podataka su \textbf{CRUD} (create, read, update, delete) 
+operacije, koje se nalaze u \textit{ICrud$<$T$>$} intefejsu, prikazanom na listingu \ref{list:crud}.
+\begin{lstlisting}[caption={ICrud$<$T$>$ interfejs}, captionpos=b, label={list:crud}]
+public interface ICrud<T> 
+    where T : class
+{
+    List<T> GetAll();
+    T? GetById(Guid id);
+    bool Insert(T entity);
+    bool Delete(T entity);
+    bool Update(T entity)
+}
+\end{lstlisting}
+\subsubsection*{View}
+\par \textbf{View} je korisnički interfejs aplikacije. Odgovoran je za prikaz podataka i interakcijom sa korisnikom,
+ali ne sadrži poslovnu logiku. 
+\par Obično se implementira pomoću \textbf{XAML}. Podatke dobavlja sa \textit{viewmodela} povezivanjem podataka (eng. data binding).
+\par Aplikacije sadrži 5 glavnih prozora - za uloge u sistemu i početni. Sa početnog prozora se pristupa drugim prozorima prijavom na sistem. U svakom prozoru se smenjuju više \textit{view}-ova.
+To se postiže \textbf{navigacijom}. 
+\par Svaki \textit{view} je povezan sa jedniom \textit{viewmodel} klasom, koja sadrži kontekst - podatke koje se koriste na samom \textit{view}-u.
+\subsubsection*{ViewModel}
+\par \textbf{ViewModel} je posrednički sloj između korisničkog interfejsa i domenskog sloja.
+\par Za svaki entitet je napravljen \textbf{omotač} (eng. wrapper) [Listing \ref{list:wrap}], kako bi se prilagodilo korisničkom interfejsu. Svaki od svojstava ovih klasa se može povezati
+(eng. binding) za \textit{xmal} dokument koji predstavlja \textit{view}. 
+\begin{lstlisting}[caption={Primer ViewModel omotača}, captionpos=b, label=list:wrap]
+public class ViewModelBase : INotifyPropertyChanged 
+{/*...*/}
+public class PhotoViewModel(Photo photo) : ViewModelBase
+{
+    public Guid Id
+    {
+        get => _id;
+        set => SetField(ref _id, value);
+    }
+
+    public string Description
+    {
+        get => _description;
+        set => SetField(ref _description, value);
+    }
+
+    public string Url
+    {
+        get => _url;
+        set => SetField(ref _url, value);
+    }
+
+    private Guid _id = photo.Id;
+    private string _description = photo.Description;
+    private string _url = photo.Url;
+}
+\end{lstlisting}
+\par Ključan element u svemu ovome je  \textbf{INotifyPropertyChanged} interfejs jer 
+omogućava obaveštavanje korisničkog interfejsa o promenama na \textit{viewmodel}-u - \textbf{posmatrač} (eng. Observer).
+\subsubsection*{Komande}
+\par Bitnu ulogu u odvajanju logike korisničkih akcija od korisničkog interfejsa igra \textbf{ICommand} interfejs. Ovim se povećava modularnost i testiranje u 
+aplikaciji. Postoje dve implementacije komandi: \textbf{Relay} komande [Listing \ref{list:relay}] i \textbf{Klasne} komande.  
+\begin{lstlisting}[caption={Primer \textit{relay} komande za dodavanje komentara}, captionpos=b, label=list:relay]
+public PostListingViewModel(/* ... */)
+{
+    /* ... */
+    LikePostCommand 
+       = new RelayCommand<PostViewModel>(LikeCommand);
+    AddCommentCommand 
+       = new RelayCommand<PostViewModel>(CommentCommand, CanComment);
+}
+
+private static bool CanComment(PostViewModel arg) 
+    => !string.IsNullOrEmpty(arg.NewComment);
+
+private void CommentCommand(PostViewModel obj)
+{
+    var comment = new Comment(_authenticationStore.LoggedUser!, obj.NewComment);
+    obj.Comments.Add(new CommentViewModel(comment));
+    _postService.AddComment(obj.Id, comment);
+}
+\end{lstlisting}
+\subsection{Perzistencija podataka}
+\par Za perzistenciju podataka je korišćena PostgresSQL relaciona baza podataka. U nastavku je opisan način na koji smo kreirali bazu podataka (migracijom)
+i kreirali validaciju. Na kraju je dat primer funkcionisanja manjeg dela sistema za perzistenciju podataka.
+\subsubsection*{Migracija}
+\par Migracija je urađena pomoću \textbf{Entity} radnog okvira komandama:
+\begin{lstlisting}[caption={Kreiranje migracije}, captionpos=b]
+dotnet ef migrations add Initial
+dotnet ef database update
+\end{lstlisting}
+\par Alat automatski generiše C\# kod koji predstavlja promene u modelu i kako te promene treba primeniti na bazu podataka. Neke detalje je moguće podesi preko 
+koda, poput \textit{unique} ograničenja, prikazanom na listingu \ref{list:unique} ili preko anotacija [Listing \ref{list:annot}]. 
+\begin{lstlisting}[caption={Primer postavljanja unique ograničenja}, label=list:unique, captionpos=b]
+modelBuilder.Entity<Account>()
+    .HasIndex(account => account.Email)
+    .IsUnique();
+
+modelBuilder.Entity<Account>()
+    .HasIndex(account => account.Username)
+    .IsUnique();
+\end{lstlisting}
+\begin{lstlisting}[caption={Primer postavljanja anotacija}, label=list:annot, captionpos=b]
+[Column("username")]
+[Required]
+[MaxLength(30)]
+public string Username { get; set; }
+\end{lstlisting}
+\subsection*{Konekcija}
+\par Da bi smo se uspešno povezali na bazu, moramo uneti parametre konekcije [Listing \ref{list:params}]. Parametri se učitavaju iz
+\textbf{user-secrets} json datoteke, a pristupa im se pomoću klase \textit{Configuration}.
+\begin{lstlisting}[caption={Parametri konekcije}, captionpos=b, label={list:params}]
+public string Host { get; }
+public int Port { get; }
+public string Username { get; }
+public string Password { get; }
+public string Database { get; }
+\end{lstlisting}
+\par Primer \textit{user-secret}-a se nalazi na listingu \ref{list:user-secret}.
+\begin{lstlisting}[caption={Primer \textit{user-secret}}, captionpos=b, label={list:user-secret}]
+{
+    "Database": {
+        "Host": "localhost",
+        "Port": 5432,
+        "DatabaseName": "PetCenter",
+        "Username": "postgres",
+        "Password": "1234"
+    }
+}
+\end{lstlisting}
+\par Konekciju uspostavljamo \textbf{UseNpgsql} metodom:
+\begin{lstlisting}[caption={Uspostavljanje konekcije}, captionpos=b]
+optionsBuilder.UseNpgsql(databaseCredentials.ConnectionString);
+\end{lstlisting}
+\subsubsection*{Validacija}
+\par Validacija na nivou baze podataka je pisana u \textbf{SQL}-u. Najčešće korišćen
+vid validacije je \textbf{BEFORE INSERT/UPDATE TRIGGER} [Listing \ref{list:trig}], koji nam omogućava da, pre samog upisa podataka, proverimo njihovu validnost.
+\begin{lstlisting}[caption={Primer validacije pomoću trigera}, captionpos=b, label=list:trig]
+CREATE OR REPLACE FUNCTION fn_validate_request()
+RETURNS TRIGGER AS $$
+DECLARE
+	account_type INTEGER;
+BEGIN
+	SELECT acc_type
+	INTO account_type
+	FROM request r
+	JOIN account a ON r.person_req_author = a.person_id_person
+	WHERE r.person_req_author = NEW.person_req_author;
+
+	IF account_type <> 0 THEN
+		RAISE EXCEPTION 'Invalid account type for author, expected 0 but got: %', account_type;
+	END IF;
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER trg_validate_request
+BEFORE INSERT OR UPDATE ON request
+FOR EACH ROW
+EXECUTE FUNCTION fn_validate_request();
+\end{lstlisting}
+\par Na listingu \ref{list:trig} proveravamo da li je kreator zahteva \textit{član} (vrednost 0).
+\subsection{Zaštita šifre}
+\par Za zaštitu šifre koristimo \textbf{SHA256} [Listing \ref{list:encript}]. 
+\begin{lstlisting}[caption={Primer funkcije za zaštitu šifre}, captionpos=b, label=list:encript]
+public static string Encode(string password)
+{
+    var sha = SHA256.Create();
+    var asBytes = Encoding.UTF8.GetBytes(password);
+    var hashed = sha.ComputeHash(asBytes);
+
+    return Convert.ToBase64String(hashed);
+}
+\end{lstlisting}
+\subsection{Organizacija foldera}
+\par Za organizaciju foldera je korišćen \textbf{package by layer} obrazac. Koristimo 6 glavnih foldera:
+\begin{enumerate}
+    \item \textbf{Core} - aplikativni sloj, sadrži servise, klase koje čuvaju stanja sistema (Stores) i pomoćne klase.
+    \item \textbf{Domain} - domenski sloj, sarži enumeracije, modele i interfejse za repozitorijum.
+    \item \textbf{HostBuilder} - zadužen za \textbf{dependency injection}.
+    \item \textbf{Migrations} - sadrži migracije za bazu podataka.
+    \item \textbf{Repository} - sadrži sve repozitorijume i \textbf{data context}.
+    \item \textbf{WPF} - sadrži kod za korisnički interfejs -  \textbf{view} i \textbf{viewmodel}.
+\end{enumerate}

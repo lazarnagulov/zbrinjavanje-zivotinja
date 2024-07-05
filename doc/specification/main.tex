@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[serbian]{babel}
+
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}	
+\usepackage{float}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{makecell}
+\usepackage[figuresright]{rotating}
+
+\begin{document}
+    \include{listings}
+    \include{titlepage}
+    \include{content}
+    \pagenumbering{arabic}
+
+    \include{sections/uvod}
+    \include{sections/funkcionalni_zahtevi}
+    \include{sections/nefunkcionalni_zahtevi}
+    \include{sections/dijagram_slucajeva_koriscenja}
+    \include{sections/dijagram_prelaza_stanja}
+    \include{sections/dijagram_klase}
+    \include{sections/dijagrami_aktivnosti}
+    \include{sections/dijagrami_sekvence}
+    \include{sections/koriscene_tehnologije}
+    \include{sections/implementacija}
+
+\end{document}

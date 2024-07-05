@@ -1,0 +1,40 @@
+\rhead{2. Funkcionalni zahtevi}
+\section{Funkcionalni zahtevi}
+\par Na osnovu dijagrama slučajeva korišćenja [Dijagram \ref{fig:use-case}] primećujemo da postoje četiri uloge u aplikaciji: neregistrovani korisnik (gost), član, volonter i administrator. 
+U nastavku se nalazi opis funkcionalnosti za svaku od uloga.
+\subsection{Neregistrovani korisnik (gost)} 
+    \begin{enumerate}
+        \item Mogućnost registracije unošenjem imena, prezimena, adrese (ulica, broj, grad, država), pola, broja telefona, korisničkog imena i šifre.
+        \item Prijavljivanje na sistem unosom korisničkog imena i šifre.
+        \item Pregled odobrenih objava. Gost ne može da interaguje sa objavama dokle god se ne prijavi.
+    \end{enumerate}
+\subsection{Član}
+    \par Poseduje sve mogućnosti kao i \textit{neregistrovani korisnik (gost)}. 
+    \begin{enumerate}
+        \item Dodatno može da kreira objavu (koja mora biti prihvaćena od strane \textit{volontera}) birajući već postojeći tip životinje. 
+        \item Može da komentariše i označi da mu se sviđa odobrena objave kao i da pošalje zahtev za udomljavanje ili privremeni smeštaj. 
+        On uvek ima uvid u sve svoje zahteve, gde po mogućnosti može da odustane od njih. 
+        \item Ima mogućnost slanja zahteva za promociju u \textit{volontera}.
+        \item U svakom trenutku nakon udomljavanja ili obezbeđenog privremenog sme\-štaja, \textit{član} može da oceni životinju sa brojem i komentarom, kao i da je vrati, ukoliko nije 
+        zadovoljan. U slučaju isteka privremenog smeštaja, objava se automatski vraća u stanje \textit{prihvaćena}.
+        \item Mogućnost doniranja novca za pomoć udruženju. Sve donacije su javno dostupne.
+    \end{enumerate}
+\subsection{Volonter} 
+    \par Poseduje većinu mogućnosti kao i \textit{član} - ne može slati zahtev za promociju. Njegova objava je automatski prihvaćena. 
+    Da bi \textit{član} postao \textit{volonter}, on mora da bude izglasan od strane drugih \textit{volontera} - mora da ima bar 50\% glasnova. 
+    Prvog volontera dodaje \textit{administrator}. 
+    \begin{enumerate}
+        \item Zadužen je za prihvatanje (ili odbijanje) objava od strane članova i sakrivanje već prihvaćenih objava.
+        \item Dodatno je zadužen za unos uplate od strane člana i raspoređivanje sredstava po životinjama.
+        \item Ima pristup svim zahtevima za udomljavanje i privremen smeštaj, gde ih može odobriti ili odbiti. Takođe može da dodaje nove ponude.
+        \item Može da obriše nepoželjne komentare.
+        \item Mogućnost glasanja za promovisanje novog \textit{člana} u \textit{volontera}.
+        \item Može da dodaje, briše i menja podatke o vrsti životinja.
+    \end{enumerate}
+\subsection{Administrator}
+    \par Poseduje sve mogućnosti kao i \textit{gost}. 
+    \begin{enumerate}
+        \item Ažurira informacije o udruženju. 
+        \item Dodaje prvog \textit{volontera}.
+    \end{enumerate}
+    

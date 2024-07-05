@@ -1,0 +1,65 @@
+\rhead{7. Dijagrami aktivnosti}
+\section{Dijagrami aktivnosti}
+\par U nastavku se nalaze dijagrami aktivnosti korišćeni za analizu zahteva i specifikaciju dizajna.
+Opisana su 4 dijagrama aktivnosti:
+\begin{enumerate}
+    \item \textbf{Aktivnost objave}
+    \item \textbf{Slanje ponude}
+    \item \textbf{Učitavanje uplate}
+    \item \textbf{Prijava na sistem}
+\end{enumerate}
+\subsection{Aktivnost objave}
+\par Dijagram aktivnosti objave predstavlja proces kojim \textit{član} kreira objavu, a \textit{volonter} je prihvata ili odbija.
+Prikazana je pomoću dva dijagrama aktivnosti: kreiranje objave [Dijagram \ref{fig:activity-create-post}] i pregled objave [Dijagram \ref{fig:activity-post-review}].
+\subsubsection*{Aktivnost kreiranja objave}
+\par Nakon prijave, članu se nudi mogućnost da otvori formu za objavu. U formu se unose potrebne informacije o životinji u vidu teksta, slike ili videa.
+Sva polja moraju biti popunjena, u suprotnom se članu prikazuje poruka greške. Nakon uspešne provere unesenih podataka, korsnik se obaveštava da je 
+objava uspešno kreirana. Ovo je prikazano na dijagramu \ref{fig:activity-create-post}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth, height=0.75\textwidth]{img/activity-create-post.jpg}
+    \caption{Dijagram aktivnosti za kreiranje objave}
+    \label{fig:activity-create-post}
+\end{figure}
+\subsubsection*{Aktivnost pregleda objave}
+\par Nakon prijave, \textit{volonter} može da otvori listu svih objava koje još uvek nisu prihvaćene ili odbijene (u stanju \textit{na čekanju}). Pored pregleda,
+data je mogućnost prihvatanja i odbijanja objave Autor objave se obaveštava o odluci \textit{volontera}, i stanje objave se menja u \textit{prihvaćena}, odnosno
+\textit{odbijena}. Ovo je prikazano na dijagramu \ref{fig:activity-post-review}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth, height=\textwidth]{img/activity-post-review.jpg}
+    \caption{Dijagram aktivnosti za pregled objave}
+    \label{fig:activity-post-review}
+\end{figure}
+\subsection{Slanje ponude}
+\par Dijagram slanja ponude predstavlja proces slanja ponude za odomljavanje ili privremen smeštaj. \textit{Član} mora da napravi \textit{ponudu}, koju pregleda \textit{volonter}.
+\par Nakon što \textit{član} popuni formu za kreiranje ponude, od zavisnosti od tipa ponude, sistem kreira i trajno čuva ponude. Takođe onemogućava ponovno slanje
+iste ponude za \textit{člana}. Ovo je prikazano na dijagramu \ref{fig:activity-send-offer}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth, height=\textwidth]{img/send_offer.jpg}
+    \caption{Dijagram aktivnosti za slanje ponude}
+    \label{fig:activity-send-offer}
+\end{figure}
+\subsection{Učitavanje uplate}
+\par Dijagram učitavanja uplate predstavlja proces unosa uplate u sistem. Donacije se vrše preko banke, a \textit{volonter} učitava bankovni dokument za uplatu.
+Korisnici sistema u svakom trenutku mogu da vide račun na koji se uplaćuje donacija.
+\par \textit{Volonter} unosi uplatu tako što učita nalog iz banke. Ukoliko dođe do greške prilikom učitavanja, \textit{volonter} se obaveštava i nudi se mogućnost
+učitavanja drugog fajla. U slučaju uspešnog učitavanja, sistem ažurira listu donacija i bilans. Na kraju, obaveštava volontera o uspešno učitanoj donaciji.
+Ovo je prikazano na dijagramu \ref{fig:activity-load-donation}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth, height=\textwidth]{img/load_donation.jpg}
+    \caption{Dijagram aktivnosti za učitavanje donacija}
+    \label{fig:activity-load-donation}
+\end{figure}
+\subsection{Prijava na sistem}
+\par \textit{Gost} se može prijaviti na sistem unosom korisničkog imena i šifre. Nakon toga, sistem hešira unetu šifru i proverava heš vrednosti sa
+unetom vrednošću za šifru u bazi podataka. U slučaju nepodudaranja, korisniku se javlja poruka o grešci. U suprotnom, sistem kreira odgovarajući prozor u zavisnosti
+od tipa naloga. Ovo je prikazano na dijagramu \ref{fig:login}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth, height=\textwidth]{img/login.jpg}
+    \caption{Dijagram aktivnosti za prijavljivanje na sistem}
+    \label{fig:login}
+\end{figure}
