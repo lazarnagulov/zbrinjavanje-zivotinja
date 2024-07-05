@@ -25,6 +25,7 @@ namespace PetCenter.WPF.ViewModels.Guest
     {
         private readonly PostService _postService;
         private readonly AuthenticationStore _authenticationStore;
+        private readonly OfferService _offerService;
 
         public bool LoggedUser => _authenticationStore.IsLoggedIn;
         public AccountType? LoggedAccount => _authenticationStore.CurrentUserProfile?.Type;
@@ -36,11 +37,13 @@ namespace PetCenter.WPF.ViewModels.Guest
         public ICommand RequestTemporaryAccommodationCommand { get; }
         public ICommand HidePostCommand { get; }
         public ICommand DeleteCommentCommand { get; }
+        public ICommand CancelOffersCommand { get; }
 
-        public PostListingViewModel(PostService postService, AuthenticationStore authenticationStore, CreatePostViewModel createPostViewModel)
+        public PostListingViewModel(PostService postService, AuthenticationStore authenticationStore, CreatePostViewModel createPostViewModel, OfferService offerService)
         {
             _authenticationStore = authenticationStore;
             _postService = postService;
+            _offerService = offerService;
 
             var posts = authenticationStore.CurrentUserProfile?.Type switch
             {
@@ -55,8 +58,9 @@ namespace PetCenter.WPF.ViewModels.Guest
 
             LikePostCommand = new RelayCommand<PostViewModel>(LikeCommand);
             AddCommentCommand = new RelayCommand<PostViewModel>(CommentCommand, CanComment);
-            RequestAdoptionCommand = new RelayCommand(AdoptionCommand);
-            RequestTemporaryAccommodationCommand = new RelayCommand(TemporaryAccommodationCommand);
+            RequestAdoptionCommand = new RelayCommand<PostViewModel>(AdoptionCommand, CanAdopt);
+            RequestTemporaryAccommodationCommand = new RelayCommand<PostViewModel>(TemporaryAccommodationCommand, CanAccommodate);
+            CancelOffersCommand = new RelayCommand<PostViewModel>(CancelOffers, CanCancel);
             HidePostCommand = new RelayCommand<PostViewModel>(HidePost);
             DeleteCommentCommand = new RelayCommand(DeleteComment);
 
@@ -98,15 +102,78 @@ namespace PetCenter.WPF.ViewModels.Guest
             }
             _postService.Update(postViewModel.State.Context);
         }
-
-        private void TemporaryAccommodationCommand(object? obj)
+        private void CancelOffers(PostViewModel postViewModel)
         {
-            throw new NotImplementedException();
+            foreach (Offer offer in postViewModel.State.Context.Offers.ToList())
+            {
+                if (offer.Offerer.Id == _authenticationStore.LoggedUser!.Id)
+                {
+                    _offerService.Delete(offer);
+                    postViewModel.State.Context.RemoveOffer(offer);
+                }
+            }
+        }
+        private bool CanCancel(PostViewModel postViewModel)
+        {
+            if (postViewModel.State is not Accepted) return false;
+
+            Guid? userId = _authenticationStore.LoggedUser?.Id;
+
+            if (userId == null) return false;
+
+            foreach (Offer offer in postViewModel.State.Context.Offers)
+            {
+                if (offer.Offerer.Id == userId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private void TemporaryAccommodationCommand(PostViewModel postViewModel)
+        {
+            Offer offer = new Offer(_authenticationStore.LoggedUser!, OfferType.TemporaryAccommodation);
+            postViewModel.State.Context.AddOffer(offer);
+            _offerService.Insert(offer);
+            _postService.Update(postViewModel.State.Context);
+        }
+        private bool CanAccommodate(PostViewModel postViewModel)
+        {
+            if (postViewModel.State is not Accepted) return false;
+
+            Guid? userId = _authenticationStore.LoggedUser?.Id;
+
+            if (userId == null) return false;
+
+            foreach (Offer offer in postViewModel.State.Context.Offers)
+            {
+                if (offer.Type == OfferType.TemporaryAccommodation && offer.Offerer.Id == userId) return false;
+            }
+
+            return true;
+        }
+        private bool CanAdopt(PostViewModel postViewModel)
+        {
+            if (postViewModel.State is not Accepted) return false;
+            
+            Guid? userId = _authenticationStore.LoggedUser?.Id;
+
+            if (userId == null) return false;
+
+            foreach (Offer offer in postViewModel.State.Context.Offers)
+            {
+                if (offer.Type == OfferType.Adoption && offer.Offerer.Id == userId) return false;
+            }
+
+            return true;
         }
 
-        private void AdoptionCommand(object? obj)
+        private void AdoptionCommand(PostViewModel postViewModel)
         {
-            throw new NotImplementedException();
+            Offer offer = new Offer(_authenticationStore.LoggedUser!, OfferType.Adoption);
+            postViewModel.State.Context.AddOffer(offer);
+            _offerService.Insert(offer);
+            _postService.Update(postViewModel.State.Context);
         }
 
         private static bool CanComment(PostViewModel arg) => !string.IsNullOrEmpty(arg.NewComment);
