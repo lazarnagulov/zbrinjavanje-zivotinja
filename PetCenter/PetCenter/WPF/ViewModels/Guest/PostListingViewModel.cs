@@ -38,6 +38,7 @@ namespace PetCenter.WPF.ViewModels.Guest
         public ICommand HidePostCommand { get; }
         public ICommand DeleteCommentCommand { get; }
         public ICommand CancelOffersCommand { get; }
+        public ICommand ToReviewsCommand { get; }
 
         public PostListingViewModel(PostService postService, AuthenticationStore authenticationStore, CreatePostViewModel createPostViewModel, OfferService offerService)
         {
@@ -63,8 +64,14 @@ namespace PetCenter.WPF.ViewModels.Guest
             CancelOffersCommand = new RelayCommand<PostViewModel>(CancelOffers, CanCancel);
             HidePostCommand = new RelayCommand<PostViewModel>(HidePost);
             DeleteCommentCommand = new RelayCommand(DeleteComment);
+            ToReviewsCommand = new RelayCommand<PostViewModel>(ToReviews);
 
             createPostViewModel.OnPostInsert += InsertPostEvent;
+        }
+
+        private void ToReviews(PostViewModel obj)
+        {
+
         }
 
         private void InsertPostEvent(PostViewModel postViewModel)
