@@ -14,5 +14,6 @@ namespace PetCenter.Core.Service
         public bool Delete(Association post) => associationRepository.Delete(post);
         public Association? GetById(Guid id) => associationRepository.GetById(id);
         public List<Association> GetAll() => associationRepository.GetAll();
+        public Association? GetFirst() => associationRepository.GetFirst();
     }
 }

@@ -16,9 +16,7 @@
                    VerticalAlignment="Top"/>
         <StackPanel Margin="10,50,10,10" HorizontalAlignment="Center" VerticalAlignment="Top">
             <TextBlock Text="Bank Name: XYZ Bank" FontSize="18" Margin="0,10,0,0"/>
-            <TextBlock Text="Account Number: 123456789" FontSize="18" Margin="0,10,0,0"/>
-            <TextBlock Text="IBAN: XYZ123456789" FontSize="18" Margin="0,10,0,0"/>
-            <TextBlock Text="SWIFT: XYZBANK" FontSize="18" Margin="0,10,0,0"/>
+            <TextBlock Text="{Binding Association.AccountNumber, StringFormat={}Account Number {0}}" FontSize="18" Margin="0,10,0,0"/>
         </StackPanel>
     </Grid>
 </UserControl>
