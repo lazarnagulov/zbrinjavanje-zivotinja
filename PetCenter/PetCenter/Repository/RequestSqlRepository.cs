@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PetCenter.Domain.Model;
 using PetCenter.Domain.RepositoryInterfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace PetCenter.Repository
 {
@@ -17,6 +18,6 @@ namespace PetCenter.Repository
         public bool Insert(Request entity) => _sqlRepository.Insert(entity);
         public bool Delete(Request entity) => _sqlRepository.Delete(entity);
         public bool Update(Request entity) => _sqlRepository.Update(entity);
-        public List<Request> GetAllIncluded() => dataContext.Requests.Include(r => r.Author).Include(r => r.Voters).ToList();
+        public List<Request> GetAllIncluded() => dataContext.Requests.Include(r => r.Author).ThenInclude(a => a.Account).Include(r => r.Voters).ToList();
     }
 }

@@ -8,7 +8,7 @@ using PetCenter.WPF.MVVM;
 
 namespace PetCenter.WPF.BaseViewModels
 {
-    public class RequestViewModel(Request request) : ViewModelBase
+    public class RequestViewModel(Request request, string username) : ViewModelBase
     {
         public Guid Id
         {
@@ -40,10 +40,17 @@ namespace PetCenter.WPF.BaseViewModels
             set => SetField(ref _votesAgainst, value);
         }
 
+        public string AuthorUsername
+        {
+            get => _authorUsername;
+            set => SetField(ref _authorUsername, value);
+        }
+
         private Guid _id = request.Id;
         private Person _author = request.Author;
         private DateOnly _creationDate = request.CreationDate;
         private int _votesFor = request.VotesFor;
         private int _votesAgainst = request.VotesAgainst;
+        private string _authorUsername = username;
     }
 }

@@ -46,5 +46,8 @@ namespace PetCenter.Domain.Model
         
         public void AddVoter(Person person) => _voters.Add(person);
         public void RemoveVoter(Person person) => _voters.Remove(person);
+
+        [NotMapped]
+        public bool ResultPositive => VotesFor >= VotesAgainst;
     }
 }
