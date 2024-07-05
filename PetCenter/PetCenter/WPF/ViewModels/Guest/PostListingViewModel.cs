@@ -169,7 +169,7 @@ namespace PetCenter.WPF.ViewModels.Guest
 
             foreach (Offer offer in postViewModel.State.Context.Offers)
             {
-                if (offer.Type == OfferType.Adoption && offer.Offerer.Id == userId) return false;
+                if (offer.Type == OfferType.Adoption && offer.Offerer?.Id == userId) return false;
             }
 
             return true;
