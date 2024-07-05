@@ -32,6 +32,12 @@
             <Button Margin="20 16 30 16" Command="{Binding NavOffersCommand}" Content="Offers" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavNotificationCommand}" Content="Notifications" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavAnimalTypeCRUDCommand}" Content="Animal types" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16"
+                    Command="{Binding NavDonationCommand}"
+                    Content="Donate"
+                    Width="150"
+                    Style="{StaticResource HeaderButton}" />
+
         </WrapPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
@@ -47,11 +53,14 @@
                 <DataTemplate DataType="{x:Type vmM:NotificationListingViewModel}">
                     <vM:NotificationListingView></vM:NotificationListingView>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type vmV:AnimalTypeCRUDViewModel}">
-                    <local:AnimalTypeCRUDView></local:AnimalTypeCRUDView>
-                </DataTemplate>
                 <DataTemplate DataType="{x:Type vmV:PostReviewViewModel}">
                     <vV:PostReviewView></vV:PostReviewView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmV:AnimalTypeCrudViewModel}">
+                    <vV:AnimalTypeCrudView></vV:AnimalTypeCrudView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmG:DonationViewModel}">
+                    <vG:DonationView></vG:DonationView>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

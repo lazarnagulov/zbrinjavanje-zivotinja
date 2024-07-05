@@ -21,10 +21,11 @@ namespace PetCenter.WPF.MVVM
         CreateViewModel<CreatePostViewModel> createCreatePostViewModel,
         CreateViewModel<OfferListingViewModel> createOfferListingViewModel,
         CreateViewModel<NotificationListingViewModel> createNotificationListingViewModel,
-        CreateViewModel<AnimalTypeCRUDViewModel> createAnimalTypeCrudViewModel,
         CreateViewModel<PetCenterInfoViewModel> createPetCenterInfoViewModel,
         CreateViewModel<AddVolunteerViewModel> createAddVolunteerViewModel,
-        CreateViewModel<PostReviewViewModel> createPostReviewViewModel
+        CreateViewModel<PostReviewViewModel> createPostReviewViewModel,
+        CreateViewModel<AnimalTypeCrudViewModel> createAnimalTypeCrudViewModel,
+        CreateViewModel<DonationViewModel> createDonationViewModel
         )
     {
         public CreateViewModel<T> GetCreateViewModel<T>(ViewType type) where T : ViewModelBase
@@ -39,8 +40,9 @@ namespace PetCenter.WPF.MVVM
                 ViewType.PetCenterInfo => (createPetCenterInfoViewModel as CreateViewModel<T>)!,
                 ViewType.OfferListing => (createOfferListingViewModel as CreateViewModel<T>)!,
                 ViewType.NotificationListing => (createNotificationListingViewModel as CreateViewModel<T>)!,
-                ViewType.AnimalTypeCRUD => (createAnimalTypeCrudViewModel as CreateViewModel<T>)!,
                 ViewType.PostReview => (createPostReviewViewModel as CreateViewModel<T>)!,
+                ViewType.AnimalTypeCrud => (createAnimalTypeCrudViewModel as CreateViewModel<T>)!,
+                ViewType.Donation => (createDonationViewModel as CreateViewModel<T>)!,
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }
@@ -56,8 +58,9 @@ namespace PetCenter.WPF.MVVM
                 ViewType.PetCenterInfo => createPetCenterInfoViewModel(),
                 ViewType.OfferListing => createOfferListingViewModel(),
                 ViewType.NotificationListing => createNotificationListingViewModel(),
-                ViewType.AnimalTypeCRUD => createAnimalTypeCrudViewModel(),
                 ViewType.PostReview => createPostReviewViewModel(),
+                ViewType.AnimalTypeCrud => createAnimalTypeCrudViewModel(),
+                ViewType.Donation => createDonationViewModel(),
                 _ => throw new ArgumentException($"ViewType {type} doesn't have an associated ViewModel")
             };
         }

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetCenter.WPF.Views.Volunteer
+namespace PetCenter.WPF.Views.Guest
 {
     /// <summary>
-    /// Interaction logic for AnimalTypeCRUDView.xaml
+    /// Interaction logic for DonationView.xaml
     /// </summary>
-    public partial class AnimalTypeCrudView : UserControl
+    public partial class DonationView : UserControl
     {
-        public AnimalTypeCrudView()
+        public DonationView()
         {
             InitializeComponent();
         }

@@ -26,6 +26,7 @@ public static class AddServicesExtension
             services.AddSingleton<NotificationService>();
             services.AddSingleton<AssociationService>();
             services.AddSingleton<OfferService>();
+            services.AddSingleton<AssociationService>();
         });
         
         return host;
