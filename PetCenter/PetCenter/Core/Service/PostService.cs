@@ -33,7 +33,12 @@ namespace PetCenter.Core.Service
             return posts;
         }
 
-        public List<Post> GetOnHold() => postRepository.GetOnHold();
+        public List<Post> GetOnHold()
+        {
+            var posts = postRepository.GetOnHold();
+            posts.ForEach(post => post.State.Context = post);
+            return posts;
+        }
 
         public int AddLike(Guid id)
         {

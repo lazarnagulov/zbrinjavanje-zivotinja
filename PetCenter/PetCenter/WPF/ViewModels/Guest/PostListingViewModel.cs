@@ -36,6 +36,8 @@ namespace PetCenter.WPF.ViewModels.Guest
         public ICommand RequestTemporaryAccommodationCommand { get; }
         public ICommand HidePostCommand { get; }
         public ICommand DeleteCommentCommand { get; }
+        public ICommand ToReviewsCommand { get; }
+
 
         public PostListingViewModel(PostService postService, AuthenticationStore authenticationStore, CreatePostViewModel createPostViewModel)
         {
@@ -59,8 +61,14 @@ namespace PetCenter.WPF.ViewModels.Guest
             RequestTemporaryAccommodationCommand = new RelayCommand(TemporaryAccommodationCommand);
             HidePostCommand = new RelayCommand<PostViewModel>(HidePost);
             DeleteCommentCommand = new RelayCommand(DeleteComment);
+            ToReviewsCommand = new RelayCommand<PostViewModel>(ToReviews);
 
             createPostViewModel.OnPostInsert += InsertPostEvent;
+        }
+
+        private void ToReviews(PostViewModel obj)
+        {
+
         }
 
         private void InsertPostEvent(PostViewModel postViewModel)
