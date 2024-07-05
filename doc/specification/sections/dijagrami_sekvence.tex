@@ -4,8 +4,8 @@
 \begin{itemize}
     \item \textbf{Promocija u volontera}
     \item \textbf{Pregled novih objava}
+    \item \textbf{Sakrivanje/ostrkivanje objave}
     \item \textbf{Udomljavanje}
-    \item todo
 \end{itemize}
 \subsection{Promocija u volontera}
 \par \textit{Član} može da postane \textit{volonter} tako što pošalje zahtev za volonterstvo. Svaki \textit{volonter} može da glasa samo jednom dokle god traje glasanje. 
@@ -25,6 +25,15 @@ stanje objave i briše prethodno stanje (\textit{NaČekanju}). Ovo je prikazano 
     \includegraphics[width=\textwidth, height=\textwidth]{img/new_posts-sequence.jpg}
     \caption{Dijagram sekvence za pregled novih objava}
     \label{fig:posts-list-seq}
+\end{figure}
+\subsection{Sakrivanje/ostrkivanje objave}
+\par \textit{Volonter} ima mogućnost sakrivanja objava pritiskom na dugme sakrij. Objava prelazi u stanje \textit{sakrivena} i \textit{članovi} je ne mogu videti,
+ali je mogu videti drugi \textit{volonteri}. U svakom trenutno, neko od volontera može da otrkije objavu. Ovo je prikazano na dijagramu \ref{fig:hide-seq}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth, height=\textwidth]{img/hide-post.jpg}
+    \caption{Dijagram sekvence za sakrivanje/otkrivanje objave}
+    \label{fig:hide-seq}
 \end{figure}
 \subsection{Udomljavanje}
 \par \textit{Član} može da udomi životinju tako što kreira ponudu [Dijagram \ref{fig:activity-send-offer}]. \textit{Volonter} ima uvid u sve ponude i može da
