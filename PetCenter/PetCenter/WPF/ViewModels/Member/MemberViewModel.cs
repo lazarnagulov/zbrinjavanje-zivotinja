@@ -28,6 +28,7 @@ namespace PetCenter.WPF.ViewModels.Member
         public NavigationCommand<CreatePostViewModel> NavCreatePostCommand { get; }
         public NavigationCommand<NotificationListingViewModel> NavNotificationCommand { get; }
         public RelayCommand ToggleRequestCommand { get; }
+        public NavigationCommand<DonationViewModel> NavDonationCommand { get; }
 
         public bool HasRequest => _requestService.HasRequest();
 
@@ -44,6 +45,7 @@ namespace PetCenter.WPF.ViewModels.Member
             NavCreatePostCommand = _navigationService.CreateNavCommand<CreatePostViewModel>(ViewType.CreatePost);
             NavNotificationCommand = _navigationService.CreateNavCommand<NotificationListingViewModel>(ViewType.NotificationListing);
             ToggleRequestCommand = new RelayCommand(execute => ToggleRequest());
+            NavDonationCommand = _navigationService.CreateNavCommand<DonationViewModel>(ViewType.Donation);
         }
 
         private void Logout()

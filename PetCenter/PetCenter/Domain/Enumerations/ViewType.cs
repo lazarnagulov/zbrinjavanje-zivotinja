@@ -11,9 +11,15 @@ namespace PetCenter.Domain.Enumerations
         Login,
         Register,
         PostListing,
+        AddVolunteer,
+        OfferListing,
+        PetCenterInfo,
         CreatePost,
+        PostReview,
         OfferListing,
         NotificationListing,
-        RequestListing
+        RequestListing,
+        AnimalTypeCrud,
+        Donation
     }
 }

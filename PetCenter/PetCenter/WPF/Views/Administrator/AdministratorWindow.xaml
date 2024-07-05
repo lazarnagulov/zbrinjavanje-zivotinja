@@ -24,6 +24,8 @@
             <Button Margin="30 16 30 16" Command="{Binding LogoutCommand}" Content="Logout" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavPostListingCommand}" Content="Posts" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavCreatePostCommand}" Content="Create post" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16" Command="{Binding NavAddVolunteerCommand}" Content="Add volunteer" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16" Command="{Binding NavPetCenterInfoCommand}" Content="Pet center info" Width="150" Style="{StaticResource HeaderButton}"/>
         </StackPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
@@ -32,6 +34,12 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vmM:CreatePostViewModel}">
                     <vM:CreatePostView></vM:CreatePostView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmA:AddVolunteerViewModel}">
+                    <vA:AddVolunteerView></vA:AddVolunteerView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmA:PetCenterInfoViewModel}">
+                    <vA:PetCenterInfoView></vA:PetCenterInfoView>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

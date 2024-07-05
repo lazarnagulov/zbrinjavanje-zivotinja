@@ -31,5 +31,14 @@ namespace PetCenter.WPF.BaseViewModels
         private Guid _id = animalType.Id;
         private string _type = animalType.Type;
         private string _breed = animalType.Breed;
+        public AnimalType ToModel()
+        {
+            return new AnimalType
+            {
+                Id = Id,
+                Type = Type,
+                Breed = Breed
+            };
+        }
     }
 }

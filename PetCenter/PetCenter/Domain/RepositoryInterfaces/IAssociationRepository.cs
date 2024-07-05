@@ -9,5 +9,6 @@ namespace PetCenter.Domain.RepositoryInterfaces
 {
     public interface IAssociationRepository : ICrud<Association>
     {
+        Association? GetFirst();
     }
 }
