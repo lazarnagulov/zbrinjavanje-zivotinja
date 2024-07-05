@@ -13,6 +13,7 @@ namespace PetCenter.Domain.Enumerations
         PostListing,
         CreatePost,
         OfferListing,
-        NotificationListing
+        NotificationListing,
+        AnimalTypeCRUD
     }
 }

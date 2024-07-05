@@ -27,6 +27,7 @@ public static class AddViewModelsExtension
             services.AddTransient<CreatePostViewModel>();
             services.AddTransient<OfferListingViewModel>();
             services.AddTransient<NotificationListingViewModel>();
+            services.AddTransient<AnimalTypeCRUDViewModel>();
 
             services.AddTransient<CreateViewModel<AuthenticationViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<AuthenticationViewModel>);
@@ -51,6 +52,8 @@ public static class AddViewModelsExtension
                 serviceProvider => serviceProvider.GetRequiredService<OfferListingViewModel>);
             services.AddTransient<CreateViewModel<NotificationListingViewModel>>(
                 serviceProvider => serviceProvider.GetRequiredService<NotificationListingViewModel>);
+            services.AddTransient<CreateViewModel<AnimalTypeCRUDViewModel>>(
+                serviceProvider => serviceProvider.GetRequiredService<AnimalTypeCRUDViewModel>);
         });
         
         return host;
