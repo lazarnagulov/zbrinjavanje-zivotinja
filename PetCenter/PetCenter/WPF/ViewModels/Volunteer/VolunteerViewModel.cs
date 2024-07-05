@@ -41,7 +41,8 @@ namespace PetCenter.WPF.ViewModels.Volunteer
             NavOffersCommand = _navigationService.CreateNavCommand<OfferListingViewModel>(ViewType.OfferListing);
             NavNotificationCommand = _navigationService.CreateNavCommand<NotificationListingViewModel>(ViewType.NotificationListing);
             NavPostReviewCommand = _navigationService.CreateNavCommand<PostReviewViewModel>(ViewType.PostReview);
-            NavAnimalTypeCRUDCommand = _navigationService.CreateNavCommand<AnimalTypeCrudViewModel>(ViewType.AnimalTypeCrud);
+            NavAnimalTypeCRUDCommand =
+                _navigationService.CreateNavCommand<AnimalTypeCrudViewModel>(ViewType.AnimalTypeCrud);
             NavDonationCommand = _navigationService.CreateNavCommand<DonationViewModel>(ViewType.Donation);
         }
 
