@@ -60,7 +60,8 @@ namespace PetCenter.WPF.ViewModels.Member
                 if (result == MessageBoxResult.Yes)
                 {
                     _requestService.DeleteForCurrentUser();
-                    MessageBox.Show("Success!");
+                    MessageBox.Show("Success!", "Info", MessageBoxButton.OK);
+                    OnPropertyChanged(nameof(HasRequest));
                 }
             }
             else
@@ -68,7 +69,7 @@ namespace PetCenter.WPF.ViewModels.Member
                 bool success = _requestService.CreateRequest();
                 if (success)
                 {
-                    MessageBox.Show("Success!");
+                    MessageBox.Show("Success!", "Info", MessageBoxButton.OK);
                     OnPropertyChanged(nameof(HasRequest));
                 }
                 else
