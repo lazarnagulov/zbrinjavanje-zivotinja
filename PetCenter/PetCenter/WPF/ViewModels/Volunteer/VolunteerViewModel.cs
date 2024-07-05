@@ -24,6 +24,7 @@ namespace PetCenter.WPF.ViewModels.Volunteer
         public NavigationCommand<CreatePostViewModel> NavCreatePostCommand { get; }
         public NavigationCommand<OfferListingViewModel> NavOffersCommand { get; }
         public NavigationCommand<NotificationListingViewModel> NavNotificationCommand { get; }
+        public NavigationCommand<RequestListingViewModel> NavRequestsCommand { get; }
         public NavigationCommand<PostReviewViewModel> NavPostReviewCommand { get; }
 
         public NavigationCommand<AnimalTypeCrudViewModel> NavAnimalTypeCRUDCommand { get; }
@@ -44,6 +45,7 @@ namespace PetCenter.WPF.ViewModels.Volunteer
             NavAnimalTypeCRUDCommand =
                 _navigationService.CreateNavCommand<AnimalTypeCrudViewModel>(ViewType.AnimalTypeCrud);
             NavDonationCommand = _navigationService.CreateNavCommand<DonationViewModel>(ViewType.Donation);
+            NavRequestsCommand = _navigationService.CreateNavCommand<RequestListingViewModel>(ViewType.RequestListing);
         }
 
         private void Logout()

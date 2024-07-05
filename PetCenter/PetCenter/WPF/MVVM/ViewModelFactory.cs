@@ -25,7 +25,8 @@ namespace PetCenter.WPF.MVVM
         CreateViewModel<AddVolunteerViewModel> createAddVolunteerViewModel,
         CreateViewModel<PostReviewViewModel> createPostReviewViewModel,
         CreateViewModel<AnimalTypeCrudViewModel> createAnimalTypeCrudViewModel,
-        CreateViewModel<DonationViewModel> createDonationViewModel
+        CreateViewModel<DonationViewModel> createDonationViewModel,
+        CreateViewModel<RequestListingViewModel> createRequestListingViewModel
         )
     {
         public CreateViewModel<T> GetCreateViewModel<T>(ViewType type) where T : ViewModelBase
@@ -40,6 +41,7 @@ namespace PetCenter.WPF.MVVM
                 ViewType.PetCenterInfo => (createPetCenterInfoViewModel as CreateViewModel<T>)!,
                 ViewType.OfferListing => (createOfferListingViewModel as CreateViewModel<T>)!,
                 ViewType.NotificationListing => (createNotificationListingViewModel as CreateViewModel<T>)!,
+                ViewType.RequestListing => (createRequestListingViewModel as CreateViewModel<T>)!,
                 ViewType.PostReview => (createPostReviewViewModel as CreateViewModel<T>)!,
                 ViewType.AnimalTypeCrud => (createAnimalTypeCrudViewModel as CreateViewModel<T>)!,
                 ViewType.Donation => (createDonationViewModel as CreateViewModel<T>)!,
@@ -58,6 +60,7 @@ namespace PetCenter.WPF.MVVM
                 ViewType.PetCenterInfo => createPetCenterInfoViewModel(),
                 ViewType.OfferListing => createOfferListingViewModel(),
                 ViewType.NotificationListing => createNotificationListingViewModel(),
+                ViewType.RequestListing=> createRequestListingViewModel(),
                 ViewType.PostReview => createPostReviewViewModel(),
                 ViewType.AnimalTypeCrud => createAnimalTypeCrudViewModel(),
                 ViewType.Donation => createDonationViewModel(),

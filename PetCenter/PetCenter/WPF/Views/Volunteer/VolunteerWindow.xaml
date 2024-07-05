@@ -38,6 +38,7 @@
                     Width="150"
                     Style="{StaticResource HeaderButton}" />
 
+            <Button Margin="20 16 30 16" Command="{Binding NavRequestsCommand}" Content="Requests" Width="150" Style="{StaticResource HeaderButton}"/>
         </WrapPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
@@ -52,6 +53,9 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vmM:NotificationListingViewModel}">
                     <vM:NotificationListingView></vM:NotificationListingView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmV:RequestListingViewModel}">
+                    <vV:RequestListingView></vV:RequestListingView>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vmV:PostReviewViewModel}">
                     <vV:PostReviewView></vV:PostReviewView>

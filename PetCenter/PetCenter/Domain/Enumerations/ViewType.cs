@@ -17,6 +17,7 @@ namespace PetCenter.Domain.Enumerations
         CreatePost,
         PostReview,
         NotificationListing,
+        RequestListing,
         AnimalTypeCrud,
         Donation
     }

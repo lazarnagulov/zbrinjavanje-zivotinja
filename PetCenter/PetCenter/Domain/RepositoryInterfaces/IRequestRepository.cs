@@ -9,5 +9,6 @@ namespace PetCenter.Domain.RepositoryInterfaces
 {
     public interface IRequestRepository : ICrud<Request>
     {
+        List<Request> GetAllIncluded();
     }
 }

@@ -21,13 +21,29 @@
             <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource SBHeaderColor}">
+        <DockPanel Grid.Row="0" Background="{StaticResource SBHeaderColor}">
+            <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center">
+                <Button Margin="20 16 30 16" Command="{Binding ToggleRequestCommand}" Width="220" Height="40">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource HeaderButton}">
+                            <Setter Property="Content" Value="Apply for volunteering"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasRequest}" Value="True">
+                                    <Setter Property="Content" Value="Cancel request" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style> 
+                </Button>
+            </StackPanel>
+        <StackPanel Orientation="Horizontal">
             <Button Margin="30 16 30 16" Command="{Binding LogoutCommand}" Content="Logout" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavPostListingCommand}" Content="Posts" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavCreatePostCommand}" Content="Create post" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavNotificationCommand}" Content="Notifications" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavDonationCommand}" Content="Donate" Width="150" Style="{StaticResource HeaderButton}"/>
         </StackPanel>
+        </DockPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vmG:PostListingViewModel}">
