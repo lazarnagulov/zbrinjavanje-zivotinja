@@ -6,7 +6,7 @@ Opisana su 4 dijagrama aktivnosti:
     \item \textbf{Aktivnost objave}
     \item \textbf{Slanje ponude}
     \item \textbf{Učitavanje uplate}
-    \item \textbf{Prijava}
+    \item \textbf{Prijava na sistem}
 \end{enumerate}
 \subsection{Aktivnost objave}
 \par Dijagram aktivnosti objave predstavlja proces kojim \textit{član} kreira objavu, a \textit{volonter} je prihvata ili odbija.
@@ -52,4 +52,14 @@ Ovo je prikazano na dijagramu \ref{fig:activity-load-donation}.
     \includegraphics[width=\textwidth, height=\textwidth]{img/load_donation.jpg}
     \caption{Dijagram aktivnosti za učitavanje donacija}
     \label{fig:activity-load-donation}
+\end{figure}
+\subsection{Prijava na sistem}
+\par \textit{Gost} se može prijaviti na sistem unosom korisničkog imena i šifre. Nakon toga, sistem hešira unetu šifru i proverava heš vrednosti sa
+unetom vrednošću za šifru u bazi podataka. U slučaju nepodudaranja, korisniku se javlja poruka o grešci. U suprotnom, sistem kreira odgovarajući prozor u zavisnosti
+od tipa naloga. Ovo je prikazano na dijagramu \ref{fig:login}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth, height=\textwidth]{img/login.jpg}
+    \caption{Dijagram aktivnosti za prijavljivanje na sistem}
+    \label{fig:login}
 \end{figure}
