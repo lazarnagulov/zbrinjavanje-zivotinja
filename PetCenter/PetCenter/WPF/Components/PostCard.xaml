@@ -170,12 +170,23 @@
                                 HorizontalAlignment="Stretch"
                                 Margin="12,0"
                                 FontSize="12"
-                                Content="Request Adoption"/>
+                                Content="Request Adoption"
+                                Command="{Binding DataContext.RequestAdoptionCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding}"/>
                         <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                                 HorizontalAlignment="Stretch"
                                 Margin="12,0"
                                 FontSize="12"
-                                Content="Request Temporary Accommodation"/>
+                                Content="Request Temporary Accommodation"
+                                Command="{Binding DataContext.RequestTemporaryAccommodationCommand , RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding}"/>
+                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                HorizontalAlignment="Stretch"
+                                Margin="12,0"
+                                FontSize="12"
+                                Content="Cancel Offers"
+                                Command="{Binding DataContext.CancelOffersCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding}"/>
                     </StackPanel>
                 </DockPanel>
                 <StackPanel Grid.Row="5" Orientation="Vertical" Margin="10,0">

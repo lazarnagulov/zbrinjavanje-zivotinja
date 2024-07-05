@@ -17,10 +17,10 @@
         Title="VolunteerWindow" Height="700" Width="1300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource SBHeaderColor}">
+        <WrapPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource SBHeaderColor}" >
             <Button Margin="30 16 30 16" Command="{Binding LogoutCommand}" Content="Logout" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavPostListingCommand}" Content="Posts" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16"
@@ -31,7 +31,14 @@
             <Button Margin="20 16 30 16" Command="{Binding NavCreatePostCommand}" Content="Create post" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavOffersCommand}" Content="Offers" Width="150" Style="{StaticResource HeaderButton}"/>
             <Button Margin="20 16 30 16" Command="{Binding NavNotificationCommand}" Content="Notifications" Width="150" Style="{StaticResource HeaderButton}"/>
-        </StackPanel>
+            <Button Margin="20 16 30 16" Command="{Binding NavAnimalTypeCRUDCommand}" Content="Animal types" Width="150" Style="{StaticResource HeaderButton}"/>
+            <Button Margin="20 16 30 16"
+                    Command="{Binding NavDonationCommand}"
+                    Content="Donate"
+                    Width="150"
+                    Style="{StaticResource HeaderButton}" />
+
+        </WrapPanel>
         <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vmG:PostListingViewModel}">
@@ -48,6 +55,12 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type vmV:PostReviewViewModel}">
                     <vV:PostReviewView></vV:PostReviewView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmV:AnimalTypeCrudViewModel}">
+                    <vV:AnimalTypeCrudView></vV:AnimalTypeCrudView>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vmG:DonationViewModel}">
+                    <vG:DonationView></vG:DonationView>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
